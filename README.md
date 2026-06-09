@@ -87,47 +87,33 @@
 ---
 
 ---
+lumiere-app/
+│
+├── 📄 index.html                      # Homepage - Hero section, features, testimonials
+├── 📄 salons.html                     # Salon discovery - Grid view + Map view with filters
+├── 📄 salon-profile.html              # Salon details - Services, stylists, reviews, booking
+├── 📄 ai-stylist.html                 # AI consultation - Interactive chat interface
+├── 📄 customer-dashboard.html         # Customer portal - Bookings, favorites, AI history
+├── 📄 dashboard.html                  # Business portal - Analytics, staff, payouts
+│
+├── 📁 lumiere-backend/                # Backend API server
+│   ├── 📄 server.js                   # Express server entry point
+│   ├── 📄 package.json                # Backend dependencies
+│   ├── 📄 package-lock.json           # Lock file for dependencies
+│   ├── 📄 .env                        # Environment variables (not committed)
+│   │
+│   ├── 📁 routes/                     # API route handlers
+│   │   ├── 📄 salons.js               # GET/POST salons endpoints
+│   │   ├── 📄 bookings.js             # GET/POST bookings endpoints
+│   │   └── 📄 users.js                # GET/POST users endpoints
+│   │
+│   └── 📁 config/                     # Configuration files
+│       └── 📄 supabase.js             # Supabase client initialization
+│
+├── 📁 assets/                         # Static assets
+│   ├── 📁 images/                     # Logo, hero images, salon photos
+│   └── 📁 icons/                      # Custom icons (if any)
+│
+├── 📄 .gitignore                      # Git ignore rules
+└── 📄 README.md                       # Project documentation
 
-🎨 Color Palette
-Color Name	Hex Code	Usage
-Primary	#80534c	Main brand color, buttons, links
-Primary Container	#e2a9a1	Background accents, cards
-Surface	#fcf9f8	Main background
-Secondary	#735c00	Gold accents, ratings
-On-Surface	#1c1b1b	Text color
-🤝 Contributing
-Contributions are welcome! Please follow these steps:
-
-Fork the repository
-
-Create a feature branch (git checkout -b feature/amazing-feature)
-
-Commit your changes (git commit -m 'Add amazing feature')
-
-Push to branch (git push origin feature/amazing-feature)
-
-Open a Pull Request
-
-📝 License
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-👥 Team
-Role	Name
-Developer	de-coder-bit
-Designer	LUMIÈRE Design Team
-🙏 Acknowledgments
-Tailwind CSS for the utility-first CSS framework
-
-Supabase for the backend infrastructure
-
-Google Fonts for the beautiful typography
-
-Material Icons for the icon set
-
-📞 Support
-For support, email: support@lumiere-beauty.com or open an issue on GitHub.
-
-<div align="center"> <sub>Built with ❤️ by de-coder-bit</sub> <br/> <sub>© 2024 LUMIÈRE Beauty. All rights reserved.</sub> </div> ```
-
-
-## 📁 Project Structure
