@@ -1,0 +1,712 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LUMIÈRE | AI Stylist &amp; Recommendation Interface</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-panel {
+        background: rgba(252, 249, 248, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .glow-border {
+        position: relative;
+      }
+      .glow-border::after {
+        content: "";
+        position: absolute;
+        inset: -1px;
+        border-radius: inherit;
+        padding: 1px;
+        background: linear-gradient(
+          135deg,
+          rgba(226, 169, 161, 1) 0%,
+          rgba(254, 214, 91, 0.2) 50%,
+          rgba(226, 169, 161, 1) 100%
+        );
+        -webkit-mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        mask:
+          linear-gradient(#fff 0 0) content-box,
+          linear-gradient(#fff 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+        pointer-events: none;
+      }
+      .ai-sparkle {
+        filter: drop-shadow(0 0 8px rgba(254, 214, 91, 0.6));
+      }
+      @keyframes subtle-float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-8px);
+        }
+      }
+      .float-anim {
+        animation: subtle-float 6s ease-in-out infinite;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#574500",
+              secondary: "#735c00",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745c00",
+              "on-primary-fixed-variant": "#653c36",
+              "on-background": "#1c1b1b",
+              "surface-tint": "#80534c",
+              "on-primary-container": "#663d37",
+              "surface-variant": "#e5e2e1",
+              "on-error": "#ffffff",
+              "surface-container-highest": "#e5e2e1",
+              "tertiary-fixed-dim": "#cac6c5",
+              "inverse-primary": "#f3b8b0",
+              "on-tertiary-fixed": "#1c1b1b",
+              error: "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              outline: "#837371",
+              "outline-variant": "#d5c2bf",
+              "on-surface-variant": "#514442",
+              background: "#fcf9f8",
+              "secondary-container": "#fed65b",
+              "tertiary-container": "#bab6b5",
+              "on-surface": "#1c1b1b",
+              "surface-dim": "#dcd9d9",
+              "primary-container": "#e2a9a1",
+              "on-tertiary-container": "#494747",
+              "on-primary-fixed": "#32120e",
+              "on-tertiary-fixed-variant": "#484646",
+              "secondary-fixed": "#ffe088",
+              "inverse-on-surface": "#f3f0ef",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#241a00",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "surface-container-low": "#f6f3f2",
+              "inverse-surface": "#313030",
+              "tertiary-fixed": "#e6e1e0",
+              tertiary: "#605e5d",
+              "primary-fixed-dim": "#f3b8b0",
+              "secondary-fixed-dim": "#e9c349",
+              "on-secondary": "#ffffff",
+              surface: "#fcf9f8",
+              primary: "#80534c",
+              "surface-container": "#f0eded",
+              "surface-bright": "#fcf9f8",
+              "primary-fixed": "#ffdad5",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "8px",
+              "stack-xl": "64px",
+              "margin-mobile": "20px",
+              "container-max": "1280px",
+              "stack-lg": "32px",
+              "margin-desktop": "64px",
+              gutter: "24px",
+              "stack-md": "16px",
+            },
+            fontFamily: {
+              "headline-md": ["Playfair Display"],
+              "headline-sm": ["Playfair Display"],
+              "body-lg": ["Inter"],
+              "display-lg": ["Playfair Display"],
+              "label-md": ["Inter"],
+              "display-lg-mobile": ["Playfair Display"],
+              "body-md": ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-surface font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto bg-surface/60 backdrop-blur-xl dark:bg-inverse-surface/60 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)]"
+    >
+      <div
+        class="font-display-lg text-display-lg-mobile tracking-tighter text-primary dark:text-primary-fixed-dim"
+      >
+        LUMIÈRE
+      </div>
+      <nav class="hidden md:flex items-center gap-stack-lg">
+        <a
+          class="font-body-md text-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:scale-105 hover:text-primary transition-all duration-300"
+          href="#"
+          >Discover</a
+        >
+        <a
+          class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 transition-all duration-300"
+          href="#"
+          >AI Stylist</a
+        >
+        <a
+          class="font-body-md text-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:scale-105 hover:text-primary transition-all duration-300"
+          href="#"
+          >Salons</a
+        >
+        <a
+          class="font-body-md text-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:scale-105 hover:text-primary transition-all duration-300"
+          href="#"
+          >Offers</a
+        >
+      </nav>
+      <div class="flex items-center gap-stack-md">
+        <button
+          class="font-body-md text-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary transition-colors"
+        >
+          Sign In
+        </button>
+        <button
+          class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:scale-105 transition-transform shadow-sm"
+        >
+          Book Now
+        </button>
+      </div>
+    </header>
+    <!-- Sidebar (Quick Salon Links) -->
+    <aside
+      class="fixed left-0 top-0 h-full hidden lg:flex flex-col p-stack-md border-r border-outline-variant/10 bg-surface dark:bg-inverse-surface w-64 pt-32 shadow-sm z-40"
+    >
+      <div class="px-4 mb-stack-lg">
+        <h3 class="font-headline-sm text-headline-sm text-primary">
+          Nearby Salons
+        </h3>
+        <p class="font-caption text-caption text-on-surface-variant">
+          Recommended for your style
+        </p>
+      </div>
+      <div class="flex flex-col gap-stack-sm flex-grow overflow-y-auto px-2">
+        <!-- Salon Card 1 -->
+        <div
+          class="p-3 rounded-xl hover:bg-primary-container/20 transition-all cursor-pointer group"
+        >
+          <div class="flex items-center gap-3">
+            <img
+              class="w-12 h-12 rounded-lg object-cover"
+              data-alt="The exterior of a luxury hair salon with large glass windows and elegant gold signage. The lighting is warm and inviting, showcasing a minimalist interior with marble floors and designer styling stations. The overall aesthetic is professional and high-end concierge."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw4bv8lgcBb1FxwNDhwQbFzarnwYPiIozeAcwCVivc4ZXxyvjmOpknZD_jrd7W8P66soDbUYUuvDVLT3mi9BKyZvMJZUOF0FP_B0Sjsgv6-JsRJRgA_TZqtrA1O-YWbfracWNSIRVZt4OBOANdEWQ7DG8XuEDXvOTfoj1iKLaqdvWTaUhaKeiB7juvFMLabGjBp9NY4qwBYvaw9AxIM1e8HnQQLp4JJ7FLGysF-LN9tBS98AB_9TGZu_A0vyvpHlVi5Gli5hZ5vCgY"
+            />
+            <div>
+              <p
+                class="font-label-md text-label-md group-hover:text-primary transition-colors"
+              >
+                L'Artiste Salon
+              </p>
+              <p class="font-caption text-caption text-on-surface-variant">
+                0.4 miles away
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Salon Card 2 -->
+        <div
+          class="p-3 rounded-xl hover:bg-primary-container/20 transition-all cursor-pointer group"
+        >
+          <div class="flex items-center gap-3">
+            <img
+              class="w-12 h-12 rounded-lg object-cover"
+              data-alt="A chic interior of a modern spa and beauty parlor with soft pink accents and plush velvet seating. Diffused natural light pours in, creating a serene and exclusive atmosphere. Stylists are seen working on clients in the background with premium equipment and professional care."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQr0IFk-htVxDEOt_ZNfBH_Rzw1rcDixkov-LL78_VfXivl5GTOSQChgM8rrZkUWL620wruWQFGsjqG6b-QE2YYgL9SkUqrcPZ2Ui8fXOCv2wP6ycDCtC-Vf2SK-8r9TFSf44pYK0SJXYZZNeM7VTFOptZlYkUNNv0P_xAVNUECyNvv6ejliLCLqn9FXc_nl_xK0p4AQkpv0Q-f7sxrWZbg5S76BFlI6QSPHSJ1xQ_d4rqIPbi9yAj1WlbjocdLFvpwWkCQEUritvW"
+            />
+            <div>
+              <p
+                class="font-label-md text-label-md group-hover:text-primary transition-colors"
+              >
+                Elysian Beauty
+              </p>
+              <p class="font-caption text-caption text-on-surface-variant">
+                1.2 miles away
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Salon Card 3 -->
+        <div
+          class="p-3 rounded-xl hover:bg-primary-container/20 transition-all cursor-pointer group"
+        >
+          <div class="flex items-center gap-3">
+            <img
+              class="w-12 h-12 rounded-lg object-cover"
+              data-alt="A close-up of a high-end salon station with premium hair care products neatly arranged on a white marble countertop. The lighting is bright and clean, emphasizing the luxury and attention to detail. A golden mirror reflects a peaceful, airy studio space designed for comfort and elegance."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNsQM8efH05rKwN01yUs45DxglPHMTZGBB-KPAp0rnPdw_E65_Ka_AUDFzzq6olSuDplLuhw38eTNPlJFiFCNRAQfnH8q2i6dEsPDQLqfOKi5agtVu3COYTkDbHJqToKTZ-zKQVHIQ7hBFCoeL7QXPvei0g-NunozXuTno9TawzaPfApbBWpeq26aMR8eMk4povg3b6y7kyP3zLGrqIR9wL-DxzZ2F0iJvYLWZK_hvxtgcELlPuV_OadSDd8OsWAamjZoI-6krxshD"
+            />
+            <div>
+              <p
+                class="font-label-md text-label-md group-hover:text-primary transition-colors"
+              >
+                The Gold Standard
+              </p>
+              <p class="font-caption text-caption text-on-surface-variant">
+                2.5 miles away
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div
+        class="mt-auto p-4 bg-secondary-container/20 rounded-2xl border border-secondary/10"
+      >
+        <p class="font-label-md text-label-md text-on-secondary-container">
+          Premium Member
+        </p>
+        <p class="font-caption text-caption text-on-surface-variant mb-3">
+          Get 15% off at all partner salons.
+        </p>
+        <button
+          class="w-full bg-secondary-container text-on-secondary-container py-2 rounded-xl font-label-md text-label-md hover:scale-102 transition-transform"
+        >
+          Upgrade to Gold
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content -->
+    <main
+      class="pt-32 pb-stack-xl px-margin-mobile lg:pl-[280px] lg:pr-margin-desktop max-w-container-max mx-auto min-h-screen"
+    >
+      <!-- Header Section -->
+      <section class="mb-stack-lg">
+        <div class="flex items-center gap-2 mb-2">
+          <span
+            class="material-symbols-outlined text-secondary ai-sparkle"
+            style="font-variation-settings: &quot;FILL&quot; 1"
+            >auto_awesome</span
+          >
+          <span
+            class="text-secondary font-label-md text-label-md tracking-widest uppercase"
+            >AI Stylist Experience</span
+          >
+        </div>
+        <h1
+          class="font-headline-md text-headline-md text-on-background lg:text-display-lg lg:font-display-lg leading-tight"
+        >
+          Define Your <span class="text-primary italic">Aura.</span>
+        </h1>
+        <p
+          class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4"
+        >
+          Upload your portrait and let our neural engine curate the perfect look
+          based on your unique facial architecture and style DNA.
+        </p>
+      </section>
+      <!-- Tool Grid -->
+      <div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter items-start">
+        <!-- Left Panel: Analysis & Upload -->
+        <div class="xl:col-span-5 space-y-stack-md">
+          <div
+            class="glass-panel rounded-3xl p-stack-lg border border-primary-container/10 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] glow-border overflow-hidden"
+          >
+            <div
+              class="relative group cursor-pointer border-2 border-dashed border-outline-variant/30 rounded-2xl aspect-[4/5] flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container-high transition-colors overflow-hidden"
+            >
+              <img
+                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                data-alt="A portrait of a woman with natural features, soft lighting, and a neutral background. The shot is high-key and airy, typical of high-end editorial photography. She has an oval face shape which will be analyzed by the AI for hairstyle and makeup recommendations. The mood is calm and sophisticated."
+                id="preview-image"
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAXAfORrth_nqnMbTSd0qeBivzViLMInnSpqX6AkGYAY53K5Poc6c9gh4C4-Z0mow2KZhhgqrYcMWTJyWl7FQgtCjBkUZ0hjug9CabEZH41y2yDUtUnHHE4so-J1kexuAoUiHrEmWQVKlNJsowrbQgU8JrrWi16RM7n4X6t8Pk0IjhdSpePCQlIvj2KcnVmbal7O6Irn_Qf7YUXWhJyezj0iRaR7WAifmTSKae3PaonEwL8DVurC4-RiKuaFobh4iOkkHDRmDt2qM1"
+              />
+              <div
+                class="relative z-10 flex flex-col items-center p-6 bg-surface/40 backdrop-blur-md rounded-2xl border border-white/20"
+              >
+                <span
+                  class="material-symbols-outlined text-4xl text-primary mb-2"
+                  >add_a_photo</span
+                >
+                <p
+                  class="font-label-md text-label-md text-on-surface text-center"
+                >
+                  Replace Portrait
+                </p>
+                <p
+                  class="font-caption text-caption text-on-surface-variant text-center mt-1"
+                >
+                  PNG, JPG up to 10MB
+                </p>
+              </div>
+              <!-- AI Analysis Overlay (Mockup) -->
+              <div
+                class="absolute inset-0 pointer-events-none flex items-center justify-center"
+              >
+                <svg class="w-full h-full opacity-60" viewbox="0 0 400 500">
+                  <path
+                    class="animate-pulse"
+                    d="M200,100 Q300,100 320,250 T200,400 T80,250 Q100,100 200,100"
+                    fill="none"
+                    stroke="#E2A9A1"
+                    stroke-dasharray="10 5"
+                    stroke-width="2"
+                  ></path>
+                  <circle cx="200" cy="180" fill="#FED65B" r="4"></circle>
+                  <circle cx="140" cy="220" fill="#FED65B" r="4"></circle>
+                  <circle cx="260" cy="220" fill="#FED65B" r="4"></circle>
+                  <circle cx="200" cy="350" fill="#FED65B" r="4"></circle>
+                </svg>
+              </div>
+            </div>
+            <div class="mt-stack-lg space-y-stack-md">
+              <div class="flex justify-between items-end">
+                <div>
+                  <h3 class="font-headline-sm text-headline-sm">
+                    Facial Profile
+                  </h3>
+                  <p class="font-caption text-caption text-on-surface-variant">
+                    Heart-Oval Hybrid detected
+                  </p>
+                </div>
+                <div
+                  class="bg-primary-container/20 text-primary px-3 py-1 rounded-full font-label-md text-caption"
+                >
+                  98% Match
+                </div>
+              </div>
+              <div class="grid grid-cols-2 gap-stack-sm">
+                <div
+                  class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/10"
+                >
+                  <p
+                    class="font-caption text-caption text-on-surface-variant mb-1"
+                  >
+                    Tone
+                  </p>
+                  <p class="font-label-md text-label-md">Cool Ivory</p>
+                </div>
+                <div
+                  class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/10"
+                >
+                  <p
+                    class="font-caption text-caption text-on-surface-variant mb-1"
+                  >
+                    Structure
+                  </p>
+                  <p class="font-label-md text-label-md">High Cheekbones</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Filters -->
+          <div
+            class="glass-panel rounded-2xl p-stack-md border border-outline-variant/10"
+          >
+            <p class="font-label-md text-label-md mb-3">Style Direction</p>
+            <div class="flex flex-wrap gap-2">
+              <button
+                class="px-4 py-2 rounded-full border border-primary bg-primary text-on-primary font-label-md text-label-md transition-all"
+              >
+                Minimal
+              </button>
+              <button
+                class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md"
+              >
+                Glamour
+              </button>
+              <button
+                class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md"
+              >
+                Professional
+              </button>
+              <button
+                class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md"
+              >
+                Avant-Garde
+              </button>
+            </div>
+          </div>
+        </div>
+        <!-- Right Panel: AI Suggestions -->
+        <div class="xl:col-span-7">
+          <div class="flex items-center justify-between mb-stack-md">
+            <h2 class="font-headline-sm text-headline-sm text-on-background">
+              Curated Suggestions
+            </h2>
+            <div class="flex items-center gap-2 text-on-surface-variant">
+              <span class="material-symbols-outlined text-[18px]">sort</span>
+              <span class="font-label-md text-label-md">Sort by Relevance</span>
+            </div>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
+            <!-- Suggestion 1 -->
+            <div
+              class="group relative bg-surface-container-lowest rounded-3xl p-4 border border-primary-container/10 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] hover:shadow-[0_40px_60px_0_rgba(226,169,161,0.1)] transition-all duration-500 overflow-hidden"
+            >
+              <div class="relative h-64 rounded-2xl overflow-hidden mb-4">
+                <img
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  data-alt="A portrait of a model showcasing a modern lob hairstyle with soft waves and elegant makeup. The lighting is ethereal and glowy, emphasizing the high-end beauty aesthetic. Warm peach and gold tones dominate the palette, creating a luxurious and welcoming vibe."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEhgVB6AYyt1l9aqobmzk3qHr-KbQxvZx_4AtAO0ZqFtGSEGLGW7YGunFoqckXsvoyU3cVe6cUMHwcrJ1yYC2Os7TV-QWFSoQuIUvdXbUOHnU1TlbpOtGwopS2-9YenhNcWRnuJ07OkqnIYsKe5Mcic02jf5CIk0crqUodtqqVEavYAYnlCV7bCVxv5haAWer58kzhtURqjysk9xLR-_07xlw9QOCwy15w9iLZi8J5tygDC6FwmWfnhUmZfkah7m2TtW5K-h4O3foM"
+                />
+                <div
+                  class="absolute top-3 left-3 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1"
+                >
+                  <span
+                    class="material-symbols-outlined text-[14px] text-secondary"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >auto_awesome</span
+                  >
+                  <span
+                    class="font-caption text-caption text-secondary font-bold"
+                    >TOP MATCH</span
+                  >
+                </div>
+              </div>
+              <h4 class="font-headline-sm text-body-lg mb-1">
+                Soft Textured Lob
+              </h4>
+              <p class="font-caption text-caption text-on-surface-variant mb-4">
+                Balances heart shapes while accentuating high cheekbones with
+                subtle layering.
+              </p>
+              <div class="flex items-center justify-between gap-3">
+                <button
+                  class="flex-grow bg-primary text-on-primary py-3 rounded-xl font-label-md text-label-md hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-sm"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >visibility</span
+                  >
+                  Try On
+                </button>
+                <button
+                  class="w-12 h-12 rounded-xl border border-outline-variant flex items-center justify-center hover:bg-primary-container/10 transition-colors"
+                >
+                  <span class="material-symbols-outlined">favorite</span>
+                </button>
+              </div>
+            </div>
+            <!-- Suggestion 2 -->
+            <div
+              class="group relative bg-surface-container-lowest rounded-3xl p-4 border border-primary-container/10 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] hover:shadow-[0_40px_60px_0_rgba(226,169,161,0.1)] transition-all duration-500 overflow-hidden"
+            >
+              <div class="relative h-64 rounded-2xl overflow-hidden mb-4">
+                <img
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
+                  data-alt="A close-up of high-end makeup artistry featuring a luminous base and gold shimmer accents on the eyes. The style is minimal but glamorous, perfectly suited for a premium beauty app. The background is a soft-focus beige, maintaining a clean and airy visual weight."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJVGENH3XLAWdpxrUMrEn8DvOdHdHrZP0TDgfdoLz5995rtm4cYq4IA7tqupeu0vhmJaDYJKlp6kxzcGz0zjeR0lH4OYHTZMMKmVCJRinjR-92aokgoB7ACXzJ6oh0YAqwBuGesR-84ayP3RA_9gweG-uwfe0YK92p_LJxyPjRVx0cbPJbNys9zFDzycYwcfVCYsUpr6FQBlBWZgq0HlVjSifWyNVjFuZIYxPURSr6G6gRqNNVAuab1d_kRY_f3dyxVClmATbOBfQK"
+                />
+              </div>
+              <h4 class="font-headline-sm text-body-lg mb-1">
+                Champagne Dew Glow
+              </h4>
+              <p class="font-caption text-caption text-on-surface-variant mb-4">
+                Minimalist aesthetic focused on luminous skin and subtle gold
+                eye accents.
+              </p>
+              <div class="flex items-center justify-between gap-3">
+                <button
+                  class="flex-grow bg-primary text-on-primary py-3 rounded-xl font-label-md text-label-md hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-sm"
+                >
+                  <span class="material-symbols-outlined text-[20px]"
+                    >visibility</span
+                  >
+                  Try On
+                </button>
+                <button
+                  class="w-12 h-12 rounded-xl border border-outline-variant flex items-center justify-center hover:bg-primary-container/10 transition-colors"
+                >
+                  <span class="material-symbols-outlined">favorite</span>
+                </button>
+              </div>
+            </div>
+            <!-- Suggestion 3 (Spans 2 columns on desktop) -->
+            <div
+              class="md:col-span-2 group relative glass-panel rounded-3xl p-6 border border-secondary/20 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] glow-border flex flex-col md:flex-row gap-6 items-center"
+            >
+              <div
+                class="w-full md:w-1/3 aspect-square rounded-2xl overflow-hidden relative"
+              >
+                <img
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
+                  data-alt="A stunning high-fashion hair and makeup look featuring sleek, polished hair and bold professional styling. The atmosphere is tranquil yet exclusive, with high-end studio lighting creating soft shadows. The overall feel is one of confidence and tranquility, ideal for professional beauty recommendations."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR9Er_9v23RHyt8aDhEUlIXa-XrHT8lKGeypA7PxdyaXPkHCIu7lDpppCawfkISQUNj1-0HPps5LNDfHR0E8EQDPVAGN1L1LkOwT1SZsAA4Y1K2KBTjMix7Jo6SNKuMvTF790IJLyznaYUARFz-tn_1MdyPxVD9krdgdAGhxgOYLswZdMXY8c1idqEHS2hgdFg1Lqkw8Pv8tYViiWxcsCTeTik5LcdtsJWLTkghwWTYw8I1dyX9P4xoeF-9jWS4PuJHbx5MXEinGWi"
+                />
+              </div>
+              <div class="flex-grow">
+                <div class="flex items-center gap-2 mb-2">
+                  <span
+                    class="material-symbols-outlined text-secondary ai-sparkle"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >stars</span
+                  >
+                  <span
+                    class="text-secondary font-label-md text-caption uppercase tracking-wider"
+                    >Style Fusion</span
+                  >
+                </div>
+                <h3 class="font-headline-md text-headline-sm mb-2">
+                  The Executive Signature
+                </h3>
+                <p
+                  class="font-body-md text-body-md text-on-surface-variant mb-6"
+                >
+                  A curated combination of our 'Sleek Back' hairstyle and
+                  'Corporate Neutral' makeup palette. Designed to command
+                  presence while maintaining effortless grace.
+                </p>
+                <div class="flex flex-wrap gap-stack-md">
+                  <button
+                    class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md text-label-md hover:scale-105 transition-transform shadow-lg shadow-secondary/20"
+                  >
+                    Full Simulation
+                  </button>
+                  <button
+                    class="border border-secondary text-secondary px-8 py-3 rounded-full font-label-md text-label-md hover:bg-secondary/5 transition-colors"
+                  >
+                    Save Combo
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full py-stack-xl px-margin-desktop flex flex-col items-center gap-stack-lg bg-surface dark:bg-inverse-surface border-t border-outline-variant/10"
+    >
+      <div
+        class="font-display-lg text-display-lg text-primary dark:text-primary-fixed-dim"
+      >
+        LUMIÈRE
+      </div>
+      <div class="flex flex-wrap justify-center gap-x-stack-lg gap-y-stack-sm">
+        <a
+          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
+          href="#"
+          >Privacy Policy</a
+        >
+        <a
+          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
+          href="#"
+          >Terms of Service</a
+        >
+        <a
+          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
+          href="#"
+          >Partner with Us</a
+        >
+        <a
+          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
+          href="#"
+          >Careers</a
+        >
+        <a
+          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
+          href="#"
+          >Support</a
+        >
+      </div>
+      <p
+        class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim mt-4"
+      >
+        © 2024 LUMIÈRE Beauty. All rights reserved.
+      </p>
+    </footer>
+    <!-- Micro-interactions Script -->
+    <script>
+      // Simple click interaction for try-on buttons
+      document.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("click", function (e) {
+          if (
+            this.innerText.includes("Try On") ||
+            this.innerText.includes("Full Simulation")
+          ) {
+            const originalText = this.innerHTML;
+            this.innerHTML =
+              '<span class="material-symbols-outlined animate-spin">progress_activity</span> Syncing...';
+            this.disabled = true;
+            setTimeout(() => {
+              this.innerHTML =
+                '<span class="material-symbols-outlined text-green-500">check_circle</span> Applied';
+              setTimeout(() => {
+                this.innerHTML = originalText;
+                this.disabled = false;
+              }, 2000);
+            }, 1500);
+          }
+        });
+      });
+
+      // Hover effect for salon cards
+      document.querySelectorAll("aside .p-3").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.style.transform = "translateX(4px)";
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "translateX(0)";
+        });
+      });
+    </script>
+  </body>
+</html>

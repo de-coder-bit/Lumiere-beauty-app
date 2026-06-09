@@ -1,0 +1,643 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LUMIÈRE | Aura AI Stylist</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "wght" 200,
+          "FILL" 0;
+        font-size: 20px;
+      }
+      .glass-panel {
+        background: rgba(252, 249, 248, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .ai-glow {
+        box-shadow: 0 0 20px rgba(226, 169, 161, 0.4);
+      }
+      .message-in {
+        animation: slideIn 0.3s ease-out forwards;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .aura-pulse {
+        animation: pulse 4s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
+        50% {
+          transform: scale(1.1);
+          opacity: 1;
+        }
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#574500",
+              secondary: "#735c00",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745c00",
+              "on-primary-fixed-variant": "#653c36",
+              "on-background": "#1c1b1b",
+              "surface-tint": "#80534c",
+              "on-primary-container": "#663d37",
+              "surface-variant": "#e5e2e1",
+              "on-error": "#ffffff",
+              "surface-container-highest": "#e5e2e1",
+              "tertiary-fixed-dim": "#cac6c5",
+              "inverse-primary": "#f3b8b0",
+              "on-tertiary-fixed": "#1c1b1b",
+              error: "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              outline: "#837371",
+              "outline-variant": "#d5c2bf",
+              "on-surface-variant": "#514442",
+              background: "#fcf9f8",
+              "secondary-container": "#fed65b",
+              "tertiary-container": "#bab6b5",
+              "on-surface": "#1c1b1b",
+              "surface-dim": "#dcd9d9",
+              "primary-container": "#e2a9a1",
+              "on-tertiary-container": "#494747",
+              "on-primary-fixed": "#32120e",
+              "on-tertiary-fixed-variant": "#484646",
+              "secondary-fixed": "#ffe088",
+              "inverse-on-surface": "#f3f0ef",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#241a00",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "surface-container-low": "#f6f3f2",
+              "inverse-surface": "#313030",
+              "tertiary-fixed": "#e6e1e0",
+              tertiary: "#605e5d",
+              "primary-fixed-dim": "#f3b8b0",
+              "secondary-fixed-dim": "#e9c349",
+              "on-secondary": "#ffffff",
+              surface: "#fcf9f8",
+              primary: "#80534c",
+              "surface-container": "#f0eded",
+              "surface-bright": "#fcf9f8",
+              "primary-fixed": "#ffdad5",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "8px",
+              "stack-xl": "64px",
+              "margin-mobile": "20px",
+              "container-max": "1280px",
+              "stack-lg": "32px",
+              "margin-desktop": "64px",
+              gutter: "24px",
+              "stack-md": "16px",
+            },
+            fontFamily: {
+              "headline-md": ["Playfair Display"],
+              "headline-sm": ["Playfair Display"],
+              "body-lg": ["Inter"],
+              "display-lg": ["Playfair Display"],
+              "label-md": ["Inter"],
+              "display-lg-mobile": ["Playfair Display"],
+              "body-md": ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-surface font-body-md text-on-surface">
+    <!-- Top Navigation Bar -->
+    <header
+      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto bg-surface/60 backdrop-blur-xl shadow-[0_40px_40px_0_rgba(226,169,161,0.04)]"
+    >
+      <div class="flex items-center gap-8">
+        <span
+          class="font-display-lg text-display-lg-mobile tracking-tighter text-primary"
+          >LUMIÈRE</span
+        >
+        <nav class="hidden md:flex gap-6 items-center">
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
+            href="#"
+            >Discover</a
+          >
+          <a
+            class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1"
+            href="#"
+            >AI Stylist</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
+            href="#"
+            >Salons</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
+            href="#"
+            >Offers</a
+          >
+        </nav>
+      </div>
+      <div class="flex gap-4 items-center">
+        <button
+          class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+        >
+          Sign In
+        </button>
+        <button
+          class="bg-primary text-on-primary px-6 py-2 rounded-full font-body-md text-body-md hover:scale-105 transition-transform"
+        >
+          Book Now
+        </button>
+      </div>
+    </header>
+    <!-- Main Content Grid -->
+    <main
+      class="pt-32 pb-stack-xl px-margin-desktop max-w-container-max mx-auto min-h-screen flex gap-gutter"
+    >
+      <!-- Left Column: AI Dashboard / Persona -->
+      <div class="hidden lg:flex flex-col w-1/3 gap-stack-lg">
+        <div
+          class="bg-surface-container-low rounded-[2rem] p-stack-lg flex flex-col items-center text-center shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] border border-outline-variant/10"
+        >
+          <div class="relative mb-6">
+            <div
+              class="w-40 h-40 rounded-full overflow-hidden border-2 border-primary-container p-1 aura-pulse"
+            >
+              <img
+                alt="Aura AI Portrait"
+                class="w-full h-full object-cover rounded-full"
+                data-alt="A cinematic, high-fashion portrait of a digital woman with ethereal features, representing an advanced beauty AI. Her skin is flawless with a soft glow, and her hair flows like liquid silk. The lighting is golden hour warm, set against a minimalist architectural background with soft focus. The aesthetic is ultra-luxurious, clean, and tranquil, using a palette of soft rose gold and warm whites."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuChxSzDowl6Hfbo4dF7-bhs5udoXFLE8iXvmtEUQjJhuuJZ0KMB-Jpv5n1dq8GRkLnTGhkS0pPV1-EpKP4442LfvXNuRJmAWh39nmaDTpCvCTDy4oyAZOAqjMzBKCpIz2E2HFo7ZeEki5OZGBllFbZ5vdL6bPKW5iS8N_S4pW1zovuqmOEDkJsKQU0PK8mLuISfj5GGbXzpQGzFKrOhLtybnOoCdEhq3hpYtTHK6zmEWIULWGydFMh0TVESmofFqyUyytru4SEUmJs4"
+              />
+            </div>
+            <div
+              class="absolute bottom-2 right-2 bg-secondary-container text-on-secondary-container p-2 rounded-full shadow-lg"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >auto_awesome</span
+              >
+            </div>
+          </div>
+          <h2 class="font-headline-md text-headline-md text-primary mb-2">
+            Aura AI
+          </h2>
+          <p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">
+            Your personal beauty concierge, available 24/7 for expert styling
+            and product curation.
+          </p>
+          <div class="w-full space-y-3">
+            <div
+              class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-outline-variant/10"
+            >
+              <span class="material-symbols-outlined text-primary">face</span>
+              <span class="text-label-md text-on-surface-variant"
+                >Skin Analysis Ready</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-outline-variant/10"
+            >
+              <span class="material-symbols-outlined text-primary"
+                >calendar_today</span
+              >
+              <span class="text-label-md text-on-surface-variant"
+                >Booking Assistance</span
+              >
+            </div>
+            <div
+              class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-outline-variant/10"
+            >
+              <span class="material-symbols-outlined text-primary"
+                >shopping_bag</span
+              >
+              <span class="text-label-md text-on-surface-variant"
+                >Personalized Carts</span
+              >
+            </div>
+          </div>
+        </div>
+        <!-- Recent Recommendations Bento -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-surface-container-high p-4 rounded-3xl col-span-2">
+            <span
+              class="text-caption text-primary font-bold tracking-widest uppercase mb-2 block"
+              >Recent Suggestion</span
+            >
+            <h4 class="font-headline-sm text-headline-sm mb-2">
+              Hydra-Silk Facial
+            </h4>
+            <p class="text-caption text-on-surface-variant">
+              Based on your dry skin profile
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Right Column: Interactive Chat Interface -->
+      <div
+        class="flex-1 flex flex-col glass-panel rounded-[2.5rem] shadow-2xl border border-outline-variant/20 overflow-hidden relative"
+      >
+        <!-- Chat Header -->
+        <div
+          class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-white/40"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden"
+            >
+              <img
+                alt="AI Avatar Mini"
+                class="w-full h-full object-cover"
+                data-alt="A small profile portrait of a digital AI assistant with elegant features and soft lighting, perfectly fitting a luxury beauty brand aesthetic. The palette is dominated by warm whites and rose gold accents."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSeTN-GjZpZXqY4I_pE6RUqeyA5UYnPalXmpZJBpWn6tJAq522PZsXaQLLNJxY1pfdJ2-Xqj5eVolcg_qbqvashgncYk6EeBrzuF9ZPgr-2kki39NiYQsrd5m6zaT-lWwl7nQeZMvlcup9rbzrTPThiBkpY8fhckn6Ojt7xJFakz2L9dIkmNkhQ-ZINXDekkl8wvSckBr2nfHy7U0rKi-rMbD90OzoLk3KmChc8R29uExgl5M1LwHydRpYNEmld1SEbcWnVD5v5rve"
+              />
+            </div>
+            <div>
+              <h3 class="font-headline-sm text-body-lg font-bold">
+                Aura Stylist
+              </h3>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                <span class="text-caption text-on-surface-variant"
+                  >Online &amp; Thinking</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="flex gap-2">
+            <button
+              class="p-2 hover:bg-surface-variant/20 rounded-full transition-colors"
+            >
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+            <button
+              class="p-2 hover:bg-surface-variant/20 rounded-full transition-colors"
+            >
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+        </div>
+        <!-- Chat Canvas -->
+        <div
+          class="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth"
+          id="chat-canvas"
+        >
+          <!-- AI Message -->
+          <div class="flex gap-4 message-in">
+            <div
+              class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0"
+            ></div>
+            <div class="flex flex-col gap-2 max-w-[80%]">
+              <div
+                class="bg-secondary-container text-on-secondary-container px-5 py-3 rounded-2xl rounded-tl-none font-body-md shadow-sm"
+              >
+                Hello! I'm Aura. I've analyzed your recent beauty profile. It
+                looks like you're looking for hydration-focused treatments. How
+                can I help you sparkle today?
+              </div>
+              <span class="text-caption text-on-surface-variant ml-1"
+                >10:24 AM</span
+              >
+            </div>
+          </div>
+          <!-- User Message -->
+          <div class="flex gap-4 justify-end message-in">
+            <div class="flex flex-col gap-2 items-end max-w-[80%]">
+              <div
+                class="bg-primary text-on-primary px-5 py-3 rounded-2xl rounded-tr-none font-body-md shadow-sm"
+              >
+                I've been experiencing some tightness around my cheeks lately.
+                Any recommendations?
+              </div>
+              <span class="text-caption text-on-surface-variant mr-1"
+                >10:25 AM</span
+              >
+            </div>
+            <div
+              class="w-8 h-8 rounded-full bg-surface-variant flex-shrink-0 flex items-center justify-center"
+            >
+              <span class="material-symbols-outlined text-outline">person</span>
+            </div>
+          </div>
+          <!-- AI Message with Product Recommendation -->
+          <div class="flex gap-4 message-in">
+            <div
+              class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0"
+            ></div>
+            <div class="flex flex-col gap-4 max-w-[85%]">
+              <div
+                class="bg-secondary-container text-on-secondary-container px-5 py-3 rounded-2xl rounded-tl-none font-body-md shadow-sm"
+              >
+                That sounds like seasonal dehydration. I recommend a combination
+                of a Hyaluronic Acid serum and our "Gold Mist" facial. Here is a
+                curated selection for you:
+              </div>
+              <!-- Recommendation Card -->
+              <div
+                class="bg-white rounded-3xl p-4 shadow-xl border border-outline-variant/10 flex gap-4 hover:scale-[1.02] transition-transform cursor-pointer"
+              >
+                <img
+                  alt="Luxury Serum"
+                  class="w-24 h-24 object-cover rounded-xl"
+                  data-alt="A professional product shot of a luxury glass serum bottle with gold accents, placed on a marble surface with soft, diffused sunlight. The scene is clean and high-end, evoking a sense of pharmaceutical efficacy and spa-like luxury. Soft shadows and warm tones complement the LUMIÈRE brand aesthetic."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnpIttlceCALANjWQe8DPGMvGt0_8V_IuUbUqOSgYSgtRkAECsMtImdlqymcltYa1dBpT-5wmsGgdTg5rM4V6bVOVBiMEoVesvME98pj3UQ6RL3k6Ftki8_piXxIkIz4rmGjPNY7_WCVzYnH8Rkoy5gAl0qC9W4DHsbwA3TSv3yalHBhNyxAlnjB_PJYhD3epjraqbPUX232HjDvCjK0oy8GY1oXP9C_p5w40xpk_Teomfm7nGdFHV9ywOZ0fpWfEy-PsJFXqW-Wub"
+                />
+                <div class="flex-1 py-1">
+                  <span class="text-caption text-secondary font-bold"
+                    >TOP PICK</span
+                  >
+                  <h4 class="font-body-md font-bold text-on-surface">
+                    Luminous Dew Serum
+                  </h4>
+                  <p class="text-caption text-on-surface-variant line-clamp-1">
+                    Intense hydration with botanical extracts
+                  </p>
+                  <div class="mt-2 flex justify-between items-center">
+                    <span class="font-bold text-primary">$85.00</span>
+                    <button
+                      class="text-label-md text-primary font-bold flex items-center gap-1"
+                    >
+                      Add
+                      <span class="material-symbols-outlined text-[16px]"
+                        >add_shopping_cart</span
+                      >
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- Interaction Layer (Quick Replies & Input) -->
+        <div class="p-6 bg-white/60 backdrop-blur-md space-y-4">
+          <!-- Quick Reply Chips -->
+          <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+            <button
+              class="whitespace-nowrap px-4 py-2 rounded-full border border-primary-container text-primary font-label-md text-caption hover:bg-primary-container/20 transition-all"
+            >
+              Best facial for dry skin?
+            </button>
+            <button
+              class="whitespace-nowrap px-4 py-2 rounded-full border border-primary-container text-primary font-label-md text-caption hover:bg-primary-container/20 transition-all"
+            >
+              Book my usual salon
+            </button>
+            <button
+              class="whitespace-nowrap px-4 py-2 rounded-full border border-primary-container text-primary font-label-md text-caption hover:bg-primary-container/20 transition-all"
+            >
+              Evening routine help
+            </button>
+          </div>
+          <!-- Input Area -->
+          <div class="relative flex items-center gap-3">
+            <div
+              class="flex-1 bg-surface-container-low rounded-2xl flex items-center px-4 py-3 border border-transparent focus-within:border-secondary-container transition-all shadow-inner"
+            >
+              <input
+                class="flex-1 bg-transparent border-none focus:ring-0 font-body-md placeholder:text-outline/60"
+                placeholder="Ask Aura anything..."
+                type="text"
+              />
+              <div class="flex items-center gap-2">
+                <button
+                  class="text-outline hover:text-primary transition-colors"
+                >
+                  <span class="material-symbols-outlined">image</span>
+                </button>
+                <button
+                  class="text-outline hover:text-primary transition-colors"
+                >
+                  <span class="material-symbols-outlined">mic</span>
+                </button>
+              </div>
+            </div>
+            <button
+              class="w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >send</span
+              >
+            </button>
+          </div>
+        </div>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full py-stack-xl px-margin-desktop flex flex-col items-center gap-stack-lg bg-surface-container-low"
+    >
+      <div class="flex flex-col items-center gap-6">
+        <span class="font-display-lg text-display-lg text-primary"
+          >LUMIÈRE</span
+        >
+        <div class="flex gap-8 flex-wrap justify-center">
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="#"
+            >Privacy Policy</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="#"
+            >Terms of Service</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="#"
+            >Partner with Us</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="#"
+            >Careers</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="#"
+            >Support</a
+          >
+        </div>
+        <p class="font-body-md text-body-md text-tertiary-fixed-dim">
+          © 2024 LUMIÈRE Beauty. All rights reserved.
+        </p>
+      </div>
+    </footer>
+    <!-- Side Navigation Shell (Hidden on Mobile) -->
+    <aside
+      class="hidden lg:fixed left-0 top-0 h-full flex flex-col p-stack-md border-r border-outline-variant/10 bg-surface-container-low w-20 hover:w-64 transition-all duration-500 group z-40"
+    >
+      <div class="flex flex-col h-full">
+        <div class="mb-10 flex items-center px-4 overflow-hidden">
+          <span class="material-symbols-outlined text-primary text-3xl"
+            >auto_awesome</span
+          >
+          <span
+            class="ml-4 font-headline-sm text-headline-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+            >Aura Menu</span
+          >
+        </div>
+        <nav class="flex flex-col gap-4 flex-1">
+          <a
+            class="flex items-center p-3 rounded-xl bg-secondary-container text-on-secondary-container font-semibold transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined">auto_awesome</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >AI Stylist</span
+            >
+          </a>
+          <a
+            class="flex items-center p-3 rounded-xl text-on-surface-variant hover:bg-primary-container/20 transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined">dashboard</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >Dashboard</span
+            >
+          </a>
+          <a
+            class="flex items-center p-3 rounded-xl text-on-surface-variant hover:bg-primary-container/20 transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined">calendar_month</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >My Bookings</span
+            >
+          </a>
+          <a
+            class="flex items-center p-3 rounded-xl text-on-surface-variant hover:bg-primary-container/20 transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined">favorite</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >Favorites</span
+            >
+          </a>
+          <a
+            class="flex items-center p-3 rounded-xl text-on-surface-variant hover:bg-primary-container/20 transition-all"
+            href="#"
+          >
+            <span class="material-symbols-outlined">settings</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >Settings</span
+            >
+          </a>
+        </nav>
+        <div
+          class="mt-auto p-4 border-t border-outline-variant/10 group-hover:block overflow-hidden"
+        >
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-primary-fixed-dim"></div>
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+              <p class="text-label-md font-bold truncate">Premium Member</p>
+              <p class="text-caption text-primary">Upgrade</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
+    <script>
+      // Simple micro-interaction for the chat canvas scroll
+      const chatCanvas = document.getElementById("chat-canvas");
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("message-in");
+          }
+        });
+      });
+
+      // Soft interaction for chips
+      document.querySelectorAll("button").forEach((btn) => {
+        btn.addEventListener("mousedown", () => btn.classList.add("scale-95"));
+        btn.addEventListener("mouseup", () => btn.classList.remove("scale-95"));
+        btn.addEventListener("mouseleave", () =>
+          btn.classList.remove("scale-95"),
+        );
+      });
+    </script>
+  </body>
+</html>

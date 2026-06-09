@@ -1,0 +1,881 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LUMIÈRE | Salon Owner Dashboard</title>
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Icons -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#574500",
+              secondary: "#735c00",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745c00",
+              "on-primary-fixed-variant": "#653c36",
+              "on-background": "#1c1b1b",
+              "surface-tint": "#80534c",
+              "on-primary-container": "#663d37",
+              "surface-variant": "#e5e2e1",
+              "on-error": "#ffffff",
+              "surface-container-highest": "#e5e2e1",
+              "tertiary-fixed-dim": "#cac6c5",
+              "inverse-primary": "#f3b8b0",
+              "on-tertiary-fixed": "#1c1b1b",
+              error: "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              outline: "#837371",
+              "outline-variant": "#d5c2bf",
+              "on-surface-variant": "#514442",
+              background: "#fcf9f8",
+              "secondary-container": "#fed65b",
+              "tertiary-container": "#bab6b5",
+              "on-surface": "#1c1b1b",
+              "surface-dim": "#dcd9d9",
+              "primary-container": "#e2a9a1",
+              "on-tertiary-container": "#494747",
+              "on-primary-fixed": "#32120e",
+              "on-tertiary-fixed-variant": "#484646",
+              "secondary-fixed": "#ffe088",
+              "inverse-on-surface": "#f3f0ef",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#241a00",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "surface-container-low": "#f6f3f2",
+              "inverse-surface": "#313030",
+              "tertiary-fixed": "#e6e1e0",
+              tertiary: "#605e5d",
+              "primary-fixed-dim": "#f3b8b0",
+              "secondary-fixed-dim": "#e9c349",
+              "on-secondary": "#ffffff",
+              surface: "#fcf9f8",
+              primary: "#80534c",
+              "surface-container": "#f0eded",
+              "surface-bright": "#fcf9f8",
+              "primary-fixed": "#ffdad5",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "8px",
+              "stack-xl": "64px",
+              "margin-mobile": "20px",
+              "container-max": "1280px",
+              "stack-lg": "32px",
+              "margin-desktop": "64px",
+              gutter: "24px",
+              "stack-md": "16px",
+            },
+            fontFamily: {
+              "headline-md": ["Playfair Display"],
+              "headline-sm": ["Playfair Display"],
+              "body-lg": ["Inter"],
+              "display-lg": ["Playfair Display"],
+              "label-md": ["Inter"],
+              "display-lg-mobile": ["Playfair Display"],
+              "body-md": ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-card {
+        background: rgba(252, 249, 248, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 169, 161, 0.1);
+        box-shadow: 0 40px 40px 0 rgba(226, 169, 161, 0.04);
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 200,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .filled-icon {
+        font-variation-settings:
+          "FILL" 1,
+          "wght" 200,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+      ::-webkit-scrollbar-track {
+        background: #f6f3f2;
+      }
+      ::-webkit-scrollbar-thumb {
+        background: #e2a9a1;
+        border-radius: 10px;
+      }
+      .drag-handle {
+        cursor: grab;
+      }
+      .drag-handle:active {
+        cursor: grabbing;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-background font-body-md min-h-screen overflow-x-hidden"
+  >
+    <!-- Sidebar Navigation -->
+    <aside
+      class="fixed left-0 top-0 h-full w-64 bg-surface border-r border-outline-variant/10 flex flex-col p-stack-md z-50"
+    >
+      <div class="mb-10 px-2">
+        <h1
+          class="font-headline-sm text-headline-sm text-primary tracking-tighter"
+        >
+          LUMIÈRE
+        </h1>
+      </div>
+      <div class="flex items-center gap-3 mb-8 px-2">
+        <div
+          class="w-10 h-10 rounded-full bg-primary-container/30 flex items-center justify-center overflow-hidden border border-primary/20"
+        >
+          <img
+            alt="User Profile Avatar"
+            class="w-full h-full object-cover"
+            data-alt="A professional close-up portrait of a sophisticated woman in her 30s with styled hair and light makeup. She is wearing a soft cream silk blouse against a blurred warm interior background. The image has a clean, high-end editorial feel with soft, natural lighting highlighting the premium aesthetic of the Lumière brand."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7ypgwjm-pwdBU6w2ixmyeWDcUglNw1QkNBqkw2Uoszla0ZjjaZI1IzcWM_1YC3cu3ZmNmnPmmxfizi5KHsxwqg_yS2VTyVM2-vMu011SBnRY_vgGCgPKypPTBllOt9Cr3fHkw8U_MuKaQX0fQWkOcNjaFcnqPiKY_Z6cPnU6ZIMfiP9dg-yKg6791Nxj9AEEgK5xixS6wQaAs0eKar8uaKRaT5M-VYXs1R0Qe2YahLDeCx3Z0bikrm-dXf8vy0HA24OeeSs_gXcVS"
+          />
+        </div>
+        <div>
+          <p class="font-label-md text-label-md text-on-surface">
+            Welcome back
+          </p>
+          <p class="font-caption text-caption text-on-surface-variant">
+            Premium Member
+          </p>
+        </div>
+      </div>
+      <nav class="flex-1 flex flex-col gap-1">
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-semibold transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined filled-icon">dashboard</span>
+          <span>Dashboard</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-primary-container/20 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">calendar_month</span>
+          <span>My Bookings</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-primary-container/20 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">favorite</span>
+          <span>Favorites</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-primary-container/20 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">auto_awesome</span>
+          <span>AI History</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-primary-container/20 rounded-xl transition-all"
+          href="#"
+        >
+          <span class="material-symbols-outlined">settings</span>
+          <span>Settings</span>
+        </a>
+      </nav>
+      <div class="mt-auto pt-stack-md">
+        <button
+          class="w-full py-3 bg-gradient-to-br from-primary to-primary-container text-white rounded-xl font-label-md shadow-sm hover:scale-[1.02] transition-transform"
+        >
+          Upgrade to Gold
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Canvas -->
+    <main class="ml-64 p-margin-desktop min-h-screen">
+      <!-- Header / Search -->
+      <header class="flex justify-between items-end mb-stack-xl">
+        <div>
+          <h2
+            class="font-display-lg text-display-lg text-primary tracking-tight"
+          >
+            Salon Overview
+          </h2>
+          <p class="font-body-md text-on-surface-variant">
+            Manage your artistry and operations in one place.
+          </p>
+        </div>
+        <div class="flex gap-stack-md">
+          <div class="relative">
+            <span
+              class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-on-surface-variant"
+              >search</span
+            >
+            <input
+              class="pl-10 pr-4 py-2 bg-surface-container-low border-none rounded-full w-64 focus:ring-1 focus:ring-primary-container transition-all"
+              placeholder="Search clients or staff..."
+              type="text"
+            />
+          </div>
+          <button
+            class="w-10 h-10 rounded-full border border-outline-variant/30 flex items-center justify-center hover:bg-white transition-colors"
+          >
+            <span class="material-symbols-outlined">notifications</span>
+          </button>
+        </div>
+      </header>
+      <!-- Metrics Grid -->
+      <section class="grid grid-cols-1 md:grid-cols-4 gap-gutter mb-stack-xl">
+        <!-- Total Earnings -->
+        <div
+          class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:scale-[1.02] transition-all"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-2 bg-primary-container/20 rounded-lg">
+              <span class="material-symbols-outlined text-primary"
+                >payments</span
+              >
+            </div>
+            <span
+              class="text-green-600 font-label-md text-caption flex items-center"
+            >
+              <span class="material-symbols-outlined text-sm">trending_up</span>
+              12%
+            </span>
+          </div>
+          <div>
+            <p
+              class="font-label-md text-on-surface-variant uppercase tracking-wider text-[10px]"
+            >
+              Total Earnings
+            </p>
+            <p class="font-headline-md text-headline-md text-on-surface">
+              $12,840.50
+            </p>
+          </div>
+        </div>
+        <!-- Appointments Today -->
+        <div
+          class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:scale-[1.02] transition-all"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-2 bg-secondary-container/20 rounded-lg">
+              <span class="material-symbols-outlined text-secondary"
+                >event_available</span
+              >
+            </div>
+            <span class="text-on-surface-variant font-label-md text-caption"
+              >Today</span
+            >
+          </div>
+          <div>
+            <p
+              class="font-label-md text-on-surface-variant uppercase tracking-wider text-[10px]"
+            >
+              Appointments Today
+            </p>
+            <p class="font-headline-md text-headline-md text-on-surface">24</p>
+          </div>
+        </div>
+        <!-- New Customers -->
+        <div
+          class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:scale-[1.02] transition-all"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-2 bg-primary-container/20 rounded-lg">
+              <span class="material-symbols-outlined text-primary"
+                >person_add</span
+              >
+            </div>
+            <span
+              class="text-green-600 font-label-md text-caption flex items-center"
+            >
+              <span class="material-symbols-outlined text-sm">trending_up</span>
+              8%
+            </span>
+          </div>
+          <div>
+            <p
+              class="font-label-md text-on-surface-variant uppercase tracking-wider text-[10px]"
+            >
+              New Customers
+            </p>
+            <p class="font-headline-md text-headline-md text-on-surface">114</p>
+          </div>
+        </div>
+        <!-- Staff Occupancy -->
+        <div
+          class="glass-card p-6 rounded-2xl flex flex-col justify-between group hover:scale-[1.02] transition-all"
+        >
+          <div class="flex justify-between items-start mb-4">
+            <div class="p-2 bg-on-tertiary-container/10 rounded-lg">
+              <span class="material-symbols-outlined text-tertiary"
+                >groups</span
+              >
+            </div>
+            <div
+              class="w-16 h-1 bg-surface-container rounded-full overflow-hidden self-center"
+            >
+              <div class="bg-primary h-full w-[82%]"></div>
+            </div>
+          </div>
+          <div>
+            <p
+              class="font-label-md text-on-surface-variant uppercase tracking-wider text-[10px]"
+            >
+              Staff Occupancy
+            </p>
+            <p class="font-headline-md text-headline-md text-on-surface">82%</p>
+          </div>
+        </div>
+      </section>
+      <!-- Main Content Area: Calendar & Sidebar Actions -->
+      <div class="grid grid-cols-12 gap-gutter">
+        <!-- Daily Schedule / Calendar -->
+        <section class="col-span-8 flex flex-col gap-gutter">
+          <div class="glass-card rounded-2xl overflow-hidden p-6">
+            <div class="flex justify-between items-center mb-6">
+              <h3 class="font-headline-sm text-headline-sm text-on-surface">
+                Daily Schedule
+              </h3>
+              <div class="flex items-center gap-4">
+                <div class="flex bg-surface-container rounded-full p-1">
+                  <button
+                    class="px-4 py-1 rounded-full text-caption font-label-md bg-white shadow-sm"
+                  >
+                    Day
+                  </button>
+                  <button
+                    class="px-4 py-1 rounded-full text-caption font-label-md text-on-surface-variant hover:text-on-surface"
+                  >
+                    Week
+                  </button>
+                </div>
+                <div class="flex items-center gap-2">
+                  <button
+                    class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors"
+                  >
+                    <span
+                      class="material-symbols-outlined text-on-surface-variant"
+                      >chevron_left</span
+                    >
+                  </button>
+                  <span class="font-label-md text-on-surface"
+                    >Sept 24, 2024</span
+                  >
+                  <button
+                    class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors"
+                  >
+                    <span
+                      class="material-symbols-outlined text-on-surface-variant"
+                      >chevron_right</span
+                    >
+                  </button>
+                </div>
+              </div>
+            </div>
+            <!-- Time Grid -->
+            <div
+              class="relative min-h-[600px] border-t border-outline-variant/20 overflow-y-auto pr-2 max-h-[600px]"
+            >
+              <!-- Hour Markers -->
+              <div class="absolute inset-0 flex flex-col">
+                <div
+                  class="h-20 border-b border-outline-variant/10 flex items-start pt-2"
+                >
+                  <span
+                    class="text-[10px] text-on-surface-variant w-12 font-label-md"
+                    >09:00 AM</span
+                  >
+                </div>
+                <div
+                  class="h-20 border-b border-outline-variant/10 flex items-start pt-2"
+                >
+                  <span
+                    class="text-[10px] text-on-surface-variant w-12 font-label-md"
+                    >10:00 AM</span
+                  >
+                </div>
+                <div
+                  class="h-20 border-b border-outline-variant/10 flex items-start pt-2"
+                >
+                  <span
+                    class="text-[10px] text-on-surface-variant w-12 font-label-md"
+                    >11:00 AM</span
+                  >
+                </div>
+                <div
+                  class="h-20 border-b border-outline-variant/10 flex items-start pt-2"
+                >
+                  <span
+                    class="text-[10px] text-on-surface-variant w-12 font-label-md"
+                    >12:00 PM</span
+                  >
+                </div>
+                <div
+                  class="h-20 border-b border-outline-variant/10 flex items-start pt-2"
+                >
+                  <span
+                    class="text-[10px] text-on-surface-variant w-12 font-label-md"
+                    >01:00 PM</span
+                  >
+                </div>
+                <div
+                  class="h-20 border-b border-outline-variant/10 flex items-start pt-2"
+                >
+                  <span
+                    class="text-[10px] text-on-surface-variant w-12 font-label-md"
+                    >02:00 PM</span
+                  >
+                </div>
+                <div
+                  class="h-20 border-b border-outline-variant/10 flex items-start pt-2"
+                >
+                  <span
+                    class="text-[10px] text-on-surface-variant w-12 font-label-md"
+                    >03:00 PM</span
+                  >
+                </div>
+              </div>
+              <!-- Drag and Drop Appointments -->
+              <div class="ml-12 relative h-full">
+                <!-- Appt 1 -->
+                <div
+                  class="absolute top-4 left-0 right-4 h-14 bg-primary-container/20 border-l-4 border-primary rounded-r-lg p-2 drag-handle transition-all hover:shadow-md hover:bg-primary-container/30"
+                >
+                  <div class="flex justify-between">
+                    <p class="text-xs font-semibold text-primary">
+                      Balayage &amp; Styling
+                    </p>
+                    <span class="text-[10px] text-primary">09:15 - 10:15</span>
+                  </div>
+                  <p class="text-[10px] text-on-primary-container">
+                    Client: Elena Rossi | Stylist: Sofia
+                  </p>
+                </div>
+                <!-- Appt 2 -->
+                <div
+                  class="absolute top-24 left-0 right-4 h-24 bg-secondary-container/20 border-l-4 border-secondary rounded-r-lg p-2 drag-handle transition-all hover:shadow-md hover:bg-secondary-container/30"
+                >
+                  <div class="flex justify-between">
+                    <p class="text-xs font-semibold text-secondary">
+                      Bridal Trial Consultation
+                    </p>
+                    <span class="text-[10px] text-secondary"
+                      >10:30 - 11:45</span
+                    >
+                  </div>
+                  <p class="text-[10px] text-on-secondary-container">
+                    Client: Sarah Miller | Stylist: Marcus
+                  </p>
+                  <div class="mt-1 flex gap-1">
+                    <span
+                      class="px-1.5 py-0.5 bg-white/50 text-[8px] rounded uppercase font-bold text-secondary"
+                      >Premium</span
+                    >
+                    <span
+                      class="px-1.5 py-0.5 bg-white/50 text-[8px] rounded uppercase font-bold text-secondary"
+                      >New Client</span
+                    >
+                  </div>
+                </div>
+                <!-- Appt 3 -->
+                <div
+                  class="absolute top-64 left-0 right-4 h-16 bg-primary-container/20 border-l-4 border-primary rounded-r-lg p-2 drag-handle transition-all hover:shadow-md hover:bg-primary-container/30"
+                >
+                  <div class="flex justify-between">
+                    <p class="text-xs font-semibold text-primary">
+                      Precision Cut
+                    </p>
+                    <span class="text-[10px] text-primary">12:30 - 01:30</span>
+                  </div>
+                  <p class="text-[10px] text-on-primary-container">
+                    Client: Julian Chen | Stylist: Sofia
+                  </p>
+                </div>
+                <!-- Time Indicator Line -->
+                <div
+                  class="absolute top-40 left-0 right-0 border-t-2 border-primary/40 border-dashed z-10 flex items-center"
+                >
+                  <div class="w-2 h-2 rounded-full bg-primary -ml-1"></div>
+                  <span
+                    class="bg-primary text-white text-[8px] px-1 rounded ml-2"
+                    >Now</span
+                  >
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Staff Availability Quick View -->
+          <div class="glass-card rounded-2xl p-6">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-4">
+              Stylist Availability
+            </h3>
+            <div class="flex gap-4 overflow-x-auto pb-2">
+              <!-- Stylist 1 -->
+              <div
+                class="min-w-[120px] flex flex-col items-center p-3 bg-surface-container-low rounded-xl border border-outline-variant/10"
+              >
+                <div
+                  class="w-12 h-12 rounded-full mb-2 border-2 border-green-500 p-0.5"
+                >
+                  <img
+                    alt="Sofia"
+                    class="w-full h-full rounded-full object-cover"
+                    data-alt="Close-up portrait of a cheerful female hair stylist with blonde wavy hair, wearing a professional black apron in a high-end salon. Soft ambient lighting and warm rose gold accents in the background."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Iaeq8JZtZrac_lC1mNXLfbQWQ-KgB3hHAYPXt5EZINp6fA5nJLvdPvSleAPVb_XvrHuNUpS6LbiWbTU1c275NNV81qweEX4-YaR26_V4U3mlD0AsEsc32jzcvv8iINBvpYaNEIIAh8wXuvVP8CIxS33bCRvyJe4i-IAIRl89WUxEHbn3Y32CwqmrmxQiQpG3Hg_YWeL42qYvvt0jbSNOaNz8aI6ljOrS9v9gdLLxaKv7GuuthWIAKaoF9EeRSO1c8M_pH6vj-hsi"
+                  />
+                </div>
+                <p class="text-xs font-semibold text-on-surface">Sofia L.</p>
+                <p class="text-[10px] text-green-600">Available</p>
+              </div>
+              <!-- Stylist 2 -->
+              <div
+                class="min-w-[120px] flex flex-col items-center p-3 bg-surface-container-low rounded-xl border border-outline-variant/10"
+              >
+                <div
+                  class="w-12 h-12 rounded-full mb-2 border-2 border-primary p-0.5"
+                >
+                  <img
+                    alt="Marcus"
+                    class="w-full h-full rounded-full object-cover"
+                    data-alt="A professional male stylist with a sharp haircut and a trimmed beard, looking focused. He is standing in a luxurious salon environment with glass partitions and soft warm lighting. High-end aesthetic with muted rose gold and ivory colors."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOe3BnO17VcyhTtYGPO2OEFPlvwNoEQnhgh4ZUX6ZTf2F_Jtb7VLhCT8DfZmceO12YWZDPVgHpPOhSVOrqdaM01tVnT18ArT8_1WmCNNe3ZnQpIuGqZ7hxHWRCOLG_zu71M1tL8UeSmK-rFR7iO3hyOYFNoLRZOzQ_3l_Ppr9njNV3K_nB8dqiBN72DUl3VMuu0x_pXfKByZWwB1KnMAFX5DphYPecYX-b4SkUEt1WzakE_rZ5NzhYF8aI5NhRIRckEIB9YS3Rb7Tc"
+                  />
+                </div>
+                <p class="text-xs font-semibold text-on-surface">Marcus K.</p>
+                <p class="text-[10px] text-primary">In Session</p>
+              </div>
+              <!-- Stylist 3 -->
+              <div
+                class="min-w-[120px] flex flex-col items-center p-3 bg-surface-container-low rounded-xl border border-outline-variant/10"
+              >
+                <div
+                  class="w-12 h-12 rounded-full mb-2 border-2 border-green-500 p-0.5"
+                >
+                  <img
+                    alt="Bella"
+                    class="w-full h-full rounded-full object-cover"
+                    data-alt="Portrait of a young, stylish female salon professional with dark hair tied back. She is smiling gently at the camera in a modern, brightly lit beauty space with cream-colored walls and elegant minimalist décor."
+                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfm2wLcslZQw91k1bkU7aCnTIEpaxpYyBlr4_sCipgc_s6PHa2dQ-E5DLr1qFwPXTNWfC_826nL3JA26kWRvlZlAtSXHdvs8Bi6_clVqDNVghP1PcxLhoXWzXUOhheR8BGBoVtK8ZOyd8t2GV-C-LHLY6ALXmDcVvt3IJBMmaDCB_7lMKqmgHOQyi7pv2x8Ou3qtH2P--Bxg1bngV1dyZhxx25Jd2YVOTrk0qOvJpfpfZxdL3LAP20msBpNdk2Ef1eUCDAlJWlHd-r"
+                  />
+                </div>
+                <p class="text-xs font-semibold text-on-surface">Bella V.</p>
+                <p class="text-[10px] text-green-600">Available</p>
+              </div>
+              <!-- Stylist 4 -->
+              <div
+                class="min-w-[120px] flex flex-col items-center p-3 bg-surface-container-low rounded-xl border border-outline-variant/10"
+              >
+                <div
+                  class="w-12 h-12 rounded-full mb-2 border-2 border-surface-dim p-0.5"
+                >
+                  <div
+                    class="w-full h-full rounded-full bg-surface-container flex items-center justify-center"
+                  >
+                    <span
+                      class="material-symbols-outlined text-on-surface-variant"
+                      >person</span
+                    >
+                  </div>
+                </div>
+                <p class="text-xs font-semibold text-on-surface">Chloe T.</p>
+                <p class="text-[10px] text-on-surface-variant">Off Duty</p>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Sidebar: Action Center -->
+        <aside class="col-span-4 flex flex-col gap-gutter">
+          <!-- Action Center -->
+          <div class="glass-card rounded-2xl p-6">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-6">
+              Action Center
+            </h3>
+            <div class="flex flex-col gap-3">
+              <button
+                class="w-full flex items-center justify-between p-4 bg-white rounded-xl hover:shadow-md transition-all group"
+              >
+                <div class="flex items-center gap-3">
+                  <span
+                    class="material-symbols-outlined text-primary group-hover:rotate-12 transition-transform"
+                    >content_cut</span
+                  >
+                  <span class="font-label-md text-on-surface"
+                    >Manage Services</span
+                  >
+                </div>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-sm"
+                  >chevron_right</span
+                >
+              </button>
+              <button
+                class="w-full flex items-center justify-between p-4 bg-white rounded-xl hover:shadow-md transition-all group"
+              >
+                <div class="flex items-center gap-3">
+                  <div class="relative">
+                    <span
+                      class="material-symbols-outlined text-secondary group-hover:scale-110 transition-transform"
+                      >reviews</span
+                    >
+                    <span
+                      class="absolute -top-1 -right-1 w-2 h-2 bg-red-500 rounded-full"
+                    ></span>
+                  </div>
+                  <span class="font-label-md text-on-surface"
+                    >Respond to Reviews</span
+                  >
+                </div>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-sm"
+                  >chevron_right</span
+                >
+              </button>
+              <button
+                class="w-full flex items-center justify-between p-4 bg-white rounded-xl hover:shadow-md transition-all group"
+              >
+                <div class="flex items-center gap-3">
+                  <span
+                    class="material-symbols-outlined text-on-surface-variant group-hover:translate-x-1 transition-transform"
+                    >insights</span
+                  >
+                  <span class="font-label-md text-on-surface"
+                    >Analytics Reports</span
+                  >
+                </div>
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-sm"
+                  >chevron_right</span
+                >
+              </button>
+            </div>
+            <hr class="my-6 border-outline-variant/10" />
+            <div class="flex flex-col gap-4">
+              <p
+                class="font-label-md text-on-surface-variant uppercase tracking-wider text-[10px]"
+              >
+                AI-Powered Insights
+              </p>
+              <div
+                class="p-4 bg-gradient-to-br from-secondary/5 to-primary-container/10 border border-secondary/10 rounded-xl relative overflow-hidden"
+              >
+                <span
+                  class="material-symbols-outlined absolute -right-2 -bottom-2 text-6xl text-secondary/5 pointer-events-none"
+                  >auto_awesome</span
+                >
+                <div class="flex items-center gap-2 mb-2">
+                  <span class="material-symbols-outlined text-secondary text-sm"
+                    >spark</span
+                  >
+                  <p class="text-xs font-semibold text-secondary">
+                    Trend Alert
+                  </p>
+                </div>
+                <p class="text-[11px] leading-relaxed text-on-surface-variant">
+                  Bookings for "Rose Gold Balayage" are up 30% this week.
+                  Consider featuring it in your next email campaign.
+                </p>
+                <button
+                  class="mt-3 text-[10px] font-bold text-primary hover:underline uppercase tracking-widest"
+                >
+                  Create Promo
+                </button>
+              </div>
+            </div>
+          </div>
+          <!-- Recent Activity -->
+          <div class="glass-card rounded-2xl p-6 flex-1">
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-6">
+              Recent Activity
+            </h3>
+            <div class="flex flex-col gap-6">
+              <div class="flex gap-4">
+                <div
+                  class="w-8 h-8 rounded-full bg-green-100 flex items-center justify-center shrink-0"
+                >
+                  <span class="material-symbols-outlined text-green-600 text-sm"
+                    >check_circle</span
+                  >
+                </div>
+                <div>
+                  <p class="text-xs text-on-surface">
+                    <span class="font-semibold">Sofia L.</span> completed "Full
+                    Highlights" for Elena.
+                  </p>
+                  <p class="text-[10px] text-on-surface-variant">
+                    12 minutes ago
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div
+                  class="w-8 h-8 rounded-full bg-blue-100 flex items-center justify-center shrink-0"
+                >
+                  <span class="material-symbols-outlined text-blue-600 text-sm"
+                    >add_task</span
+                  >
+                </div>
+                <div>
+                  <p class="text-xs text-on-surface">
+                    <span class="font-semibold">New Booking:</span> Men's
+                    Styling by Marcus.
+                  </p>
+                  <p class="text-[10px] text-on-surface-variant">
+                    45 minutes ago
+                  </p>
+                </div>
+              </div>
+              <div class="flex gap-4">
+                <div
+                  class="w-8 h-8 rounded-full bg-yellow-100 flex items-center justify-center shrink-0"
+                >
+                  <span
+                    class="material-symbols-outlined text-yellow-600 text-sm"
+                    >star</span
+                  >
+                </div>
+                <div>
+                  <p class="text-xs text-on-surface">
+                    <span class="font-semibold">5-Star Review:</span> "Perfect
+                    ambiance and skill!"
+                  </p>
+                  <p class="text-[10px] text-on-surface-variant">2 hours ago</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="ml-64 w-full py-stack-xl px-margin-desktop flex flex-col items-center gap-stack-lg bg-surface-container-low"
+    >
+      <div class="text-display-lg text-primary tracking-tighter opacity-50">
+        LUMIÈRE
+      </div>
+      <nav class="flex gap-stack-lg">
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="#"
+          >Privacy Policy</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="#"
+          >Terms of Service</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="#"
+          >Partner with Us</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="#"
+          >Careers</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="#"
+          >Support</a
+        >
+      </nav>
+      <p class="font-body-md text-tertiary-fixed-dim text-caption">
+        © 2024 LUMIÈRE Beauty. All rights reserved.
+      </p>
+    </footer>
+    <!-- Simple Micro-interactions Script -->
+    <script>
+      // Simple hover effect for glass cards
+      const cards = document.querySelectorAll(".glass-card");
+      cards.forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.style.transform = "translateY(-4px)";
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "translateY(0px)";
+        });
+      });
+
+      // Basic Drag and Drop Visual Feedback (Logic placeholder)
+      const appointments = document.querySelectorAll(".drag-handle");
+      appointments.forEach((appt) => {
+        appt.addEventListener("mousedown", (e) => {
+          appt.style.opacity = "0.7";
+          appt.style.zIndex = "100";
+        });
+        window.addEventListener("mouseup", () => {
+          appt.style.opacity = "1";
+          appt.style.zIndex = "auto";
+        });
+      });
+    </script>
+  </body>
+</html>
