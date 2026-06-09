@@ -86,4 +86,48 @@
 
 ---
 
+---
+
+🎨 Color Palette
+Color Name	Hex Code	Usage
+Primary	#80534c	Main brand color, buttons, links
+Primary Container	#e2a9a1	Background accents, cards
+Surface	#fcf9f8	Main background
+Secondary	#735c00	Gold accents, ratings
+On-Surface	#1c1b1b	Text color
+🤝 Contributing
+Contributions are welcome! Please follow these steps:
+
+Fork the repository
+
+Create a feature branch (git checkout -b feature/amazing-feature)
+
+Commit your changes (git commit -m 'Add amazing feature')
+
+Push to branch (git push origin feature/amazing-feature)
+
+Open a Pull Request
+
+📝 License
+This project is licensed under the MIT License - see the LICENSE file for details.
+
+👥 Team
+Role	Name
+Developer	de-coder-bit
+Designer	LUMIÈRE Design Team
+🙏 Acknowledgments
+Tailwind CSS for the utility-first CSS framework
+
+Supabase for the backend infrastructure
+
+Google Fonts for the beautiful typography
+
+Material Icons for the icon set
+
+📞 Support
+For support, email: support@lumiere-beauty.com or open an issue on GitHub.
+
+<div align="center"> <sub>Built with ❤️ by de-coder-bit</sub> <br/> <sub>© 2024 LUMIÈRE Beauty. All rights reserved.</sub> </div> ```
+
+
 ## 📁 Project Structure
