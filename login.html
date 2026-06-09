@@ -1,0 +1,522 @@
+<!doctype html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LUMIÈRE | Sign In</title>
+    <meta
+      content="Sign in to LUMIÈRE - Your premium beauty salon marketplace for curated experiences."
+      name="description"
+    />
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,400&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Material Symbols -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <!-- Theme Config -->
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#80534c",
+              "secondary-fixed": "#ffe088",
+              "on-tertiary-fixed-variant": "#484646",
+              "on-secondary-fixed-variant": "#574500",
+              outline: "#837371",
+              "on-error": "#ffffff",
+              "on-tertiary-container": "#494747",
+              "on-secondary": "#ffffff",
+              "on-tertiary-fixed": "#1c1b1b",
+              "secondary-container": "#fed65b",
+              "surface-container-high": "#eae7e7",
+              secondary: "#735c00",
+              "surface-bright": "#fcf9f8",
+              "surface-container-highest": "#e5e2e1",
+              "error-container": "#ffdad6",
+              "inverse-primary": "#f3b8b0",
+              "on-surface": "#1c1b1b",
+              "surface-container-low": "#f6f3f2",
+              "on-error-container": "#93000a",
+              "tertiary-container": "#bab6b5",
+              "primary-fixed": "#ffdad5",
+              "on-background": "#1c1b1b",
+              surface: "#fcf9f8",
+              "on-primary-fixed": "#32120e",
+              "surface-tint": "#80534c",
+              "inverse-on-surface": "#f3f0ef",
+              "surface-dim": "#dcd9d9",
+              "surface-container": "#f0eded",
+              "tertiary-fixed-dim": "#cac6c5",
+              "surface-variant": "#e5e2e1",
+              "surface-container-lowest": "#ffffff",
+              error: "#ba1a1a",
+              "on-surface-variant": "#514442",
+              "secondary-fixed-dim": "#e9c349",
+              "tertiary-fixed": "#e6e1e0",
+              "outline-variant": "#d5c2bf",
+              "on-primary-container": "#663d37",
+              "on-tertiary": "#ffffff",
+              "primary-fixed-dim": "#f3b8b0",
+              "on-secondary-fixed": "#241a00",
+              "on-primary": "#ffffff",
+              "primary-container": "#e2a9a1",
+              "on-primary-fixed-variant": "#653c36",
+              "inverse-surface": "#313030",
+              tertiary: "#605e5d",
+              "on-secondary-container": "#745c00",
+              background: "#fcf9f8",
+              "glow-gold": "#D4AF37",
+              "glow-rose": "#E2A9A1",
+              "glow-dark-red": "#80534c",
+              "glow-bg": "#FDF8F7",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-lg": "32px",
+              "margin-desktop": "64px",
+              "container-max": "1280px",
+              "stack-sm": "8px",
+              "stack-md": "16px",
+              gutter: "24px",
+              "margin-mobile": "20px",
+              "stack-xl": "64px",
+            },
+            fontFamily: {
+              "display-lg-mobile": ["Playfair Display"],
+              "body-lg": ["Inter"],
+              "headline-sm": ["Playfair Display"],
+              "body-md": ["Inter"],
+              caption: ["Inter"],
+              "display-lg": ["Playfair Display"],
+              "label-md": ["Inter"],
+              "headline-md": ["Playfair Display"],
+            },
+            fontSize: {
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "700" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-effect {
+        backdrop-filter: blur(12px);
+        background: rgba(255, 255, 255, 0.6);
+      }
+      .glow-shadow {
+        box-shadow: 0 40px 40px 0 rgba(226, 169, 161, 0.04);
+      }
+      .floating-circle {
+        position: absolute;
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: 0;
+        opacity: 0.4;
+        animation: float 20s infinite alternate ease-in-out;
+      }
+      @keyframes float {
+        0% {
+          transform: translate(0, 0) scale(1);
+        }
+        100% {
+          transform: translate(30px, 50px) scale(1.1);
+        }
+      }
+      .transition-all-300 {
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+    </style>
+  </head>
+  <body class="bg-surface text-on-surface font-body-md overflow-x-hidden">
+    <main class="flex min-h-screen w-full">
+      <!-- LEFT COLUMN (Hidden on Mobile) -->
+      <section
+        class="hidden lg:flex lg:w-[45%] relative bg-gradient-to-br from-[#FDF8F7] to-[#F5E6E4] overflow-hidden p-margin-desktop flex-col justify-between border-r border-outline-variant/10"
+      >
+        <div
+          class="floating-circle w-96 h-96 bg-glow-rose top-[-10%] left-[-10%]"
+        ></div>
+        <div
+          class="floating-circle w-80 h-80 bg-glow-gold bottom-[10%] right-[-5%]"
+          style="animation-delay: -5s"
+        ></div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3">
+            <a href="index.html" class="flex items-center gap-3">
+              <span
+                class="material-symbols-outlined text-glow-rose text-4xl"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >content_cut</span
+              >
+              <h1
+                class="font-display-lg text-headline-sm text-glow-dark-red tracking-tight"
+              >
+                LUMIÈRE
+              </h1>
+            </a>
+          </div>
+          <div class="mt-stack-xl">
+            <h2
+              class="font-display-lg text-[32px] italic leading-tight text-[#1A1A1A] max-w-sm"
+            >
+              "Your beauty, beautifully managed."
+            </h2>
+          </div>
+        </div>
+        <div class="relative z-10 space-y-stack-md max-w-sm">
+          <div
+            class="bg-surface-container-lowest p-stack-md rounded-2xl glow-shadow border-l-4 border-glow-rose flex flex-col gap-2 transform transition-all hover:scale-105"
+          >
+            <div class="flex gap-1">⭐⭐⭐⭐⭐</div>
+            <p class="text-[13px] font-body-md text-on-surface">
+              "Found my perfect stylist in minutes!"
+            </p>
+            <div class="flex items-center gap-2 mt-1">
+              <div
+                class="w-6 h-6 rounded-full bg-glow-rose/20 flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-[14px] text-glow-rose"
+                  >person</span
+                >
+              </div>
+              <span class="text-[12px] font-semibold opacity-70">Priya S.</span>
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-stack-md rounded-2xl glow-shadow border-l-4 border-glow-rose flex flex-col gap-2 transform transition-all hover:scale-105 ml-4"
+          >
+            <div class="flex gap-1">⭐⭐⭐⭐⭐</div>
+            <p class="text-[13px] font-body-md text-on-surface">
+              "Booking was so easy and fast."
+            </p>
+            <div class="flex items-center gap-2 mt-1">
+              <div
+                class="w-6 h-6 rounded-full bg-glow-rose/20 flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-[14px] text-glow-rose"
+                  >person</span
+                >
+              </div>
+              <span class="text-[12px] font-semibold opacity-70"
+                >Ananya M.</span
+              >
+            </div>
+          </div>
+          <div
+            class="bg-surface-container-lowest p-stack-md rounded-2xl glow-shadow border-l-4 border-glow-rose flex flex-col gap-2 transform transition-all hover:scale-105"
+          >
+            <div class="flex gap-1">⭐⭐⭐⭐⭐</div>
+            <p class="text-[13px] font-body-md text-on-surface">
+              "Love the AI recommendations!"
+            </p>
+            <div class="flex items-center gap-2 mt-1">
+              <div
+                class="w-6 h-6 rounded-full bg-glow-rose/20 flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-[14px] text-glow-rose"
+                  >person</span
+                >
+              </div>
+              <span class="text-[12px] font-semibold opacity-70">Riya K.</span>
+            </div>
+          </div>
+        </div>
+        <div
+          class="absolute bottom-[-10%] right-[-10%] opacity-10 pointer-events-none"
+        >
+          <span class="material-symbols-outlined text-[400px] text-glow-rose"
+            >spa</span
+          >
+        </div>
+      </section>
+      <!-- RIGHT COLUMN -->
+      <section
+        class="w-full lg:w-[55%] bg-white flex flex-col items-center justify-center p-6 sm:p-margin-desktop overflow-y-auto"
+      >
+        <div class="w-full max-w-[400px] flex flex-col space-y-stack-md">
+          <div class="flex items-center gap-2 lg:hidden mb-stack-md">
+            <a href="index.html" class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-glow-rose text-3xl"
+                >content_cut</span
+              >
+              <h1 class="font-display-lg text-headline-sm text-glow-dark-red">
+                LUMIÈRE
+              </h1>
+            </a>
+          </div>
+          <div class="space-y-1">
+            <h2 class="font-headline-md text-[#1A1A1A]">Welcome back</h2>
+            <p class="text-label-md text-[#6B6B6B]">
+              Sign in to continue your beauty journey
+            </p>
+          </div>
+          <!-- Role Selector -->
+          <div class="flex p-1 bg-surface-container-low rounded-full gap-1">
+            <button
+              class="flex-1 flex items-center justify-center gap-2 py-2 text-sm font-semibold rounded-full transition-all duration-300 bg-glow-rose text-white shadow-sm"
+              id="role-customer"
+              onclick="setRole('customer')"
+            >
+              <span class="material-symbols-outlined text-[18px]">person</span>
+              <span class="hidden sm:inline">Customer</span>
+            </button>
+            <button
+              class="flex-1 flex items-center justify-center gap-2 py-2 text-sm font-semibold rounded-full transition-all duration-300 bg-transparent text-[#1A1A1A] border border-transparent hover:bg-white/50"
+              id="role-salon"
+              onclick="setRole('salon')"
+            >
+              <span class="material-symbols-outlined text-[18px]"
+                >content_cut</span
+              >
+              <span class="hidden sm:inline">Salon Owner</span>
+            </button>
+            <button
+              class="flex-1 flex items-center justify-center gap-2 py-2 text-sm font-semibold rounded-full transition-all duration-300 bg-transparent text-[#1A1A1A] border border-transparent hover:bg-white/50"
+              id="role-admin"
+              onclick="setRole('admin')"
+            >
+              <span class="material-symbols-outlined text-[18px]">shield</span>
+              <span class="hidden sm:inline">Admin</span>
+            </button>
+          </div>
+          <!-- Google Auth -->
+          <button
+            class="w-full flex items-center justify-center gap-3 py-3 border-[1.5px] border-outline-variant rounded-full text-on-surface font-body-md text-[14px] hover:bg-surface-container-low transition-all duration-200"
+          >
+            <img
+              alt="Google Logo"
+              class="w-5 h-5"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDbrozM_eX0v5ytaC1_0M_BiwLtQ4ODrk5Oot-ULiFBRISd5_ppmy1szYDmSG_xqZ822eYoWWgKci8D57tYIdIfkdGm_CdpwmR6URNjH6XvzAaFknoTmnhzQy0pWt6kVsL7BOq2eyrt8wYPLjVnM5DjTHpCcy6DIIVtv06h9krXKKGOu8w_31YOUZiE1ks1KdYlqLHf5a4g2iXpWvdokJA5Ft6ft3vEZzi35zmtbRbZj2PBSDxFs4loDFi0lkmugMo8wwEd9dkH4lS4"
+            />
+            Continue with Google
+          </button>
+          <div class="flex items-center gap-4 py-2">
+            <div class="flex-grow h-[1px] bg-outline-variant/30"></div>
+            <span
+              class="text-[12px] font-label-md text-outline uppercase tracking-wider"
+              >or sign in with email</span
+            >
+            <div class="flex-grow h-[1px] bg-outline-variant/30"></div>
+          </div>
+          <!-- Login Form -->
+          <form class="space-y-stack-md" onsubmit="handleLogin(event)">
+            <div class="relative group">
+              <div
+                class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline group-focus-within:text-glow-rose transition-colors"
+              >
+                <span class="material-symbols-outlined text-[20px]">mail</span>
+              </div>
+              <input
+                class="peer w-full h-[48px] pl-12 pr-4 bg-transparent border border-outline-variant rounded-xl focus:border-glow-rose focus:ring-0 outline-none transition-all placeholder:text-transparent"
+                id="email"
+                placeholder=" "
+                required=""
+                type="email"
+              />
+              <label
+                class="absolute left-12 top-[-10px] bg-white px-1 text-[12px] text-outline peer-placeholder-shown:text-body-md peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-[-10px] peer-focus:text-[12px] peer-focus:text-glow-rose transition-all"
+                for="email"
+                >Email Address</label
+              >
+            </div>
+            <div class="relative group">
+              <div
+                class="absolute left-4 top-1/2 -translate-y-1/2 pointer-events-none text-outline group-focus-within:text-glow-rose transition-colors"
+              >
+                <span class="material-symbols-outlined text-[20px]">lock</span>
+              </div>
+              <input
+                class="peer w-full h-[48px] pl-12 pr-12 bg-transparent border border-outline-variant rounded-xl focus:border-glow-rose focus:ring-0 outline-none transition-all placeholder:text-transparent"
+                id="password"
+                placeholder=" "
+                required=""
+                type="password"
+              />
+              <label
+                class="absolute left-12 top-[-10px] bg-white px-1 text-[12px] text-outline peer-placeholder-shown:text-body-md peer-placeholder-shown:top-1/2 peer-placeholder-shown:-translate-y-1/2 peer-focus:top-[-10px] peer-focus:text-[12px] peer-focus:text-glow-rose transition-all"
+                for="password"
+                >Password</label
+              >
+              <button
+                class="absolute right-4 top-1/2 -translate-y-1/2 text-outline hover:text-on-surface"
+                onclick="togglePassword(event)"
+                type="button"
+              >
+                <span
+                  class="material-symbols-outlined text-[20px]"
+                  id="eye-icon"
+                  >visibility</span
+                >
+              </button>
+            </div>
+            <div class="flex items-center justify-between text-caption px-1">
+              <label class="flex items-center gap-2 cursor-pointer group">
+                <input
+                  class="w-4 h-4 rounded border-outline-variant text-glow-rose focus:ring-glow-rose"
+                  type="checkbox"
+                />
+                <span
+                  class="text-on-surface-variant group-hover:text-on-surface transition-colors"
+                  >Remember me</span
+                >
+              </label>
+              <a
+                class="text-glow-gold font-semibold hover:underline decoration-2 underline-offset-4"
+                href="#"
+                >Forgot password?</a
+              >
+            </div>
+            <button
+              type="submit"
+              class="w-full h-[52px] rounded-full bg-gradient-to-r from-glow-rose to-glow-dark-red text-white font-bold text-[16px] shadow-lg shadow-glow-rose/20 hover:scale-[1.02] active:scale-95 transition-all duration-300"
+            >
+              Sign In
+            </button>
+          </form>
+          <p class="text-center text-label-md text-on-surface-variant pt-2">
+            New here?
+            <a
+              class="text-glow-gold font-bold hover:underline"
+              href="signup.html"
+              >Create a free account</a
+            >
+          </p>
+          <div
+            class="pt-stack-xl flex flex-col items-center gap-stack-sm opacity-60"
+          >
+            <div class="h-[1px] w-12 bg-outline-variant/30 mb-2"></div>
+            <p
+              class="text-[11px] font-label-md text-outline tracking-wider uppercase flex items-center gap-2"
+            >
+              <span>10K+ Salons</span>
+              <span class="w-1 h-1 rounded-full bg-outline"></span>
+              <span>4.9 Rating</span>
+              <span class="w-1 h-1 rounded-full bg-outline"></span>
+              <span>500K Bookings</span>
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+    <script>
+      let currentRole = "customer";
+
+      function setRole(role) {
+        currentRole = role;
+        const buttons = ["customer", "salon", "admin"];
+        buttons.forEach((r) => {
+          const btn = document.getElementById(`role-${r}`);
+          if (r === role) {
+            btn.classList.add("bg-glow-rose", "text-white", "shadow-sm");
+            btn.classList.remove(
+              "bg-transparent",
+              "text-[#1A1A1A]",
+              "hover:bg-white/50",
+            );
+          } else {
+            btn.classList.remove("bg-glow-rose", "text-white", "shadow-sm");
+            btn.classList.add(
+              "bg-transparent",
+              "text-[#1A1A1A]",
+              "hover:bg-white/50",
+            );
+          }
+        });
+      }
+
+      function togglePassword(event) {
+        event.preventDefault();
+        const pwd = document.getElementById("password");
+        const eye = document.getElementById("eye-icon");
+        if (pwd.type === "password") {
+          pwd.type = "text";
+          eye.textContent = "visibility_off";
+        } else {
+          pwd.type = "password";
+          eye.textContent = "visibility";
+        }
+      }
+
+      function handleLogin(event) {
+        event.preventDefault();
+
+        // Redirect based on selected role
+        if (currentRole === "customer") {
+          window.location.href = "customer-dashboard.html";
+        } else if (currentRole === "salon") {
+          window.location.href = "dashboard.html";
+        } else if (currentRole === "admin") {
+          window.location.href = "admin-dashboard.html";
+        } else {
+          window.location.href = "customer-dashboard.html";
+        }
+      }
+
+      document.querySelectorAll("input").forEach((input) => {
+        input.addEventListener("focus", () => {
+          input.parentElement.classList.add("scale-[1.01]");
+        });
+        input.addEventListener("blur", () => {
+          input.parentElement.classList.remove("scale-[1.01]");
+        });
+      });
+    </script>
+  </body>
+</html>

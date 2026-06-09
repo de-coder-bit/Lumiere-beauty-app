@@ -1,0 +1,52 @@
+<!doctype html>
+<html>
+  <head>
+    <title>My Bookings - LUMIÈRE</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+  </head>
+  <body class="bg-gray-50">
+    <!-- Same navbar as other pages -->
+    <nav class="bg-white shadow p-4">
+      <a href="index.html" class="text-xl font-bold text-[#80534c]">LUMIÈRE</a>
+    </nav>
+
+    <div class="max-w-4xl mx-auto p-6 mt-8">
+      <h1 class="text-2xl font-bold mb-6">📅 My Bookings</h1>
+
+      <div id="bookings-list" class="space-y-4">
+        <p class="text-gray-500">Loading bookings...</p>
+      </div>
+    </div>
+
+    <script>
+      // Fetch bookings from backend
+      fetch("https://lumiere-backend.onrender.com/api/bookings")
+        .then((res) => res.json())
+        .then((data) => {
+          const container = document.getElementById("bookings-list");
+
+          if (data.success && data.bookings && data.bookings.length > 0) {
+            container.innerHTML = data.bookings
+              .map(
+                (booking) => `
+          <div class="bg-white p-4 rounded-lg shadow">
+            <p><strong>Service:</strong> ${booking.service_name}</p>
+            <p><strong>Date:</strong> ${booking.date}</p>
+            <p><strong>Time:</strong> ${booking.time}</p>
+            <p><strong>Status:</strong> <span class="text-green-600">${booking.status}</span></p>
+          </div>
+        `,
+              )
+              .join("");
+          } else {
+            container.innerHTML =
+              '<p class="text-gray-500">No bookings found. <a href="book-service.html" class="text-[#80534c]">Book now →</a></p>';
+          }
+        })
+        .catch((err) => {
+          document.getElementById("bookings-list").innerHTML =
+            '<p class="text-red-500">Failed to load bookings. Make sure backend is running.</p>';
+        });
+    </script>
+  </body>
+</html>

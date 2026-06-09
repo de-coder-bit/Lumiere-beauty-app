@@ -1,0 +1,620 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LUMIÈRE | Join the Community</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&amp;family=Playfair+Display:wght@600;700;800&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#80534c",
+              secondary: "#C9507A",
+              accent: "#D4A017",
+              "surface-tint": "#FFF0F5",
+              "on-surface": "#1c1b1b",
+              background: "#fcf9f8",
+              "outline-variant": "#d5c2bf",
+              "surface-container-low": "#f6f3f2",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "12px",
+              xl: "16px",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-md": "16px",
+              "container-max": "1280px",
+              "margin-mobile": "20px",
+              "stack-sm": "8px",
+              "margin-desktop": "64px",
+              "stack-lg": "32px",
+              gutter: "24px",
+              "stack-xl": "64px",
+            },
+            fontFamily: {
+              "display-lg": ["Playfair Display"],
+              "headline-md": ["Playfair Display"],
+              "headline-sm": ["Playfair Display"],
+              "body-md": ["Inter"],
+              "label-md": ["Inter"],
+            },
+            fontSize: {
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-panel {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+      }
+      .role-card.active {
+        border: 2px solid #c9507a;
+        background-color: #fff0f5;
+        transform: scale(1.02);
+      }
+      .floating-label-group {
+        position: relative;
+      }
+      .floating-label-group input:focus ~ label,
+      .floating-label-group input:not(:placeholder-shown) ~ label {
+        top: -10px;
+        left: 12px;
+        font-size: 12px;
+        color: #c9507a;
+        background: white;
+        padding: 0 4px;
+      }
+      .strength-bar {
+        height: 4px;
+        transition:
+          width 0.3s ease,
+          background-color 0.3s ease;
+      }
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .animate-slide {
+        animation: slideIn 0.6s ease-out forwards;
+      }
+    </style>
+  </head>
+  <body
+    class="bg-background text-on-surface font-body-md min-h-screen overflow-x-hidden"
+  >
+    <main class="flex min-h-screen">
+      <!-- LEFT PANEL (55%) -->
+      <section
+        class="w-full lg:w-[55%] bg-white px-8 md:px-margin-desktop py-stack-lg overflow-y-auto"
+      >
+        <div class="max-w-xl mx-auto animate-slide">
+          <!-- Header & Progress -->
+          <div class="flex justify-between items-center mb-stack-lg">
+            <a
+              href="index.html"
+              class="font-label-md text-secondary uppercase tracking-widest hover:underline"
+              >LUMIÈRE</a
+            >
+            <div class="flex items-center gap-2">
+              <span class="text-caption text-on-surface-variant italic"
+                >Step 1 of 3: Basic Details</span
+              >
+              <div class="flex gap-1.5">
+                <div class="w-2 h-2 rounded-full bg-secondary"></div>
+                <div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+                <div class="w-2 h-2 rounded-full bg-outline-variant"></div>
+              </div>
+            </div>
+          </div>
+          <h1
+            class="font-display-lg text-primary text-[40px] leading-tight mb-2"
+          >
+            Create your account
+          </h1>
+          <p class="text-body-md text-on-surface-variant mb-stack-lg">
+            Already have an account?
+            <a
+              class="text-secondary font-semibold hover:underline"
+              href="login.html"
+              >Sign in →</a
+            >
+          </p>
+          <!-- Role Selection -->
+          <div class="grid grid-cols-3 gap-4 mb-stack-lg">
+            <button
+              class="role-card active group flex flex-col items-center p-4 rounded-xl border border-outline-variant transition-all duration-300 hover:shadow-lg"
+              id="role-customer"
+              onclick="selectRole('customer')"
+            >
+              <span
+                class="material-symbols-outlined text-secondary mb-2 group-hover:scale-110 transition-transform"
+                >person</span
+              >
+              <span class="text-[13px] font-semibold text-primary"
+                >Customer</span
+              >
+            </button>
+            <button
+              class="role-card group flex flex-col items-center p-4 rounded-xl border border-outline-variant transition-all duration-300 hover:shadow-lg"
+              id="role-salon"
+              onclick="selectRole('salon')"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary mb-2 transition-transform group-hover:scale-110"
+                >content_cut</span
+              >
+              <span
+                class="text-[13px] font-semibold text-on-surface-variant group-hover:text-primary"
+                >Salon Owner</span
+              >
+            </button>
+            <button
+              class="role-card group flex flex-col items-center p-4 rounded-xl border border-outline-variant transition-all duration-300 hover:shadow-lg"
+              id="role-admin"
+              onclick="selectRole('admin')"
+            >
+              <span
+                class="material-symbols-outlined text-on-surface-variant group-hover:text-secondary mb-2 transition-transform group-hover:scale-110"
+                >admin_panel_settings</span
+              >
+              <span
+                class="text-[13px] font-semibold text-on-surface-variant group-hover:text-primary"
+                >Admin</span
+              >
+            </button>
+          </div>
+          <!-- Google Sign Up -->
+          <button
+            class="w-full h-12 rounded-full border border-outline-variant flex items-center justify-center gap-3 hover:bg-surface-container-low transition-colors mb-stack-lg group"
+            onclick="window.location.href = 'customer-dashboard.html'"
+          >
+            <svg class="w-5 h-5" viewBox="0 0 24 24">
+              <path
+                d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"
+                fill="#4285F4"
+              ></path>
+              <path
+                d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"
+                fill="#34A853"
+              ></path>
+              <path
+                d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81.62z"
+                fill="#FBBC05"
+              ></path>
+              <path
+                d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"
+                fill="#EA4335"
+              ></path>
+            </svg>
+            <span class="font-medium text-on-surface"
+              >Continue with Google</span
+            >
+          </button>
+          <div class="relative flex items-center mb-stack-lg">
+            <div class="flex-grow border-t border-outline-variant/30"></div>
+            <span
+              class="flex-shrink mx-4 text-caption text-on-surface-variant uppercase tracking-widest"
+              >or register manually</span
+            >
+            <div class="flex-grow border-t border-outline-variant/30"></div>
+          </div>
+          <!-- Form -->
+          <form class="space-y-6" onsubmit="handleSignup(event)">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="floating-label-group">
+                <input
+                  class="w-full h-12 px-4 rounded-xl border-0 bg-surface-container-low ring-1 ring-inset ring-outline-variant focus:ring-2 focus:ring-secondary transition-all"
+                  placeholder=" "
+                  type="text"
+                />
+                <label
+                  class="absolute left-4 top-3 text-on-surface-variant pointer-events-none transition-all"
+                  >First Name</label
+                >
+              </div>
+              <div class="floating-label-group">
+                <input
+                  class="w-full h-12 px-4 rounded-xl border-0 bg-surface-container-low ring-1 ring-inset ring-outline-variant focus:ring-2 focus:ring-secondary transition-all"
+                  placeholder=" "
+                  type="text"
+                />
+                <label
+                  class="absolute left-4 top-3 text-on-surface-variant pointer-events-none transition-all"
+                  >Last Name</label
+                >
+              </div>
+            </div>
+            <div class="floating-label-group">
+              <input
+                class="w-full h-12 px-4 rounded-xl border-0 bg-surface-container-low ring-1 ring-inset ring-outline-variant focus:ring-2 focus:ring-secondary transition-all"
+                placeholder=" "
+                type="email"
+              />
+              <label
+                class="absolute left-4 top-3 text-on-surface-variant pointer-events-none transition-all"
+                >Email Address</label
+              >
+            </div>
+            <div class="flex items-center gap-2">
+              <div
+                class="w-20 h-12 flex items-center justify-center bg-surface-container-low rounded-xl ring-1 ring-outline-variant"
+              >
+                <span class="text-on-surface-variant font-medium">+91</span>
+              </div>
+              <div class="flex-grow floating-label-group">
+                <input
+                  class="w-full h-12 px-4 rounded-xl border-0 bg-surface-container-low ring-1 ring-inset ring-outline-variant focus:ring-2 focus:ring-secondary transition-all"
+                  placeholder=" "
+                  type="tel"
+                />
+                <label
+                  class="absolute left-4 top-3 text-on-surface-variant pointer-events-none transition-all"
+                  >Phone Number</label
+                >
+              </div>
+            </div>
+            <!-- Hidden Salon Fields -->
+            <div
+              class="hidden grid grid-cols-1 md:grid-cols-2 gap-4 animate-slide"
+              id="salon-fields"
+            >
+              <div class="floating-label-group">
+                <input
+                  class="w-full h-12 px-4 rounded-xl border-0 bg-surface-container-low ring-1 ring-inset ring-outline-variant focus:ring-2 focus:ring-secondary transition-all"
+                  placeholder=" "
+                  type="text"
+                />
+                <label
+                  class="absolute left-4 top-3 text-on-surface-variant pointer-events-none transition-all"
+                  >Salon Name</label
+                >
+              </div>
+              <div class="floating-label-group">
+                <input
+                  class="w-full h-12 px-4 rounded-xl border-0 bg-surface-container-low ring-1 ring-inset ring-outline-variant focus:ring-2 focus:ring-secondary transition-all"
+                  placeholder=" "
+                  type="text"
+                />
+                <label
+                  class="absolute left-4 top-3 text-on-surface-variant pointer-events-none transition-all"
+                  >City</label
+                >
+              </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <div class="space-y-2">
+                <div class="floating-label-group">
+                  <input
+                    class="w-full h-12 px-4 rounded-xl border-0 bg-surface-container-low ring-1 ring-inset ring-outline-variant focus:ring-2 focus:ring-secondary transition-all"
+                    id="pass"
+                    oninput="checkStrength()"
+                    placeholder=" "
+                    type="password"
+                  />
+                  <label
+                    class="absolute left-4 top-3 text-on-surface-variant pointer-events-none transition-all"
+                    >Password</label
+                  >
+                </div>
+                <div
+                  class="w-full bg-outline-variant/30 rounded-full h-1 overflow-hidden"
+                >
+                  <div
+                    class="strength-bar w-0 bg-secondary"
+                    id="strength-meter"
+                  ></div>
+                </div>
+              </div>
+              <div class="floating-label-group relative">
+                <input
+                  class="w-full h-12 px-4 rounded-xl border-0 bg-surface-container-low ring-1 ring-inset ring-outline-variant focus:ring-2 focus:ring-secondary transition-all"
+                  id="confirm"
+                  oninput="checkMatch()"
+                  placeholder=" "
+                  type="password"
+                />
+                <label
+                  class="absolute left-4 top-3 text-on-surface-variant pointer-events-none transition-all"
+                  >Confirm Password</label
+                >
+                <span
+                  class="hidden material-symbols-outlined absolute right-4 top-3 text-green-500 text-lg"
+                  id="match-icon"
+                  >check_circle</span
+                >
+              </div>
+            </div>
+            <div class="space-y-3">
+              <label class="flex items-start gap-3 cursor-pointer group">
+                <div class="relative flex items-center mt-1">
+                  <input
+                    class="peer h-5 w-5 rounded border-outline-variant text-secondary focus:ring-secondary"
+                    type="checkbox"
+                  />
+                </div>
+                <span class="text-caption text-on-surface-variant"
+                  >I agree to the
+                  <a class="text-secondary hover:underline" href="terms.html"
+                    >Terms of Service</a
+                  >
+                  and
+                  <a class="text-secondary hover:underline" href="privacy.html"
+                    >Privacy Policy</a
+                  >.</span
+                >
+              </label>
+              <label class="flex items-start gap-3 cursor-pointer group">
+                <div class="relative flex items-center mt-1">
+                  <input
+                    checked=""
+                    class="peer h-5 w-5 rounded border-outline-variant text-secondary focus:ring-secondary"
+                    type="checkbox"
+                  />
+                </div>
+                <span class="text-caption text-on-surface-variant"
+                  >Keep me updated with the latest beauty tips and exclusive
+                  offers.</span
+                >
+              </label>
+            </div>
+            <button
+              type="submit"
+              class="w-full h-[52px] bg-gradient-to-r from-secondary to-primary text-white font-bold rounded-full shadow-lg shadow-secondary/20 hover:scale-[1.02] active:scale-95 transition-all flex items-center justify-center gap-2"
+            >
+              Create My Account ✨
+            </button>
+          </form>
+          <footer
+            class="mt-stack-lg flex items-center justify-center gap-2 text-caption text-on-surface-variant/60"
+          >
+            <span class="material-symbols-outlined text-sm">lock</span>
+            Your data is safe and encrypted using industry standards.
+          </footer>
+        </div>
+      </section>
+      <!-- RIGHT PANEL (45%) -->
+      <aside
+        class="hidden lg:flex lg:w-[45%] sticky top-0 h-screen bg-gradient-to-br from-[#FFE4EE] to-[#E8D5FF] items-center justify-center p-margin-desktop overflow-hidden"
+      >
+        <div
+          class="relative z-10 glass-panel p-stack-xl rounded-[40px] border border-white/40 shadow-2xl max-w-lg text-center"
+        >
+          <div class="mb-stack-lg flex justify-center gap-6">
+            <div
+              class="w-16 h-16 rounded-2xl bg-white/80 flex items-center justify-center shadow-sm animate-bounce [animation-delay:0.2s]"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >spa</span
+              >
+            </div>
+            <div
+              class="w-16 h-16 rounded-2xl bg-white/80 flex items-center justify-center shadow-sm animate-bounce [animation-delay:0.4s]"
+            >
+              <span class="material-symbols-outlined text-accent text-3xl"
+                >content_cut</span
+              >
+            </div>
+            <div
+              class="w-16 h-16 rounded-2xl bg-white/80 flex items-center justify-center shadow-sm animate-bounce [animation-delay:0.6s]"
+            >
+              <span class="material-symbols-outlined text-secondary text-3xl"
+                >local_florist</span
+              >
+            </div>
+          </div>
+          <h2 class="font-display-lg text-primary text-4xl mb-stack-md">
+            Join 50,000+ beauty lovers
+          </h2>
+          <ul class="space-y-4 mb-stack-lg text-left inline-block">
+            <li class="flex items-center gap-3">
+              <div
+                class="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-secondary text-sm"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >check_circle</span
+                >
+              </div>
+              <span class="font-medium text-primary/80"
+                >Personalized AI style advice</span
+              >
+            </li>
+            <li class="flex items-center gap-3">
+              <div
+                class="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-secondary text-sm"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >check_circle</span
+                >
+              </div>
+              <span class="font-medium text-primary/80"
+                >Access to 5,000+ verified salons</span
+              >
+            </li>
+            <li class="flex items-center gap-3">
+              <div
+                class="w-6 h-6 rounded-full bg-secondary/10 flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-secondary text-sm"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >check_circle</span
+                >
+              </div>
+              <span class="font-medium text-primary/80"
+                >Instant booking &amp; easy management</span
+              >
+            </li>
+          </ul>
+          <div class="flex flex-col items-center">
+            <div class="flex -space-x-3 mb-4">
+              <img
+                class="w-10 h-10 rounded-full border-2 border-white object-cover"
+                data-alt="A portrait of a radiant woman with warm skin tones and elegant makeup, shot in soft studio lighting against a minimal cream background, evoking professional yet accessible luxury beauty."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbFZeDNIfrWNyyLsj3b_aDLrTbn8VMPfRgQACDhlnJUy-DTLgTycqrFVegdUwoptkLkFhgUKHI0BX4cQ-iKSLMkiW2BpOEfW3Lf9Tcny8FJ9Jlk55A_nGQ8lFso-tRA-NjQNMYaNAdXBHNbOD2G6oOTT0QU3G7vPoqoPmHJ2NzNqWNr4B_d0R-0_Jd3CqPfkw2VHBx_e8fvh1mV32k8VRymUdXgp9mw8GuGfcd1nLeRoJb9pmq3x3OlzaKoM4jXOSFk2yzv8VbWH_m"
+              />
+              <img
+                class="w-10 h-10 rounded-full border-2 border-white object-cover"
+                data-alt="A clean-shaven man with a sharp, stylish haircut and well-groomed features looking confidently at the camera, set in a bright, modern salon environment with soft bokeh highlights."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_D-Th6TWGCakV2ug_izZu6_tCzjZJ9LpnFeY-ruH606ciOESMOw79xx_zG69fP18gC2O2nwZuhtsbSdq-nA6hZXObLEURBro5VMOVHd8jWGD7TqDcShziU7dvQlXHRN0Hr8fNQwzdhJPexpxUVSavg5YL3_3f9pka8yQiBGKMpUPAh4nr5pU3MgezXz8tG6FzZ3XrHV4qLtqRm1JuHAwgfey1gGRsZNFJc7RUdjHyivLECncJ5HwoZzfG6qOieZCBgE8mqK-0BBLK"
+              />
+              <img
+                class="w-10 h-10 rounded-full border-2 border-white object-cover"
+                data-alt="Close up of a person with glowing skin and minimalist jewelry, reflecting a clean aesthetic. The lighting is ethereal and soft-focus, highlighting natural beauty and luxury."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuABkpBbpv2zOqzzhgBS_A0-vJyzlziIBDqC9NUolUM357B58vlwWWdngjuNEwtPSfft3rbQZEymkGa2AStCEWRr9q3mu9xT6aZmG3i962OtmF8VEkjCqchE32xCu8ZWTxwKt7QDTpA2bQF3EOj_FCDIJSad9MfYnqMb7vnY3IPHZa4ywW9dhlT4_uejwgp-VEchuGMMRO9wkDA4pmEP7A8wDHlA74-mQt74OWr48cQ7fGQou-XhAslNcSQT0xGZO3zFsNP3SUPp0WXS"
+              />
+              <img
+                class="w-10 h-10 rounded-full border-2 border-white object-cover blur-[1px]"
+                data-alt="Portrait of a smiling young adult with artistic makeup accents, representing the creative diversity of the beauty community, set against a pastel pink gradient backdrop."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7wNmHvQpscOuG1BVRB67B6huGOnaH0uLt5YjPONDu0r-fCp4l-J11ggTa5lnoNRVhjFzoPPgLyTdXENl--9GPY4NUm49JYNR8zZrJ89UQ0k9EA29wDAzrGDzFrx1JmcbJYxoBcj647i16A5v_jTd60aw0FxyqyDZKrRSIN7y1XDTfmKl8-03myIrgoOGkmsjzk1lQQzO8sP_WSyov1gdaWgfVfgjS3E0J3OQycHJ1Ag3cJ1myLEOpTqYPURUD_Mqx5ykFMSrBd9UB"
+              />
+              <img
+                class="w-10 h-10 rounded-full border-2 border-white object-cover blur-[2px]"
+                data-alt="Fashion-forward individual with bold features and a contemporary hairstyle, showcasing high-end aesthetic trends in a light-filled editorial photography style."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhnnKxot28aNFA_S6fuEQ8nBhb76Ki4qybZUS3APdroZfhkYSgG6sbwE1mAvYLt_fKHaEOpo98WQfh_JKZTqskC4TYNL4Y-DawGjzguN9BzAYzO5fXqDi2t2_XtIUdBag_xssZAjdV72snlPvE1TbP6WKltzJ74Adw75bL81QOh7s3mt7X4YSIo0oIuTiqn5hTn_gsnl2Bjlfm8iNfNE9VT9O7uGwoJ4pI5e5ffrTvkVgPlZWC225Eo2T-CXlwtMNuOpSK9274ektb"
+              />
+            </div>
+            <a
+              class="text-accent font-bold hover:translate-x-1 transition-transform inline-flex items-center gap-2"
+              href="salons.html"
+            >
+              Join them today →
+            </a>
+          </div>
+        </div>
+        <div
+          class="absolute -bottom-20 -right-20 w-80 h-80 bg-white/20 blur-3xl rounded-full"
+        ></div>
+        <div
+          class="absolute -top-20 -left-20 w-64 h-64 bg-secondary/10 blur-3xl rounded-full"
+        ></div>
+      </aside>
+    </main>
+    <script>
+      let currentRole = "customer";
+
+      function selectRole(role) {
+        currentRole = role;
+        // Reset all cards
+        document.querySelectorAll(".role-card").forEach((card) => {
+          card.classList.remove("active");
+          const icon = card.querySelector("span:first-child");
+          const text = card.querySelector("span:last-child");
+          if (icon) icon.classList.remove("text-secondary");
+          if (icon) icon.classList.add("text-on-surface-variant");
+          if (text) text.classList.remove("text-primary");
+          if (text) text.classList.add("text-on-surface-variant");
+        });
+
+        // Set active
+        const activeCard = document.getElementById("role-" + role);
+        if (activeCard) {
+          activeCard.classList.add("active");
+          const icon = activeCard.querySelector("span:first-child");
+          const text = activeCard.querySelector("span:last-child");
+          if (icon) icon.classList.add("text-secondary");
+          if (text) text.classList.add("text-primary");
+        }
+
+        // Toggle salon fields
+        const salonFields = document.getElementById("salon-fields");
+        if (role === "salon") {
+          salonFields.classList.remove("hidden");
+        } else {
+          salonFields.classList.add("hidden");
+        }
+      }
+
+      function checkStrength() {
+        const pass = document.getElementById("pass").value;
+        const meter = document.getElementById("strength-meter");
+        let strength = 0;
+        if (pass.length > 5) strength += 25;
+        if (pass.match(/[A-Z]/)) strength += 25;
+        if (pass.match(/[0-9]/)) strength += 25;
+        if (pass.match(/[^A-Za-z0-9]/)) strength += 25;
+
+        meter.style.width = strength + "%";
+        if (strength < 50) meter.style.backgroundColor = "#EA4335";
+        else if (strength < 75) meter.style.backgroundColor = "#FBBC05";
+        else meter.style.backgroundColor = "#34A853";
+      }
+
+      function checkMatch() {
+        const pass = document.getElementById("pass").value;
+        const confirm = document.getElementById("confirm").value;
+        const icon = document.getElementById("match-icon");
+
+        if (confirm.length > 0 && pass === confirm) {
+          icon.classList.remove("hidden");
+        } else {
+          icon.classList.add("hidden");
+        }
+      }
+
+      function handleSignup(event) {
+        event.preventDefault();
+
+        // Redirect based on selected role
+        if (currentRole === "customer") {
+          window.location.href = "customer-dashboard.html";
+        } else if (currentRole === "salon") {
+          window.location.href = "dashboard.html";
+        } else if (currentRole === "admin") {
+          window.location.href = "admin-dashboard.html";
+        } else {
+          window.location.href = "customer-dashboard.html";
+        }
+      }
+    </script>
+  </body>
+</html>

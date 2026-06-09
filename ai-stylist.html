@@ -4,7 +4,7 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>LUMIÈRE | AI Stylist &amp; Recommendation Interface</title>
+    <title>LUMIÈRE | Aura AI Stylist</title>
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link
       href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"
@@ -21,55 +21,47 @@
     <style>
       .material-symbols-outlined {
         font-variation-settings:
-          "FILL" 0,
-          "wght" 300,
-          "GRAD" 0,
-          "opsz" 24;
+          "wght" 200,
+          "FILL" 0;
+        font-size: 20px;
       }
       .glass-panel {
         background: rgba(252, 249, 248, 0.6);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
       }
-      .glow-border {
-        position: relative;
+      .ai-glow {
+        box-shadow: 0 0 20px rgba(226, 169, 161, 0.4);
       }
-      .glow-border::after {
-        content: "";
-        position: absolute;
-        inset: -1px;
-        border-radius: inherit;
-        padding: 1px;
-        background: linear-gradient(
-          135deg,
-          rgba(226, 169, 161, 1) 0%,
-          rgba(254, 214, 91, 0.2) 50%,
-          rgba(226, 169, 161, 1) 100%
-        );
-        -webkit-mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        mask:
-          linear-gradient(#fff 0 0) content-box,
-          linear-gradient(#fff 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        pointer-events: none;
+      .message-in {
+        animation: slideIn 0.3s ease-out forwards;
       }
-      .ai-sparkle {
-        filter: drop-shadow(0 0 8px rgba(254, 214, 91, 0.6));
-      }
-      @keyframes subtle-float {
-        0%,
-        100% {
+      @keyframes slideIn {
+        from {
+          opacity: 0;
+          transform: translateY(10px);
+        }
+        to {
+          opacity: 1;
           transform: translateY(0);
         }
+      }
+      .aura-pulse {
+        animation: pulse 4s infinite ease-in-out;
+      }
+      @keyframes pulse {
+        0%,
+        100% {
+          transform: scale(1);
+          opacity: 0.8;
+        }
         50% {
-          transform: translateY(-8px);
+          transform: scale(1.1);
+          opacity: 1;
         }
       }
-      .float-anim {
-        animation: subtle-float 6s ease-in-out infinite;
+      .no-scrollbar::-webkit-scrollbar {
+        display: none;
       }
     </style>
     <script id="tailwind-config">
@@ -190,522 +182,635 @@
       };
     </script>
   </head>
-  <body
-    class="bg-surface font-body-md text-on-surface selection:bg-primary-container selection:text-on-primary-container"
-  >
-    <!-- TopNavBar -->
+  <body class="bg-surface font-body-md text-on-surface">
+    <!-- Top Navigation Bar -->
     <header
-      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto bg-surface/60 backdrop-blur-xl dark:bg-inverse-surface/60 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)]"
+      class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto bg-surface/60 backdrop-blur-xl shadow-[0_40px_40px_0_rgba(226,169,161,0.04)]"
     >
-      <div
-        class="font-display-lg text-display-lg-mobile tracking-tighter text-primary dark:text-primary-fixed-dim"
-      >
-        LUMIÈRE
+      <div class="flex items-center gap-8">
+        <a
+          href="index.html"
+          class="font-display-lg text-display-lg-mobile tracking-tighter text-primary"
+          >LUMIÈRE</a
+        >
+        <nav class="hidden md:flex gap-6 items-center">
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
+            href="index.html"
+            >Discover</a
+          >
+          <a
+            class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1"
+            href="ai-stylist.html"
+            >AI Stylist</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
+            href="salons.html"
+            >Salons</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
+            href="offers.html"
+            >Offers</a
+          >
+        </nav>
       </div>
-      <nav class="hidden md:flex items-center gap-stack-lg">
-        <a
-          class="font-body-md text-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:scale-105 hover:text-primary transition-all duration-300"
-          href="#"
-          >Discover</a
-        >
-        <a
-          class="font-body-md text-body-md text-primary dark:text-primary-fixed-dim border-b-2 border-primary pb-1 transition-all duration-300"
-          href="#"
-          >AI Stylist</a
-        >
-        <a
-          class="font-body-md text-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:scale-105 hover:text-primary transition-all duration-300"
-          href="#"
-          >Salons</a
-        >
-        <a
-          class="font-body-md text-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:scale-105 hover:text-primary transition-all duration-300"
-          href="#"
-          >Offers</a
-        >
-      </nav>
-      <div class="flex items-center gap-stack-md">
+      <div class="flex gap-4 items-center">
         <button
-          class="font-body-md text-body-md text-on-surface-variant dark:text-on-tertiary-fixed-variant hover:text-primary transition-colors"
+          class="font-body-md text-body-md text-on-surface-variant hover:text-primary transition-colors"
+          onclick="window.location.href = 'signin.html'"
         >
           Sign In
         </button>
         <button
-          class="bg-primary text-on-primary px-6 py-2 rounded-full font-label-md text-label-md hover:scale-105 transition-transform shadow-sm"
+          class="bg-primary text-on-primary px-6 py-2 rounded-full font-body-md text-body-md hover:scale-105 transition-transform"
+          onclick="window.location.href = 'book-appointment.html'"
         >
           Book Now
         </button>
       </div>
     </header>
-    <!-- Sidebar (Quick Salon Links) -->
-    <aside
-      class="fixed left-0 top-0 h-full hidden lg:flex flex-col p-stack-md border-r border-outline-variant/10 bg-surface dark:bg-inverse-surface w-64 pt-32 shadow-sm z-40"
-    >
-      <div class="px-4 mb-stack-lg">
-        <h3 class="font-headline-sm text-headline-sm text-primary">
-          Nearby Salons
-        </h3>
-        <p class="font-caption text-caption text-on-surface-variant">
-          Recommended for your style
-        </p>
-      </div>
-      <div class="flex flex-col gap-stack-sm flex-grow overflow-y-auto px-2">
-        <!-- Salon Card 1 -->
-        <div
-          class="p-3 rounded-xl hover:bg-primary-container/20 transition-all cursor-pointer group"
-        >
-          <div class="flex items-center gap-3">
-            <img
-              class="w-12 h-12 rounded-lg object-cover"
-              data-alt="The exterior of a luxury hair salon with large glass windows and elegant gold signage. The lighting is warm and inviting, showcasing a minimalist interior with marble floors and designer styling stations. The overall aesthetic is professional and high-end concierge."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBw4bv8lgcBb1FxwNDhwQbFzarnwYPiIozeAcwCVivc4ZXxyvjmOpknZD_jrd7W8P66soDbUYUuvDVLT3mi9BKyZvMJZUOF0FP_B0Sjsgv6-JsRJRgA_TZqtrA1O-YWbfracWNSIRVZt4OBOANdEWQ7DG8XuEDXvOTfoj1iKLaqdvWTaUhaKeiB7juvFMLabGjBp9NY4qwBYvaw9AxIM1e8HnQQLp4JJ7FLGysF-LN9tBS98AB_9TGZu_A0vyvpHlVi5Gli5hZ5vCgY"
-            />
-            <div>
-              <p
-                class="font-label-md text-label-md group-hover:text-primary transition-colors"
-              >
-                L'Artiste Salon
-              </p>
-              <p class="font-caption text-caption text-on-surface-variant">
-                0.4 miles away
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Salon Card 2 -->
-        <div
-          class="p-3 rounded-xl hover:bg-primary-container/20 transition-all cursor-pointer group"
-        >
-          <div class="flex items-center gap-3">
-            <img
-              class="w-12 h-12 rounded-lg object-cover"
-              data-alt="A chic interior of a modern spa and beauty parlor with soft pink accents and plush velvet seating. Diffused natural light pours in, creating a serene and exclusive atmosphere. Stylists are seen working on clients in the background with premium equipment and professional care."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQr0IFk-htVxDEOt_ZNfBH_Rzw1rcDixkov-LL78_VfXivl5GTOSQChgM8rrZkUWL620wruWQFGsjqG6b-QE2YYgL9SkUqrcPZ2Ui8fXOCv2wP6ycDCtC-Vf2SK-8r9TFSf44pYK0SJXYZZNeM7VTFOptZlYkUNNv0P_xAVNUECyNvv6ejliLCLqn9FXc_nl_xK0p4AQkpv0Q-f7sxrWZbg5S76BFlI6QSPHSJ1xQ_d4rqIPbi9yAj1WlbjocdLFvpwWkCQEUritvW"
-            />
-            <div>
-              <p
-                class="font-label-md text-label-md group-hover:text-primary transition-colors"
-              >
-                Elysian Beauty
-              </p>
-              <p class="font-caption text-caption text-on-surface-variant">
-                1.2 miles away
-              </p>
-            </div>
-          </div>
-        </div>
-        <!-- Salon Card 3 -->
-        <div
-          class="p-3 rounded-xl hover:bg-primary-container/20 transition-all cursor-pointer group"
-        >
-          <div class="flex items-center gap-3">
-            <img
-              class="w-12 h-12 rounded-lg object-cover"
-              data-alt="A close-up of a high-end salon station with premium hair care products neatly arranged on a white marble countertop. The lighting is bright and clean, emphasizing the luxury and attention to detail. A golden mirror reflects a peaceful, airy studio space designed for comfort and elegance."
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBNsQM8efH05rKwN01yUs45DxglPHMTZGBB-KPAp0rnPdw_E65_Ka_AUDFzzq6olSuDplLuhw38eTNPlJFiFCNRAQfnH8q2i6dEsPDQLqfOKi5agtVu3COYTkDbHJqToKTZ-zKQVHIQ7hBFCoeL7QXPvei0g-NunozXuTno9TawzaPfApbBWpeq26aMR8eMk4povg3b6y7kyP3zLGrqIR9wL-DxzZ2F0iJvYLWZK_hvxtgcELlPuV_OadSDd8OsWAamjZoI-6krxshD"
-            />
-            <div>
-              <p
-                class="font-label-md text-label-md group-hover:text-primary transition-colors"
-              >
-                The Gold Standard
-              </p>
-              <p class="font-caption text-caption text-on-surface-variant">
-                2.5 miles away
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div
-        class="mt-auto p-4 bg-secondary-container/20 rounded-2xl border border-secondary/10"
-      >
-        <p class="font-label-md text-label-md text-on-secondary-container">
-          Premium Member
-        </p>
-        <p class="font-caption text-caption text-on-surface-variant mb-3">
-          Get 15% off at all partner salons.
-        </p>
-        <button
-          class="w-full bg-secondary-container text-on-secondary-container py-2 rounded-xl font-label-md text-label-md hover:scale-102 transition-transform"
-        >
-          Upgrade to Gold
-        </button>
-      </div>
-    </aside>
-    <!-- Main Content -->
+    <!-- Main Content Grid -->
     <main
-      class="pt-32 pb-stack-xl px-margin-mobile lg:pl-[280px] lg:pr-margin-desktop max-w-container-max mx-auto min-h-screen"
+      class="pt-32 pb-stack-xl px-margin-desktop max-w-container-max mx-auto min-h-screen flex gap-gutter"
     >
-      <!-- Header Section -->
-      <section class="mb-stack-lg">
-        <div class="flex items-center gap-2 mb-2">
-          <span
-            class="material-symbols-outlined text-secondary ai-sparkle"
-            style="font-variation-settings: &quot;FILL&quot; 1"
-            >auto_awesome</span
-          >
-          <span
-            class="text-secondary font-label-md text-label-md tracking-widest uppercase"
-            >AI Stylist Experience</span
-          >
-        </div>
-        <h1
-          class="font-headline-md text-headline-md text-on-background lg:text-display-lg lg:font-display-lg leading-tight"
+      <!-- Left Column: AI Dashboard / Persona -->
+      <div class="hidden lg:flex flex-col w-1/3 gap-stack-lg">
+        <div
+          class="bg-surface-container-low rounded-[2rem] p-stack-lg flex flex-col items-center text-center shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] border border-outline-variant/10"
         >
-          Define Your <span class="text-primary italic">Aura.</span>
-        </h1>
-        <p
-          class="font-body-lg text-body-lg text-on-surface-variant max-w-2xl mt-4"
-        >
-          Upload your portrait and let our neural engine curate the perfect look
-          based on your unique facial architecture and style DNA.
-        </p>
-      </section>
-      <!-- Tool Grid -->
-      <div class="grid grid-cols-1 xl:grid-cols-12 gap-gutter items-start">
-        <!-- Left Panel: Analysis & Upload -->
-        <div class="xl:col-span-5 space-y-stack-md">
-          <div
-            class="glass-panel rounded-3xl p-stack-lg border border-primary-container/10 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] glow-border overflow-hidden"
-          >
+          <div class="relative mb-6">
             <div
-              class="relative group cursor-pointer border-2 border-dashed border-outline-variant/30 rounded-2xl aspect-[4/5] flex flex-col items-center justify-center bg-surface-container-low hover:bg-surface-container-high transition-colors overflow-hidden"
+              class="w-40 h-40 rounded-full overflow-hidden border-2 border-primary-container p-1 aura-pulse"
             >
               <img
-                class="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
-                data-alt="A portrait of a woman with natural features, soft lighting, and a neutral background. The shot is high-key and airy, typical of high-end editorial photography. She has an oval face shape which will be analyzed by the AI for hairstyle and makeup recommendations. The mood is calm and sophisticated."
-                id="preview-image"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDAXAfORrth_nqnMbTSd0qeBivzViLMInnSpqX6AkGYAY53K5Poc6c9gh4C4-Z0mow2KZhhgqrYcMWTJyWl7FQgtCjBkUZ0hjug9CabEZH41y2yDUtUnHHE4so-J1kexuAoUiHrEmWQVKlNJsowrbQgU8JrrWi16RM7n4X6t8Pk0IjhdSpePCQlIvj2KcnVmbal7O6Irn_Qf7YUXWhJyezj0iRaR7WAifmTSKae3PaonEwL8DVurC4-RiKuaFobh4iOkkHDRmDt2qM1"
+                alt="Aura AI Portrait"
+                class="w-full h-full object-cover rounded-full"
+                data-alt="A cinematic, high-fashion portrait of a digital woman with ethereal features, representing an advanced beauty AI. Her skin is flawless with a soft glow, and her hair flows like liquid silk. The lighting is golden hour warm, set against a minimalist architectural background with soft focus. The aesthetic is ultra-luxurious, clean, and tranquil, using a palette of soft rose gold and warm whites."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuChxSzDowl6Hfbo4dF7-bhs5udoXFLE8iXvmtEUQjJhuuJZ0KMB-Jpv5n1dq8GRkLnTGhkS0pPV1-EpKP4442LfvXNuRJmAWh39nmaDTpCvCTDy4oyAZOAqjMzBKCpIz2E2HFo7ZeEki5OZGBllFbZ5vdL6bPKW5iS8N_S4pW1zovuqmOEDkJsKQU0PK8mLuISfj5GGbXzpQGzFKrOhLtybnOoCdEhq3hpYtTHK6zmEWIULWGydFMh0TVESmofFqyUyytru4SEUmJs4"
               />
-              <div
-                class="relative z-10 flex flex-col items-center p-6 bg-surface/40 backdrop-blur-md rounded-2xl border border-white/20"
-              >
-                <span
-                  class="material-symbols-outlined text-4xl text-primary mb-2"
-                  >add_a_photo</span
-                >
-                <p
-                  class="font-label-md text-label-md text-on-surface text-center"
-                >
-                  Replace Portrait
-                </p>
-                <p
-                  class="font-caption text-caption text-on-surface-variant text-center mt-1"
-                >
-                  PNG, JPG up to 10MB
-                </p>
-              </div>
-              <!-- AI Analysis Overlay (Mockup) -->
-              <div
-                class="absolute inset-0 pointer-events-none flex items-center justify-center"
-              >
-                <svg class="w-full h-full opacity-60" viewbox="0 0 400 500">
-                  <path
-                    class="animate-pulse"
-                    d="M200,100 Q300,100 320,250 T200,400 T80,250 Q100,100 200,100"
-                    fill="none"
-                    stroke="#E2A9A1"
-                    stroke-dasharray="10 5"
-                    stroke-width="2"
-                  ></path>
-                  <circle cx="200" cy="180" fill="#FED65B" r="4"></circle>
-                  <circle cx="140" cy="220" fill="#FED65B" r="4"></circle>
-                  <circle cx="260" cy="220" fill="#FED65B" r="4"></circle>
-                  <circle cx="200" cy="350" fill="#FED65B" r="4"></circle>
-                </svg>
-              </div>
             </div>
-            <div class="mt-stack-lg space-y-stack-md">
-              <div class="flex justify-between items-end">
-                <div>
-                  <h3 class="font-headline-sm text-headline-sm">
-                    Facial Profile
-                  </h3>
-                  <p class="font-caption text-caption text-on-surface-variant">
-                    Heart-Oval Hybrid detected
-                  </p>
-                </div>
-                <div
-                  class="bg-primary-container/20 text-primary px-3 py-1 rounded-full font-label-md text-caption"
-                >
-                  98% Match
-                </div>
-              </div>
-              <div class="grid grid-cols-2 gap-stack-sm">
-                <div
-                  class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/10"
-                >
-                  <p
-                    class="font-caption text-caption text-on-surface-variant mb-1"
-                  >
-                    Tone
-                  </p>
-                  <p class="font-label-md text-label-md">Cool Ivory</p>
-                </div>
-                <div
-                  class="bg-surface-container-lowest p-3 rounded-xl border border-outline-variant/10"
-                >
-                  <p
-                    class="font-caption text-caption text-on-surface-variant mb-1"
-                  >
-                    Structure
-                  </p>
-                  <p class="font-label-md text-label-md">High Cheekbones</p>
-                </div>
-              </div>
+            <div
+              class="absolute bottom-2 right-2 bg-secondary-container text-on-secondary-container p-2 rounded-full shadow-lg"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >auto_awesome</span
+              >
             </div>
           </div>
-          <!-- Filters -->
-          <div
-            class="glass-panel rounded-2xl p-stack-md border border-outline-variant/10"
-          >
-            <p class="font-label-md text-label-md mb-3">Style Direction</p>
-            <div class="flex flex-wrap gap-2">
-              <button
-                class="px-4 py-2 rounded-full border border-primary bg-primary text-on-primary font-label-md text-label-md transition-all"
+          <h2 class="font-headline-md text-headline-md text-primary mb-2">
+            Aura AI
+          </h2>
+          <p class="text-on-surface-variant font-body-md mb-6 leading-relaxed">
+            Your personal beauty concierge, available 24/7 for expert styling
+            and product curation.
+          </p>
+          <div class="w-full space-y-3">
+            <div
+              class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-outline-variant/10"
+            >
+              <span class="material-symbols-outlined text-primary">face</span>
+              <span class="text-label-md text-on-surface-variant"
+                >Skin Analysis Ready</span
               >
-                Minimal
-              </button>
-              <button
-                class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md"
+            </div>
+            <div
+              class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-outline-variant/10"
+            >
+              <span class="material-symbols-outlined text-primary"
+                >calendar_today</span
               >
-                Glamour
-              </button>
-              <button
-                class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md"
+              <span class="text-label-md text-on-surface-variant"
+                >Booking Assistance</span
               >
-                Professional
-              </button>
-              <button
-                class="px-4 py-2 rounded-full border border-outline-variant hover:border-primary hover:text-primary transition-all font-label-md text-label-md"
+            </div>
+            <div
+              class="flex items-center gap-3 bg-surface p-3 rounded-xl border border-outline-variant/10"
+            >
+              <span class="material-symbols-outlined text-primary"
+                >shopping_bag</span
               >
-                Avant-Garde
-              </button>
+              <span class="text-label-md text-on-surface-variant"
+                >Personalized Carts</span
+              >
             </div>
           </div>
         </div>
-        <!-- Right Panel: AI Suggestions -->
-        <div class="xl:col-span-7">
-          <div class="flex items-center justify-between mb-stack-md">
-            <h2 class="font-headline-sm text-headline-sm text-on-background">
-              Curated Suggestions
-            </h2>
-            <div class="flex items-center gap-2 text-on-surface-variant">
-              <span class="material-symbols-outlined text-[18px]">sort</span>
-              <span class="font-label-md text-label-md">Sort by Relevance</span>
+        <!-- Recent Recommendations Bento -->
+        <div class="grid grid-cols-2 gap-4">
+          <div class="bg-surface-container-high p-4 rounded-3xl col-span-2">
+            <span
+              class="text-caption text-primary font-bold tracking-widest uppercase mb-2 block"
+              >Recent Suggestion</span
+            >
+            <h4 class="font-headline-sm text-headline-sm mb-2">
+              Hydra-Silk Facial
+            </h4>
+            <p class="text-caption text-on-surface-variant">
+              Based on your dry skin profile
+            </p>
+          </div>
+        </div>
+      </div>
+      <!-- Right Column: Interactive Chat Interface -->
+      <div
+        class="flex-1 flex flex-col glass-panel rounded-[2.5rem] shadow-2xl border border-outline-variant/20 overflow-hidden relative"
+      >
+        <!-- Chat Header -->
+        <div
+          class="p-6 border-b border-outline-variant/10 flex justify-between items-center bg-white/40"
+        >
+          <div class="flex items-center gap-3">
+            <div
+              class="w-10 h-10 rounded-full bg-primary-fixed overflow-hidden"
+            >
+              <img
+                alt="AI Avatar Mini"
+                class="w-full h-full object-cover"
+                data-alt="A small profile portrait of a digital AI assistant with elegant features and soft lighting, perfectly fitting a luxury beauty brand aesthetic. The palette is dominated by warm whites and rose gold accents."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBSeTN-GjZpZXqY4I_pE6RUqeyA5UYnPalXmpZJBpWn6tJAq522PZsXaQLLNJxY1pfdJ2-Xqj5eVolcg_qbqvashgncYk6EeBrzuF9ZPgr-2kki39NiYQsrd5m6zaT-lWwl7nQeZMvlcup9rbzrTPThiBkpY8fhckn6Ojt7xJFakz2L9dIkmNkhQ-ZINXDekkl8wvSckBr2nfHy7U0rKi-rMbD90OzoLk3KmChc8R29uExgl5M1LwHydRpYNEmld1SEbcWnVD5v5rve"
+              />
+            </div>
+            <div>
+              <h3 class="font-headline-sm text-body-lg font-bold">
+                Aura Stylist
+              </h3>
+              <div class="flex items-center gap-1.5">
+                <span class="w-2 h-2 rounded-full bg-secondary"></span>
+                <span class="text-caption text-on-surface-variant"
+                  >Online &amp; Thinking</span
+                >
+              </div>
             </div>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-stack-md">
-            <!-- Suggestion 1 -->
-            <div
-              class="group relative bg-surface-container-lowest rounded-3xl p-4 border border-primary-container/10 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] hover:shadow-[0_40px_60px_0_rgba(226,169,161,0.1)] transition-all duration-500 overflow-hidden"
+          <div class="flex gap-2">
+            <button
+              class="p-2 hover:bg-surface-variant/20 rounded-full transition-colors"
+              onclick="window.location.href = 'settings.html'"
             >
-              <div class="relative h-64 rounded-2xl overflow-hidden mb-4">
-                <img
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  data-alt="A portrait of a model showcasing a modern lob hairstyle with soft waves and elegant makeup. The lighting is ethereal and glowy, emphasizing the high-end beauty aesthetic. Warm peach and gold tones dominate the palette, creating a luxurious and welcoming vibe."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAEhgVB6AYyt1l9aqobmzk3qHr-KbQxvZx_4AtAO0ZqFtGSEGLGW7YGunFoqckXsvoyU3cVe6cUMHwcrJ1yYC2Os7TV-QWFSoQuIUvdXbUOHnU1TlbpOtGwopS2-9YenhNcWRnuJ07OkqnIYsKe5Mcic02jf5CIk0crqUodtqqVEavYAYnlCV7bCVxv5haAWer58kzhtURqjysk9xLR-_07xlw9QOCwy15w9iLZi8J5tygDC6FwmWfnhUmZfkah7m2TtW5K-h4O3foM"
-                />
-                <div
-                  class="absolute top-3 left-3 bg-white/80 backdrop-blur-md px-3 py-1 rounded-full flex items-center gap-1"
-                >
-                  <span
-                    class="material-symbols-outlined text-[14px] text-secondary"
-                    style="font-variation-settings: &quot;FILL&quot; 1"
-                    >auto_awesome</span
-                  >
-                  <span
-                    class="font-caption text-caption text-secondary font-bold"
-                    >TOP MATCH</span
-                  >
-                </div>
-              </div>
-              <h4 class="font-headline-sm text-body-lg mb-1">
-                Soft Textured Lob
-              </h4>
-              <p class="font-caption text-caption text-on-surface-variant mb-4">
-                Balances heart shapes while accentuating high cheekbones with
-                subtle layering.
-              </p>
-              <div class="flex items-center justify-between gap-3">
-                <button
-                  class="flex-grow bg-primary text-on-primary py-3 rounded-xl font-label-md text-label-md hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-sm"
-                >
-                  <span class="material-symbols-outlined text-[20px]"
-                    >visibility</span
-                  >
-                  Try On
-                </button>
-                <button
-                  class="w-12 h-12 rounded-xl border border-outline-variant flex items-center justify-center hover:bg-primary-container/10 transition-colors"
-                >
-                  <span class="material-symbols-outlined">favorite</span>
-                </button>
-              </div>
-            </div>
-            <!-- Suggestion 2 -->
-            <div
-              class="group relative bg-surface-container-lowest rounded-3xl p-4 border border-primary-container/10 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] hover:shadow-[0_40px_60px_0_rgba(226,169,161,0.1)] transition-all duration-500 overflow-hidden"
+              <span class="material-symbols-outlined">settings</span>
+            </button>
+            <button
+              class="p-2 hover:bg-surface-variant/20 rounded-full transition-colors"
+              onclick="window.location.href = 'index.html'"
             >
-              <div class="relative h-64 rounded-2xl overflow-hidden mb-4">
-                <img
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700"
-                  data-alt="A close-up of high-end makeup artistry featuring a luminous base and gold shimmer accents on the eyes. The style is minimal but glamorous, perfectly suited for a premium beauty app. The background is a soft-focus beige, maintaining a clean and airy visual weight."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCJVGENH3XLAWdpxrUMrEn8DvOdHdHrZP0TDgfdoLz5995rtm4cYq4IA7tqupeu0vhmJaDYJKlp6kxzcGz0zjeR0lH4OYHTZMMKmVCJRinjR-92aokgoB7ACXzJ6oh0YAqwBuGesR-84ayP3RA_9gweG-uwfe0YK92p_LJxyPjRVx0cbPJbNys9zFDzycYwcfVCYsUpr6FQBlBWZgq0HlVjSifWyNVjFuZIYxPURSr6G6gRqNNVAuab1d_kRY_f3dyxVClmATbOBfQK"
-                />
-              </div>
-              <h4 class="font-headline-sm text-body-lg mb-1">
-                Champagne Dew Glow
-              </h4>
-              <p class="font-caption text-caption text-on-surface-variant mb-4">
-                Minimalist aesthetic focused on luminous skin and subtle gold
-                eye accents.
-              </p>
-              <div class="flex items-center justify-between gap-3">
-                <button
-                  class="flex-grow bg-primary text-on-primary py-3 rounded-xl font-label-md text-label-md hover:bg-primary/90 transition-colors flex items-center justify-center gap-2 shadow-sm"
-                >
-                  <span class="material-symbols-outlined text-[20px]"
-                    >visibility</span
-                  >
-                  Try On
-                </button>
-                <button
-                  class="w-12 h-12 rounded-xl border border-outline-variant flex items-center justify-center hover:bg-primary-container/10 transition-colors"
-                >
-                  <span class="material-symbols-outlined">favorite</span>
-                </button>
-              </div>
-            </div>
-            <!-- Suggestion 3 (Spans 2 columns on desktop) -->
+              <span class="material-symbols-outlined">close</span>
+            </button>
+          </div>
+        </div>
+        <!-- Chat Canvas -->
+        <div
+          class="flex-1 overflow-y-auto p-6 space-y-6 scroll-smooth"
+          id="chat-canvas"
+        >
+          <!-- AI Message -->
+          <div class="flex gap-4 message-in">
             <div
-              class="md:col-span-2 group relative glass-panel rounded-3xl p-6 border border-secondary/20 shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] glow-border flex flex-col md:flex-row gap-6 items-center"
-            >
+              class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0"
+            ></div>
+            <div class="flex flex-col gap-2 max-w-[80%]">
               <div
-                class="w-full md:w-1/3 aspect-square rounded-2xl overflow-hidden relative"
+                class="bg-secondary-container text-on-secondary-container px-5 py-3 rounded-2xl rounded-tl-none font-body-md shadow-sm"
+              >
+                Hello! I'm Aura. I've analyzed your recent beauty profile. It
+                looks like you're looking for hydration-focused treatments. How
+                can I help you sparkle today?
+              </div>
+              <span class="text-caption text-on-surface-variant ml-1"
+                >10:24 AM</span
+              >
+            </div>
+          </div>
+          <!-- User Message -->
+          <div class="flex gap-4 justify-end message-in">
+            <div class="flex flex-col gap-2 items-end max-w-[80%]">
+              <div
+                class="bg-primary text-on-primary px-5 py-3 rounded-2xl rounded-tr-none font-body-md shadow-sm"
+              >
+                I've been experiencing some tightness around my cheeks lately.
+                Any recommendations?
+              </div>
+              <span class="text-caption text-on-surface-variant mr-1"
+                >10:25 AM</span
+              >
+            </div>
+            <div
+              class="w-8 h-8 rounded-full bg-surface-variant flex-shrink-0 flex items-center justify-center"
+            >
+              <span class="material-symbols-outlined text-outline">person</span>
+            </div>
+          </div>
+          <!-- AI Message with Product Recommendation -->
+          <div class="flex gap-4 message-in">
+            <div
+              class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0"
+            ></div>
+            <div class="flex flex-col gap-4 max-w-[85%]">
+              <div
+                class="bg-secondary-container text-on-secondary-container px-5 py-3 rounded-2xl rounded-tl-none font-body-md shadow-sm"
+              >
+                That sounds like seasonal dehydration. I recommend a combination
+                of a Hyaluronic Acid serum and our "Gold Mist" facial. Here is a
+                curated selection for you:
+              </div>
+              <!-- Recommendation Card -->
+              <div
+                class="bg-white rounded-3xl p-4 shadow-xl border border-outline-variant/10 flex gap-4 hover:scale-[1.02] transition-transform cursor-pointer"
+                onclick="window.location.href = 'salon-profile.html?id=1'"
               >
                 <img
-                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-1000"
-                  data-alt="A stunning high-fashion hair and makeup look featuring sleek, polished hair and bold professional styling. The atmosphere is tranquil yet exclusive, with high-end studio lighting creating soft shadows. The overall feel is one of confidence and tranquility, ideal for professional beauty recommendations."
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCR9Er_9v23RHyt8aDhEUlIXa-XrHT8lKGeypA7PxdyaXPkHCIu7lDpppCawfkISQUNj1-0HPps5LNDfHR0E8EQDPVAGN1L1LkOwT1SZsAA4Y1K2KBTjMix7Jo6SNKuMvTF790IJLyznaYUARFz-tn_1MdyPxVD9krdgdAGhxgOYLswZdMXY8c1idqEHS2hgdFg1Lqkw8Pv8tYViiWxcsCTeTik5LcdtsJWLTkghwWTYw8I1dyX9P4xoeF-9jWS4PuJHbx5MXEinGWi"
+                  alt="Luxury Serum"
+                  class="w-24 h-24 object-cover rounded-xl"
+                  data-alt="A professional product shot of a luxury glass serum bottle with gold accents, placed on a marble surface with soft, diffused sunlight. The scene is clean and high-end, evoking a sense of pharmaceutical efficacy and spa-like luxury. Soft shadows and warm tones complement the LUMIÈRE brand aesthetic."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuBnpIttlceCALANjWQe8DPGMvGt0_8V_IuUbUqOSgYSgtRkAECsMtImdlqymcltYa1dBpT-5wmsGgdTg5rM4V6bVOVBiMEoVesvME98pj3UQ6RL3k6Ftki8_piXxIkIz4rmGjPNY7_WCVzYnH8Rkoy5gAl0qC9W4DHsbwA3TSv3yalHBhNyxAlnjB_PJYhD3epjraqbPUX232HjDvCjK0oy8GY1oXP9C_p5w40xpk_Teomfm7nGdFHV9ywOZ0fpWfEy-PsJFXqW-Wub"
                 />
-              </div>
-              <div class="flex-grow">
-                <div class="flex items-center gap-2 mb-2">
-                  <span
-                    class="material-symbols-outlined text-secondary ai-sparkle"
-                    style="font-variation-settings: &quot;FILL&quot; 1"
-                    >stars</span
+                <div class="flex-1 py-1">
+                  <span class="text-caption text-secondary font-bold"
+                    >TOP PICK</span
                   >
-                  <span
-                    class="text-secondary font-label-md text-caption uppercase tracking-wider"
-                    >Style Fusion</span
-                  >
-                </div>
-                <h3 class="font-headline-md text-headline-sm mb-2">
-                  The Executive Signature
-                </h3>
-                <p
-                  class="font-body-md text-body-md text-on-surface-variant mb-6"
-                >
-                  A curated combination of our 'Sleek Back' hairstyle and
-                  'Corporate Neutral' makeup palette. Designed to command
-                  presence while maintaining effortless grace.
-                </p>
-                <div class="flex flex-wrap gap-stack-md">
-                  <button
-                    class="bg-secondary text-on-secondary px-8 py-3 rounded-full font-label-md text-label-md hover:scale-105 transition-transform shadow-lg shadow-secondary/20"
-                  >
-                    Full Simulation
-                  </button>
-                  <button
-                    class="border border-secondary text-secondary px-8 py-3 rounded-full font-label-md text-label-md hover:bg-secondary/5 transition-colors"
-                  >
-                    Save Combo
-                  </button>
+                  <h4 class="font-body-md font-bold text-on-surface">
+                    Luminous Dew Serum
+                  </h4>
+                  <p class="text-caption text-on-surface-variant line-clamp-1">
+                    Intense hydration with botanical extracts
+                  </p>
+                  <div class="mt-2 flex justify-between items-center">
+                    <span class="font-bold text-primary">$85.00</span>
+                    <button
+                      class="text-label-md text-primary font-bold flex items-center gap-1"
+                      onclick="
+                        event.stopPropagation();
+                        window.location.href = 'book-appointment.html';
+                      "
+                    >
+                      Add
+                      <span class="material-symbols-outlined text-[16px]"
+                        >add_shopping_cart</span
+                      >
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>
+          </div>
+        </div>
+        <!-- Interaction Layer (Quick Replies & Input) -->
+        <div class="p-6 bg-white/60 backdrop-blur-md space-y-4">
+          <!-- Quick Reply Chips -->
+          <div class="flex gap-2 overflow-x-auto pb-2 no-scrollbar">
+            <button
+              class="whitespace-nowrap px-4 py-2 rounded-full border border-primary-container text-primary font-label-md text-caption hover:bg-primary-container/20 transition-all"
+              onclick="window.location.href = 'salon-profile.html?id=1'"
+            >
+              Best facial for dry skin?
+            </button>
+            <button
+              class="whitespace-nowrap px-4 py-2 rounded-full border border-primary-container text-primary font-label-md text-caption hover:bg-primary-container/20 transition-all"
+              onclick="window.location.href = 'my-bookings.html'"
+            >
+              Book my usual salon
+            </button>
+            <button
+              class="whitespace-nowrap px-4 py-2 rounded-full border border-primary-container text-primary font-label-md text-caption hover:bg-primary-container/20 transition-all"
+              onclick="window.location.href = 'salons.html'"
+            >
+              Evening routine help
+            </button>
+          </div>
+          <!-- Input Area -->
+          <div class="relative flex items-center gap-3">
+            <div
+              class="flex-1 bg-surface-container-low rounded-2xl flex items-center px-4 py-3 border border-transparent focus-within:border-secondary-container transition-all shadow-inner"
+            >
+              <input
+                class="flex-1 bg-transparent border-none focus:ring-0 font-body-md placeholder:text-outline/60"
+                placeholder="Ask Aura anything..."
+                type="text"
+              />
+              <div class="flex items-center gap-2">
+                <button
+                  class="text-outline hover:text-primary transition-colors"
+                >
+                  <span class="material-symbols-outlined">image</span>
+                </button>
+                <button
+                  class="text-outline hover:text-primary transition-colors"
+                >
+                  <span class="material-symbols-outlined">mic</span>
+                </button>
+              </div>
+            </div>
+            <button
+              class="w-12 h-12 rounded-2xl bg-primary text-on-primary flex items-center justify-center hover:scale-105 transition-transform shadow-lg"
+            >
+              <span
+                class="material-symbols-outlined"
+                style="font-variation-settings: &quot;FILL&quot; 1"
+                >send</span
+              >
+            </button>
           </div>
         </div>
       </div>
     </main>
     <!-- Footer -->
     <footer
-      class="w-full py-stack-xl px-margin-desktop flex flex-col items-center gap-stack-lg bg-surface dark:bg-inverse-surface border-t border-outline-variant/10"
+      class="w-full py-stack-xl px-margin-desktop flex flex-col items-center gap-stack-lg bg-surface-container-low"
     >
-      <div
-        class="font-display-lg text-display-lg text-primary dark:text-primary-fixed-dim"
-      >
-        LUMIÈRE
+      <div class="flex flex-col items-center gap-6">
+        <a
+          href="index.html"
+          class="font-display-lg text-display-lg text-primary"
+          >LUMIÈRE</a
+        >
+        <div class="flex gap-8 flex-wrap justify-center">
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="privacy.html"
+            >Privacy Policy</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="terms.html"
+            >Terms of Service</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="partner.html"
+            >Partner with Us</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="careers.html"
+            >Careers</a
+          >
+          <a
+            class="font-body-md text-body-md text-on-surface-variant hover:text-secondary transition-colors"
+            href="support.html"
+            >Support</a
+          >
+        </div>
+        <p class="font-body-md text-body-md text-tertiary-fixed-dim">
+          © 2024 LUMIÈRE Beauty. All rights reserved.
+        </p>
       </div>
-      <div class="flex flex-wrap justify-center gap-x-stack-lg gap-y-stack-sm">
-        <a
-          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
-          href="#"
-          >Privacy Policy</a
-        >
-        <a
-          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
-          href="#"
-          >Terms of Service</a
-        >
-        <a
-          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
-          href="#"
-          >Partner with Us</a
-        >
-        <a
-          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
-          href="#"
-          >Careers</a
-        >
-        <a
-          class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim hover:text-secondary transition-colors hover:translate-x-1"
-          href="#"
-          >Support</a
-        >
-      </div>
-      <p
-        class="font-body-md text-body-md text-on-surface-variant dark:text-tertiary-fixed-dim mt-4"
-      >
-        © 2024 LUMIÈRE Beauty. All rights reserved.
-      </p>
     </footer>
-    <!-- Micro-interactions Script -->
+    <!-- Side Navigation Shell (Hidden on Mobile) -->
+    <aside
+      class="hidden lg:fixed left-0 top-0 h-full flex flex-col p-stack-md border-r border-outline-variant/10 bg-surface-container-low w-20 hover:w-64 transition-all duration-500 group z-40"
+    >
+      <div class="flex flex-col h-full">
+        <div class="mb-10 flex items-center px-4 overflow-hidden">
+          <span class="material-symbols-outlined text-primary text-3xl"
+            >auto_awesome</span
+          >
+          <span
+            class="ml-4 font-headline-sm text-headline-sm text-primary opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+            >Aura Menu</span
+          >
+        </div>
+        <nav class="flex flex-col gap-4 flex-1">
+          <a
+            class="flex items-center p-3 rounded-xl bg-secondary-container text-on-secondary-container font-semibold transition-all"
+            href="ai-stylist.html"
+          >
+            <span class="material-symbols-outlined">auto_awesome</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >AI Stylist</span
+            >
+          </a>
+          <a
+            class="flex items-center p-3 rounded-xl text-on-surface-variant hover:bg-primary-container/20 transition-all"
+            href="customer-dashboard.html"
+          >
+            <span class="material-symbols-outlined">dashboard</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >Dashboard</span
+            >
+          </a>
+          <a
+            class="flex items-center p-3 rounded-xl text-on-surface-variant hover:bg-primary-container/20 transition-all"
+            href="my-bookings.html"
+          >
+            <span class="material-symbols-outlined">calendar_month</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >My Bookings</span
+            >
+          </a>
+          <a
+            class="flex items-center p-3 rounded-xl text-on-surface-variant hover:bg-primary-container/20 transition-all"
+            href="favorites.html"
+          >
+            <span class="material-symbols-outlined">favorite</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >Favorites</span
+            >
+          </a>
+          <a
+            class="flex items-center p-3 rounded-xl text-on-surface-variant hover:bg-primary-container/20 transition-all"
+            href="settings.html"
+          >
+            <span class="material-symbols-outlined">settings</span>
+            <span
+              class="ml-4 opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap"
+              >Settings</span
+            >
+          </a>
+        </nav>
+        <div
+          class="mt-auto p-4 border-t border-outline-variant/10 group-hover:block overflow-hidden"
+        >
+          <div class="flex items-center gap-3">
+            <div class="w-8 h-8 rounded-full bg-primary-fixed-dim"></div>
+            <div class="opacity-0 group-hover:opacity-100 transition-opacity">
+              <p class="text-label-md font-bold truncate">Premium Member</p>
+              <p
+                class="text-caption text-primary"
+                onclick="window.location.href = 'upgrade.html'"
+              >
+                Upgrade
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </aside>
     <script>
-      // Simple click interaction for try-on buttons
+      // Simple micro-interaction for the chat canvas scroll
+      const chatCanvas = document.getElementById("chat-canvas");
+
+      // Soft interaction for chips
       document.querySelectorAll("button").forEach((btn) => {
-        btn.addEventListener("click", function (e) {
-          if (
-            this.innerText.includes("Try On") ||
-            this.innerText.includes("Full Simulation")
-          ) {
-            const originalText = this.innerHTML;
-            this.innerHTML =
-              '<span class="material-symbols-outlined animate-spin">progress_activity</span> Syncing...';
-            this.disabled = true;
-            setTimeout(() => {
-              this.innerHTML =
-                '<span class="material-symbols-outlined text-green-500">check_circle</span> Applied';
-              setTimeout(() => {
-                this.innerHTML = originalText;
-                this.disabled = false;
-              }, 2000);
-            }, 1500);
-          }
-        });
+        btn.addEventListener("mousedown", () => btn.classList.add("scale-95"));
+        btn.addEventListener("mouseup", () => btn.classList.remove("scale-95"));
+        btn.addEventListener("mouseleave", () =>
+          btn.classList.remove("scale-95"),
+        );
       });
 
-      // Hover effect for salon cards
-      document.querySelectorAll("aside .p-3").forEach((card) => {
-        card.addEventListener("mouseenter", () => {
-          card.style.transform = "translateX(4px)";
+      // Enter key to send message
+      const inputField = document.querySelector(
+        'input[placeholder="Ask Aura anything..."]',
+      );
+      const sendButton = document.querySelector("button.bg-primary");
+
+      if (inputField && sendButton) {
+        inputField.addEventListener("keypress", function (e) {
+          if (e.key === "Enter") {
+            e.preventDefault();
+            sendButton.click();
+          }
         });
-        card.addEventListener("mouseleave", () => {
-          card.style.transform = "translateX(0)";
+
+        sendButton.addEventListener("click", function () {
+          const message = inputField.value.trim();
+          if (message) {
+            // Add user message to chat
+            const chatCanvas = document.getElementById("chat-canvas");
+            const newMessage = document.createElement("div");
+            newMessage.className = "flex gap-4 justify-end message-in";
+            newMessage.innerHTML = `
+                        <div class="flex flex-col gap-2 items-end max-w-[80%]">
+                            <div class="bg-primary text-on-primary px-5 py-3 rounded-2xl rounded-tr-none font-body-md shadow-sm">
+                                ${message}
+                            </div>
+                            <span class="text-caption text-on-surface-variant mr-1">Just now</span>
+                        </div>
+                        <div class="w-8 h-8 rounded-full bg-surface-variant flex-shrink-0 flex items-center justify-center">
+                            <span class="material-symbols-outlined text-outline">person</span>
+                        </div>
+                    `;
+            chatCanvas.appendChild(newMessage);
+
+            // Clear input
+            inputField.value = "";
+
+            // Scroll to bottom
+            chatCanvas.scrollTop = chatCanvas.scrollHeight;
+
+            // Simulate AI response after 1 second
+            setTimeout(() => {
+              const aiResponse = document.createElement("div");
+              aiResponse.className = "flex gap-4 message-in";
+              aiResponse.innerHTML = `
+                            <div class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0"></div>
+                            <div class="flex flex-col gap-2 max-w-[80%]">
+                                <div class="bg-secondary-container text-on-secondary-container px-5 py-3 rounded-2xl rounded-tl-none font-body-md shadow-sm">
+                                    Thank you for your message! I'm here to help with your beauty needs. Would you like to book a consultation or explore our premium services?
+                                </div>
+                                <span class="text-caption text-on-surface-variant ml-1">Just now</span>
+                            </div>
+                        `;
+              chatCanvas.appendChild(aiResponse);
+              chatCanvas.scrollTop = chatCanvas.scrollHeight;
+            }, 1000);
+          }
         });
+      }
+      // Mock AI Responses for AI Stylist
+      const aiResponses = {
+        hair: "💇‍♀️ I recommend our **Hydrating Hair Spa**! Perfect for dry and damaged hair. Would you like to book this?",
+        facial:
+          "✨ Try our **Lumière Glow Facial** - oxygen-infused for instant radiance! Only ₹1,199 for 75 mins.",
+        makeup:
+          "💄 Our AI analyzed your preferences. **Soft glam with dewy finish** would suit you perfectly!",
+        skin: "🧖‍♀️ For glowing skin, I suggest our **Gold Radiance Facial** with 24K gold infusion.",
+        nail: "💅 Check out our **Lumière Sculpt Nails** - starting at ₹899 with 50+ designs!",
+        bridal:
+          "👰 Our **Bridal Makeover Package** starts at ₹4,999. Includes hair, makeup & mehendi!",
+        massage:
+          "💆‍♀️ Relax with our **Aromatherapy Massage** - 60 mins for ₹1,499.",
+        default:
+          "🌸 Hello! I'm your AI beauty assistant. You can ask me about: Hair 💇, Facial ✨, Makeup 💄, Skin 🧖‍♀️, Nails 💅, Bridal 👰, or Massage 💆‍♀️",
+      };
+
+      function getAIResponse(userMessage) {
+        const msg = userMessage.toLowerCase();
+
+        if (msg.includes("hair")) return aiResponses["hair"];
+        if (msg.includes("facial")) return aiResponses["facial"];
+        if (msg.includes("makeup")) return aiResponses["makeup"];
+        if (msg.includes("skin")) return aiResponses["skin"];
+        if (msg.includes("nail")) return aiResponses["nail"];
+        if (msg.includes("bridal")) return aiResponses["bridal"];
+        if (msg.includes("massage")) return aiResponses["massage"];
+
+        return aiResponses["default"];
+      }
+
+      // Function to add message to chat
+      function addUserMessage(message) {
+        const chatCanvas = document.getElementById("chat-canvas");
+        const userMsgDiv = document.createElement("div");
+        userMsgDiv.className = "flex gap-4 justify-end message-in";
+        userMsgDiv.innerHTML = `
+    <div class="flex flex-col gap-2 items-end max-w-[80%]">
+      <div class="bg-primary text-white px-5 py-3 rounded-2xl rounded-tr-none font-body-md shadow-sm">
+        ${message}
+      </div>
+      <span class="text-caption text-on-surface-variant mr-1">Just now</span>
+    </div>
+    <div class="w-8 h-8 rounded-full bg-surface-variant flex-shrink-0 flex items-center justify-center">
+      <span class="material-symbols-outlined text-outline">person</span>
+    </div>
+  `;
+        chatCanvas.appendChild(userMsgDiv);
+        chatCanvas.scrollTop = chatCanvas.scrollHeight;
+      }
+
+      function addAIMessage(message) {
+        const chatCanvas = document.getElementById("chat-canvas");
+        const aiMsgDiv = document.createElement("div");
+        aiMsgDiv.className = "flex gap-4 message-in";
+        aiMsgDiv.innerHTML = `
+    <div class="w-8 h-8 rounded-full bg-primary-fixed flex-shrink-0 overflow-hidden">
+      <span class="material-symbols-outlined text-primary">auto_awesome</span>
+    </div>
+    <div class="flex flex-col gap-2 max-w-[80%]">
+      <div class="bg-secondary-container text-on-secondary-container px-5 py-3 rounded-2xl rounded-tl-none font-body-md shadow-sm">
+        ${message}
+      </div>
+      <span class="text-caption text-on-surface-variant ml-1">AI Assistant</span>
+    </div>
+  `;
+        chatCanvas.appendChild(aiMsgDiv);
+        chatCanvas.scrollTop = chatCanvas.scrollHeight;
+      }
+
+      // Handle send message
+      function sendAIMessage() {
+        const inputField = document.getElementById("ai-input");
+        const message = inputField.value.trim();
+
+        if (message === "") return;
+
+        addUserMessage(message);
+        inputField.value = "";
+
+        setTimeout(() => {
+          const reply = getAIResponse(message);
+          addAIMessage(reply);
+        }, 500);
+      }
+
+      // Enter key to send
+      document.addEventListener("DOMContentLoaded", function () {
+        const inputField = document.getElementById("ai-input");
+        if (inputField) {
+          inputField.addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+              e.preventDefault();
+              sendAIMessage();
+            }
+          });
+        }
       });
     </script>
   </body>

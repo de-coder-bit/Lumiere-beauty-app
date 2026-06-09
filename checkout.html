@@ -1,0 +1,672 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>GlowMarket | Premium Checkout</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&amp;family=Inter:wght@400;500;600&amp;family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&amp;family=Playfair+Display:wght@100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "primary-fixed": "#ffdad5",
+              "tertiary-fixed-dim": "#cac6c5",
+              "secondary-fixed-dim": "#e9c349",
+              primary: "#80534c",
+              "on-tertiary-container": "#494747",
+              "on-secondary": "#ffffff",
+              "surface-container-lowest": "#ffffff",
+              "surface-container": "#f0eded",
+              "on-tertiary-fixed-variant": "#484646",
+              "on-primary-fixed": "#32120e",
+              "tertiary-fixed": "#e6e1e0",
+              "on-surface": "#1c1b1b",
+              "surface-container-highest": "#e5e2e1",
+              "primary-container": "#e2a9a1",
+              "surface-variant": "#e5e2e1",
+              "surface-dim": "#dcd9d9",
+              tertiary: "#605e5d",
+              secondary: "#735c00",
+              "secondary-fixed": "#ffe088",
+              "surface-container-low": "#f6f3f2",
+              surface: "#fcf9f8",
+              "inverse-surface": "#313030",
+              "error-container": "#ffdad6",
+              outline: "#837371",
+              "on-secondary-container": "#745c00",
+              "inverse-on-surface": "#f3f0ef",
+              "on-secondary-fixed": "#241a00",
+              "on-error-container": "#93000a",
+              "surface-container-high": "#eae7e7",
+              "on-primary-container": "#663d37",
+              background: "#fcf9f8",
+              "on-secondary-fixed-variant": "#574500",
+              "inverse-primary": "#f3b8b0",
+              "tertiary-container": "#bab6b5",
+              "outline-variant": "#d5c2bf",
+              "on-tertiary": "#ffffff",
+              "on-primary": "#ffffff",
+              "surface-bright": "#fcf9f8",
+              error: "#ba1a1a",
+              "primary-fixed-dim": "#f3b8b0",
+              "on-surface-variant": "#514442",
+              "on-tertiary-fixed": "#1c1b1b",
+              "on-error": "#ffffff",
+              "secondary-container": "#fed65b",
+              "on-background": "#1c1b1b",
+              "surface-tint": "#80534c",
+              "on-primary-fixed-variant": "#653c36",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "8px",
+              "stack-lg": "32px",
+              "margin-mobile": "20px",
+              "stack-xl": "64px",
+              gutter: "24px",
+              "container-max": "1280px",
+              "stack-md": "16px",
+              "margin-desktop": "64px",
+            },
+            fontFamily: {
+              "display-lg": ["Playfair Display"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "label-md": ["Inter"],
+              "headline-md": ["Playfair Display"],
+              "display-lg-mobile": ["Playfair Display"],
+              "headline-sm": ["Playfair Display"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "700" },
+              ],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-panel {
+        background: rgba(252, 249, 248, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .premium-shadow {
+        box-shadow: 0 40px 40px rgba(226, 169, 161, 0.08);
+      }
+      .step-completed {
+        background: #e2a9a1;
+        color: white;
+      }
+      .step-active {
+        background: #8b3a35;
+        color: white;
+      }
+      .btn-gradient {
+        background: linear-gradient(135deg, #e2a9a1 0%, #8b3a35 100%);
+        transition: transform 0.2s ease;
+      }
+      .btn-gradient:active {
+        transform: scale(0.98);
+      }
+      .card-rose-gradient {
+        background: linear-gradient(135deg, #8b3a35 0%, #e2a9a1 100%);
+      }
+      .success-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: white;
+        z-index: 9999;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+      }
+      @keyframes bounce-custom {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-20px);
+        }
+      }
+      .animate-bounce-custom {
+        animation: bounce-custom 1s infinite ease-in-out;
+      }
+    </style>
+  </head>
+  <body class="bg-[#FDF8F7] font-body-md text-on-surface">
+    <!-- Top Navigation Bar -->
+    <header
+      class="fixed top-0 w-full glass-panel z-50 h-20 shadow-[0_40px_40px_rgba(226,169,161,0.04)]"
+    >
+      <div
+        class="flex justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto h-full"
+      >
+        <div
+          class="font-display-lg text-headline-sm text-primary tracking-tight"
+        >
+          GlowMarket
+        </div>
+        <nav class="hidden md:flex space-x-8">
+          <a
+            class="text-on-surface-variant font-medium hover:text-primary transition-all"
+            href="#"
+            >Salons</a
+          >
+          <a
+            class="text-on-surface-variant font-medium hover:text-primary transition-all"
+            href="#"
+            >Services</a
+          >
+          <a
+            class="text-on-surface-variant font-medium hover:text-primary transition-all"
+            href="#"
+            >Stylists</a
+          >
+          <a
+            class="text-primary font-bold border-b-2 border-primary pb-1"
+            href="#"
+            >Payment</a
+          >
+        </nav>
+        <div class="flex items-center gap-4">
+          <span class="material-symbols-outlined text-primary cursor-pointer"
+            >shopping_bag</span
+          >
+          <span class="material-symbols-outlined text-primary cursor-pointer"
+            >notifications</span
+          >
+          <div
+            class="w-10 h-10 rounded-full bg-surface-container overflow-hidden"
+          >
+            <img
+              alt="User"
+              data-alt="Close-up portrait of a sophisticated young woman with clean skincare and minimal makeup, smiling gently. The background is a soft-focus interior of a premium beauty salon with warm golden lighting and cream-colored walls, reflecting a luxurious and peaceful atmosphere. High-end editorial style."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuBC4mYtkj_VdP_tU2MOecCS6BNI31IC_CJkvKjdIcVdO1DvWwGfBVmWvq8xuEWlGHFXBhmZV95LsWRvzE4aSzDr0bDLmo6R_LAWUJIOCENzm9Z-yd7Nny_nh1akJ3bGLdK-rawOtQdQUy5QsWtolqkpAlFPeZWh4ht0QcZCjc7pDtPMkG35KqkDbyzJpFkOopVyj6CCSUcBYQSMJHegefXwDVaVmDw2-D9W_EJk5dCAmf_AFSzYvFepxSW96TG0Ogj9nkF_WGL7oPUI"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+    <main
+      class="pt-32 pb-stack-xl max-w-[960px] mx-auto px-margin-mobile md:px-0"
+    >
+      <!-- Progress Bar -->
+      <div class="flex justify-center items-center mb-stack-xl">
+        <div class="flex items-center w-full max-w-2xl">
+          <!-- Step 1 -->
+          <div class="flex flex-col items-center flex-1">
+            <div
+              class="w-10 h-10 rounded-full step-completed flex items-center justify-center mb-2"
+            >
+              <span class="material-symbols-outlined text-sm">check</span>
+            </div>
+            <span class="text-caption text-primary">Salon</span>
+          </div>
+          <div class="h-[2px] bg-primary-container flex-1 -mt-6"></div>
+          <!-- Step 2 -->
+          <div class="flex flex-col items-center flex-1">
+            <div
+              class="w-10 h-10 rounded-full step-completed flex items-center justify-center mb-2"
+            >
+              <span class="material-symbols-outlined text-sm">check</span>
+            </div>
+            <span class="text-caption text-primary">Services</span>
+          </div>
+          <div class="h-[2px] bg-primary-container flex-1 -mt-6"></div>
+          <!-- Step 3 -->
+          <div class="flex flex-col items-center flex-1">
+            <div
+              class="w-10 h-10 rounded-full step-completed flex items-center justify-center mb-2"
+            >
+              <span class="material-symbols-outlined text-sm">check</span>
+            </div>
+            <span class="text-caption text-primary">Stylist</span>
+          </div>
+          <div class="h-[2px] bg-primary-container flex-1 -mt-6"></div>
+          <!-- Step 4 -->
+          <div class="flex flex-col items-center flex-1">
+            <div
+              class="w-10 h-10 rounded-full step-active flex items-center justify-center mb-2 premium-shadow"
+            >
+              <span class="text-sm font-bold">4</span>
+            </div>
+            <span class="text-caption font-bold text-on-surface">Payment</span>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col md:flex-row gap-[4%] items-start">
+        <!-- Left Column: Payment Form -->
+        <div class="w-full md:w-[58%] bg-white rounded-2xl p-6 premium-shadow">
+          <h2 class="font-headline-sm text-on-surface mb-stack-lg">
+            Choose Payment Method
+          </h2>
+          <!-- Payment Tabs -->
+          <div class="flex border-b border-outline-variant/30 mb-stack-lg">
+            <button
+              class="px-4 py-2 text-primary font-semibold border-b-2 border-primary-container transition-all"
+            >
+              UPI
+            </button>
+            <button
+              class="px-4 py-2 text-on-surface-variant font-medium hover:text-primary transition-all"
+            >
+              Card
+            </button>
+            <button
+              class="px-4 py-2 text-on-surface-variant font-medium hover:text-primary transition-all"
+            >
+              Net Banking
+            </button>
+            <button
+              class="px-4 py-2 text-on-surface-variant font-medium hover:text-primary transition-all"
+            >
+              Wallet
+            </button>
+          </div>
+          <!-- UPI Section Content -->
+          <div class="space-y-6">
+            <div class="grid grid-cols-4 gap-4">
+              <div
+                class="flex flex-col items-center p-3 rounded-xl border border-primary-container/20 bg-surface-container-lowest cursor-pointer hover:border-primary-container transition-all"
+              >
+                <div
+                  class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center mb-2"
+                >
+                  <span class="material-symbols-outlined text-primary"
+                    >account_balance_wallet</span
+                  >
+                </div>
+                <span class="text-caption font-medium">GPay</span>
+              </div>
+              <div
+                class="flex flex-col items-center p-3 rounded-xl border border-primary-container/20 bg-surface-container-lowest cursor-pointer hover:border-primary-container transition-all"
+              >
+                <div
+                  class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center mb-2"
+                >
+                  <span class="material-symbols-outlined text-primary"
+                    >payments</span
+                  >
+                </div>
+                <span class="text-caption font-medium">PhonePe</span>
+              </div>
+              <div
+                class="flex flex-col items-center p-3 rounded-xl border border-primary-container/20 bg-surface-container-lowest cursor-pointer hover:border-primary-container transition-all"
+              >
+                <div
+                  class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center mb-2"
+                >
+                  <span class="material-symbols-outlined text-primary"
+                    >qr_code_2</span
+                  >
+                </div>
+                <span class="text-caption font-medium">Paytm</span>
+              </div>
+              <div
+                class="flex flex-col items-center p-3 rounded-xl border border-primary-container/20 bg-surface-container-lowest cursor-pointer hover:border-primary-container transition-all"
+              >
+                <div
+                  class="w-10 h-10 rounded-lg bg-white shadow-sm flex items-center justify-center mb-2"
+                >
+                  <span class="material-symbols-outlined text-primary"
+                    >more_horiz</span
+                  >
+                </div>
+                <span class="text-caption font-medium">Other</span>
+              </div>
+            </div>
+            <div class="relative">
+              <label
+                class="text-caption font-semibold text-on-surface-variant block mb-1"
+                >Enter UPI ID</label
+              >
+              <input
+                class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 focus:ring-1 focus:ring-secondary-fixed-dim placeholder:text-outline-variant transition-all"
+                placeholder="example@okhdfc"
+                type="text"
+              />
+            </div>
+          </div>
+          <hr class="my-8 border-outline-variant/20" />
+          <!-- Decorative Card (Visual Only) -->
+          <div class="mb-8 hidden md:block">
+            <div
+              class="card-rose-gradient h-40 rounded-xl p-6 text-white relative overflow-hidden flex flex-col justify-between shadow-lg"
+            >
+              <div class="flex justify-between items-start">
+                <span class="material-symbols-outlined text-3xl"
+                  >contactless</span
+                >
+                <div class="font-bold italic text-lg opacity-80">GlowCard</div>
+              </div>
+              <div>
+                <div class="text-lg tracking-[0.2em] mb-1">
+                  •••• •••• •••• 4242
+                </div>
+                <div class="flex justify-between items-center">
+                  <span class="text-caption uppercase opacity-70"
+                    >Priya Sharma</span
+                  >
+                  <span class="text-caption uppercase opacity-70">12/28</span>
+                </div>
+              </div>
+            </div>
+          </div>
+          <!-- Special Requests -->
+          <div class="mb-8">
+            <label
+              class="text-caption font-semibold text-on-surface-variant block mb-1"
+              >Special Requests (Optional)</label
+            >
+            <textarea
+              class="w-full bg-surface-container-low border-0 rounded-lg py-3 px-4 focus:ring-1 focus:ring-secondary-fixed-dim placeholder:text-outline-variant transition-all"
+              placeholder="Any specific requirements for your appointment?"
+              rows="3"
+            ></textarea>
+          </div>
+          <button
+            class="w-full btn-gradient py-4 rounded-xl text-white font-bold text-lg flex items-center justify-center gap-2 premium-shadow hover:brightness-105 transition-all"
+            onclick="triggerSuccess()"
+          >
+            Pay ₹1,414 Securely 🔒
+          </button>
+          <p class="text-center text-caption text-outline-variant mt-4">
+            Your payment information is encrypted and secure.
+          </p>
+        </div>
+        <!-- Right Column: Order Summary -->
+        <aside class="w-full md:w-[38%] sticky top-28 space-y-gutter">
+          <div class="bg-white rounded-2xl p-6 premium-shadow">
+            <h3 class="font-display-lg text-[18px] text-on-surface mb-4">
+              Booking Summary
+            </h3>
+            <div class="flex gap-4 mb-6">
+              <img
+                alt="Salon"
+                class="w-16 h-16 rounded-xl object-cover"
+                data-alt="Atmospheric wide shot of a high-end beauty salon with marble floors, minimalist rose-gold furniture, and large floor-to-ceiling windows letting in soft afternoon sunlight. The interior is decorated with lush green plants and elegant lighting fixtures. The overall vibe is one of sophisticated luxury and tranquility."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBfVPnEe42lYQ9KS8agQ4Th5gjx7T7o6rs0TTJN2OUL9MLoJ3E0e4pTJWp2gPURmXAJ__rcvZ-dSDsHSJeRzRex3zHDJhdGBfCiM0yJCz7Vcj6ptCu7V77AVLAfw1cejVZZUsSaTB0-t8cEVlerWC7b4pa0zwxmVkEQcmHnmjLFq8ETwjGfGJSpEPPEmt8eaBer4D4vzTHH8VbbylASPwsWFwBBVj0pdfJoH8ljlO4md3Fx_A8n6aSPop3bdZotF95J0hg6ajp1Y8Tp"
+              />
+              <div>
+                <div class="font-bold text-on-surface">
+                  Serenity Beauty Studio
+                </div>
+                <div
+                  class="text-caption text-on-surface-variant flex items-center gap-1"
+                >
+                  <span class="material-symbols-outlined text-[14px]"
+                    >location_on</span
+                  >
+                  Bandra West
+                </div>
+                <div
+                  class="flex items-center text-secondary text-caption font-bold mt-1"
+                >
+                  <span
+                    class="material-symbols-outlined text-[14px] fill"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    >star</span
+                  >
+                  4.9
+                </div>
+              </div>
+            </div>
+            <div
+              class="space-y-3 py-4 border-y border-outline-variant/10 text-body-md"
+            >
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">Date</span>
+                <span class="font-medium">Sat, 25 Jan 2025</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">Time</span>
+                <span class="font-medium">3:00 PM — 4:45 PM</span>
+              </div>
+              <div class="flex justify-between">
+                <span class="text-on-surface-variant">Stylist</span>
+                <span class="font-medium">Priya Sharma</span>
+              </div>
+            </div>
+            <div class="py-4 space-y-3">
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="font-medium">Hair Cut &amp; Style</p>
+                  <p class="text-caption text-on-surface-variant">60 mins</p>
+                </div>
+                <span class="font-medium">₹599</span>
+              </div>
+              <div class="flex justify-between items-start">
+                <div>
+                  <p class="font-medium">Deep Conditioning Spa</p>
+                  <p class="text-caption text-on-surface-variant">45 mins</p>
+                </div>
+                <span class="font-medium">₹899</span>
+              </div>
+            </div>
+            <div class="flex gap-2 py-4 border-t border-outline-variant/10">
+              <input
+                class="flex-1 bg-surface-container-low border-0 rounded-lg px-3 py-2 text-caption focus:ring-1 focus:ring-secondary"
+                type="text"
+                value="GLOW20"
+              />
+              <button
+                class="bg-secondary text-white px-4 py-2 rounded-lg text-caption font-bold hover:brightness-110"
+              >
+                Apply
+              </button>
+            </div>
+            <p class="text-green-600 text-caption font-medium mb-4">
+              GLOW20 applied! (-₹299)
+            </p>
+            <div class="space-y-2 pt-4 border-t border-outline-variant/10">
+              <div
+                class="flex justify-between text-body-md text-on-surface-variant"
+              >
+                <span>Subtotal</span>
+                <span>₹1,498</span>
+              </div>
+              <div class="flex justify-between text-body-md text-green-600">
+                <span>Discount</span>
+                <span>-₹299</span>
+              </div>
+              <div
+                class="flex justify-between text-body-md text-on-surface-variant"
+              >
+                <span>Taxes (18%)</span>
+                <span>₹215</span>
+              </div>
+              <div
+                class="flex justify-between text-headline-sm font-bold text-[#8B3A35] mt-4"
+              >
+                <span>TOTAL</span>
+                <span>₹1,414</span>
+              </div>
+            </div>
+          </div>
+          <!-- Trust Badges -->
+          <div
+            class="flex justify-center gap-4 grayscale opacity-40 hover:grayscale-0 hover:opacity-100 transition-all"
+          >
+            <div
+              class="text-[10px] font-bold border border-on-surface-variant px-2 rounded"
+            >
+              VISA
+            </div>
+            <div
+              class="text-[10px] font-bold border border-on-surface-variant px-2 rounded"
+            >
+              MASTERCARD
+            </div>
+            <div
+              class="text-[10px] font-bold border border-on-surface-variant px-2 rounded"
+            >
+              RUPAY
+            </div>
+            <div
+              class="text-[10px] font-bold border border-on-surface-variant px-2 rounded"
+            >
+              UPI
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <!-- Success Overlay -->
+    <div class="success-overlay" id="successOverlay">
+      <div
+        class="w-32 h-32 rounded-full bg-primary-container/20 flex items-center justify-center mb-stack-lg animate-bounce-custom"
+      >
+        <span
+          class="material-symbols-outlined text-primary text-[64px]"
+          style="font-variation-settings: &quot;FILL&quot; 1"
+          >check_circle</span
+        >
+      </div>
+      <h1 class="font-display-lg text-display-lg text-primary text-center mb-2">
+        Booking Confirmed! 🎉
+      </h1>
+      <p class="text-body-lg text-on-surface-variant mb-stack-lg">
+        Your relaxation journey starts soon.
+      </p>
+      <div
+        class="bg-surface-container-low p-6 rounded-2xl border border-primary-container/10 text-center mb-stack-xl"
+      >
+        <span class="text-caption text-on-surface-variant block mb-1"
+          >Booking ID</span
+        >
+        <span class="text-headline-sm font-bold text-primary"
+          >#GM-2025-8821</span
+        >
+      </div>
+      <button
+        class="btn-gradient px-12 py-3 rounded-full text-white font-bold hover:scale-105 transition-all"
+        onclick="location.reload()"
+      >
+        Go to My Bookings
+      </button>
+      <!-- Confetti Simulation -->
+      <div
+        class="absolute inset-0 pointer-events-none overflow-hidden"
+        id="confetti-container"
+      ></div>
+    </div>
+    <footer
+      class="bg-surface-container-low py-stack-lg border-t border-outline-variant/10"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto gap-stack-md"
+      >
+        <div class="font-display-lg text-headline-sm text-primary">
+          GlowMarket
+        </div>
+        <div class="flex gap-stack-lg text-caption text-on-surface-variant">
+          <a class="hover:text-primary transition-colors" href="#">Privacy</a>
+          <a class="hover:text-primary transition-colors" href="#">Terms</a>
+          <a class="hover:text-primary transition-colors" href="#"
+            >Partner with Us</a
+          >
+          <a class="hover:text-primary transition-colors" href="#">Contact</a>
+        </div>
+        <p class="text-caption text-on-surface-variant opacity-60">
+          © 2024 GlowMarket. Premium Beauty Concierge.
+        </p>
+      </div>
+    </footer>
+    <script>
+      function triggerSuccess() {
+        const overlay = document.getElementById("successOverlay");
+        overlay.style.display = "flex";
+        createConfetti();
+      }
+
+      function createConfetti() {
+        const container = document.getElementById("confetti-container");
+        const colors = ["#E2A9A1", "#D4AF37", "#8B3A35", "#ffffff"];
+
+        for (let i = 0; i < 50; i++) {
+          const confetti = document.createElement("div");
+          confetti.style.position = "absolute";
+          confetti.style.width = Math.random() * 8 + 4 + "px";
+          confetti.style.height = Math.random() * 8 + 4 + "px";
+          confetti.style.backgroundColor =
+            colors[Math.floor(Math.random() * colors.length)];
+          confetti.style.left = Math.random() * 100 + "vw";
+          confetti.style.top = "-10px";
+          confetti.style.borderRadius = "2px";
+          confetti.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+          container.appendChild(confetti);
+
+          const animation = confetti.animate(
+            [
+              { transform: `translate(0, 0) rotate(0deg)`, opacity: 1 },
+              {
+                transform: `translate(${(Math.random() - 0.5) * 400}px, 100vh) rotate(${Math.random() * 1000}deg)`,
+                opacity: 0,
+              },
+            ],
+            {
+              duration: Math.random() * 3000 + 2000,
+              easing: "cubic-bezier(0, .9, .57, 1)",
+              fill: "forwards",
+            },
+          );
+
+          animation.onfinish = () => confetti.remove();
+        }
+      }
+    </script>
+  </body>
+</html>

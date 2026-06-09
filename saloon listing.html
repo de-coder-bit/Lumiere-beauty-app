@@ -1,0 +1,714 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>GlowMarket | Premium Beauty Concierge Search</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&amp;family=Inter:wght@400;500;600&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-tertiary-fixed-variant": "#484646",
+              background: "#fcf9f8",
+              "surface-container-highest": "#e5e2e1",
+              surface: "#fcf9f8",
+              "surface-dim": "#dcd9d9",
+              "on-background": "#1c1b1b",
+              "on-tertiary-fixed": "#1c1b1b",
+              "on-tertiary-container": "#494747",
+              "tertiary-container": "#bab6b5",
+              tertiary: "#605e5d",
+              "surface-container-high": "#eae7e7",
+              "surface-container": "#f0eded",
+              "error-container": "#ffdad6",
+              "outline-variant": "#d5c2bf",
+              "surface-container-low": "#f6f3f2",
+              "secondary-fixed-dim": "#e9c349",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#241a00",
+              "on-primary": "#ffffff",
+              "on-surface-variant": "#514442",
+              "tertiary-fixed": "#e6e1e0",
+              "on-secondary": "#ffffff",
+              "on-secondary-container": "#745c00",
+              "tertiary-fixed-dim": "#cac6c5",
+              "on-error-container": "#93000a",
+              "inverse-surface": "#313030",
+              "inverse-on-surface": "#f3f0ef",
+              "primary-container": "#e2a9a1",
+              error: "#ba1a1a",
+              "primary-fixed-dim": "#f3b8b0",
+              "on-surface": "#1c1b1b",
+              "on-secondary-fixed-variant": "#574500",
+              "surface-variant": "#e5e2e1",
+              outline: "#837371",
+              "on-primary-container": "#663d37",
+              "on-error": "#ffffff",
+              secondary: "#735c00",
+              "on-primary-fixed": "#32120e",
+              "secondary-container": "#fed65b",
+              "primary-fixed": "#ffdad5",
+              "on-primary-fixed-variant": "#653c36",
+              "secondary-fixed": "#ffe088",
+              "surface-bright": "#fcf9f8",
+              "inverse-primary": "#f3b8b0",
+              "surface-tint": "#80534c",
+              "surface-container-lowest": "#ffffff",
+              primary: "#80534c",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              "2xl": "1rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-lg": "32px",
+              "stack-sm": "8px",
+              "stack-md": "16px",
+              "margin-mobile": "20px",
+              "margin-desktop": "64px",
+              "container-max": "1280px",
+              gutter: "24px",
+              "stack-xl": "64px",
+            },
+            fontFamily: {
+              "headline-sm": ["Playfair Display"],
+              "headline-md": ["Playfair Display"],
+              "display-lg": ["Playfair Display"],
+              "label-md": ["Inter"],
+              caption: ["Inter"],
+              "display-lg-mobile": ["Playfair Display"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+            },
+            fontSize: {
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      .glass-nav {
+        background: rgba(252, 249, 248, 0.6);
+        backdrop-filter: blur(12px);
+      }
+      .ambient-shadow {
+        box-shadow: 0 40px 40px rgba(226, 169, 161, 0.04);
+      }
+      .ambient-shadow-hover:hover {
+        box-shadow: 0 50px 50px rgba(226, 169, 161, 0.08);
+        transform: scale(1.01);
+      }
+      .map-grid {
+        background-image: radial-gradient(#e2a9a1 0.5px, transparent 0.5px);
+        background-size: 24px 24px;
+      }
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+        vertical-align: middle;
+      }
+      .fill-icon {
+        font-variation-settings: "FILL" 1;
+      }
+    </style>
+  </head>
+  <body class="bg-background text-on-background font-body-md overflow-x-hidden">
+    <!-- Top Navigation Bar -->
+    <header
+      class="fixed top-0 w-full z-50 glass-nav h-20 flex justify-between items-center px-margin-desktop shadow-[0_40px_40px_rgba(226,169,161,0.04)]"
+    >
+      <div class="flex items-center gap-stack-md">
+        <span
+          class="font-display-lg text-headline-sm text-primary tracking-tight"
+          >GlowMarket</span
+        >
+      </div>
+      <nav class="hidden md:flex items-center gap-gutter">
+        <a
+          class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md"
+          href="#"
+          >Explore</a
+        >
+        <a
+          class="text-on-surface-variant font-medium hover:text-primary transition-all font-label-md text-label-md"
+          href="#"
+          >Salons</a
+        >
+        <a
+          class="text-on-surface-variant font-medium hover:text-primary transition-all font-label-md text-label-md"
+          href="#"
+          >Services</a
+        >
+        <a
+          class="text-on-surface-variant font-medium hover:text-primary transition-all font-label-md text-label-md"
+          href="#"
+          >Stylists</a
+        >
+      </nav>
+      <div class="flex items-center gap-stack-md">
+        <button
+          class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-high rounded-full transition-colors"
+        >
+          notifications
+        </button>
+        <button
+          class="material-symbols-outlined text-on-surface-variant p-2 hover:bg-surface-container-high rounded-full transition-colors"
+        >
+          shopping_bag
+        </button>
+        <div
+          class="w-10 h-10 rounded-full overflow-hidden border border-primary-container"
+        >
+          <img
+            alt="User Profile"
+            class="w-full h-full object-cover"
+            data-alt="A close-up studio portrait of a sophisticated woman with radiant skin and elegant styling, reflecting the premium beauty concierge brand identity. The lighting is soft and flattering against a neutral, airy background, emphasizing a high-end, clean aesthetic consistent with the GlowMarket palette."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAlZwrrCv9cWV7Lw1FpcHM23Cpg8q_hoFlCKFk_rkcqzgzJoDPa5PKilj_pXsuD700lDY3LLovBa-3mmw9Raq684QgcOnFqmajUlLo8wSvcln8-3JzVhqsX0cUsHUm7IkcSugFL0JRz97QO3uQ-O7y4zlkLkNQ4yEuJTA_fQOVykSrPzyvYus0T9SC9mxmzpNcixyjL-1EQYVsekJAk9IocvMDD2UOoyDbsaJyfi4P1J5B0GnWf-32L2KgFrpZfP61I3mGZqJ7aN7Pm"
+          />
+        </div>
+      </div>
+    </header>
+    <main class="pt-20">
+      <!-- Search & Filter Header -->
+      <section
+        class="w-full px-margin-desktop py-stack-lg bg-surface border-b border-outline-variant/10"
+      >
+        <div class="max-w-container-max mx-auto space-y-stack-md">
+          <!-- Search Bar -->
+          <div class="relative group">
+            <div
+              class="absolute inset-y-0 left-6 flex items-center pointer-events-none"
+            >
+              <span class="material-symbols-outlined text-primary"
+                >location_on</span
+              >
+            </div>
+            <input
+              class="w-full h-14 pl-14 pr-14 bg-surface-container rounded-full border-none focus:ring-2 focus:ring-primary/20 text-body-lg font-body-lg text-on-surface shadow-inner"
+              placeholder="Search services or salons..."
+              type="text"
+              value="Hair coloring in Bandra, Mumbai"
+            />
+            <div class="absolute inset-y-0 right-6 flex items-center">
+              <button
+                class="material-symbols-outlined text-outline hover:text-primary transition-colors"
+              >
+                close
+              </button>
+            </div>
+          </div>
+          <!-- Filters -->
+          <div
+            class="flex items-center gap-stack-sm overflow-x-auto pb-2 scrollbar-hide"
+          >
+            <button
+              class="flex items-center gap-1 px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-label-md font-label-md ambient-shadow"
+            >
+              Hair Color
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+            <button
+              class="flex items-center gap-1 px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-label-md font-label-md ambient-shadow"
+            >
+              Under ₹2000
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+            <button
+              class="flex items-center gap-1 px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-label-md font-label-md ambient-shadow"
+            >
+              4★ &amp; above
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+            <button
+              class="flex items-center gap-1 px-4 py-2 bg-primary-container text-on-primary-container rounded-full text-label-md font-label-md ambient-shadow"
+            >
+              Open Now
+              <span class="material-symbols-outlined text-[18px]">close</span>
+            </button>
+            <button
+              class="flex items-center gap-1 px-4 py-2 border border-outline-variant text-on-surface-variant rounded-full text-label-md font-label-md hover:bg-surface-container-high transition-colors"
+            >
+              <span class="material-symbols-outlined text-[18px]">tune</span>
+              All Filters
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Main Content Area: Split View -->
+      <div
+        class="flex flex-col lg:flex-row w-full max-w-[1440px] mx-auto min-h-screen"
+      >
+        <!-- Left: Results Stack (60%) -->
+        <div
+          class="w-full lg:w-[60%] px-margin-desktop py-stack-lg space-y-stack-lg"
+        >
+          <!-- AI Banner -->
+          <div
+            class="p-6 bg-[#F5E6E4] rounded-2xl flex items-start gap-4 border border-primary/10 ambient-shadow"
+          >
+            <div class="bg-white/50 p-2 rounded-xl">
+              <span class="material-symbols-outlined text-primary fill-icon"
+                >auto_awesome</span
+              >
+            </div>
+            <div>
+              <p class="text-on-primary-container font-body-md">
+                <span class="font-bold">GlowAI</span> found 18 salons perfect
+                for <span class="italic">balayage</span> near you. <br />Top
+                pick:
+                <span class="font-bold underline decoration-primary/30"
+                  >Serenity Beauty Studio</span
+                >
+                (97% match).
+              </p>
+            </div>
+          </div>
+          <!-- Result Cards Stack -->
+          <div class="space-y-stack-md">
+            <!-- TOP PICK CARD -->
+            <article
+              class="bg-[#FDF8F7] border-2 border-primary/20 rounded-2xl p-4 flex flex-col md:flex-row gap-6 relative transition-all ambient-shadow-hover"
+            >
+              <div
+                class="absolute -top-3 -left-3 bg-secondary-container text-on-secondary-container px-3 py-1 rounded-lg text-caption font-bold flex items-center gap-1 shadow-md z-10"
+              >
+                <span class="material-symbols-outlined text-xs fill-icon"
+                  >star</span
+                >
+                Top Pick
+              </div>
+              <div
+                class="w-full md:w-48 h-48 rounded-xl overflow-hidden flex-shrink-0"
+              >
+                <img
+                  alt="Serenity Beauty Studio"
+                  class="w-full h-full object-cover"
+                  data-alt="A high-end, luxury hair salon interior with warm rose gold accents and soft, ambient lighting. The atmosphere is serene and exclusive, featuring professional styling chairs and minimalist decor. High-key lighting highlights the premium surfaces and clean design, mirroring the GlowMarket brand identity."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuD7h2KCD3p9Mq6VM7vrsviUp5xKsQwgiFuS4DQr_-g7xFFHpAYOy_eV_Ri6fz-iOixoPxyI37s6PjeK3zphcO_t_9hDsuEL1BCfXwgYlNeYCv_sBujlyzTkaGgZpkaH6_sIHo-uByOfslrRtixSZypxmazmkqbWKLJE75nMcYG23mdMVTKdwHRaXzmPSA9YuR4rNQVByV34HrKvVs_a2Dt560rJg63MHTz4UeeNTcZ-garviV8_kN-8uKaS3W0KF2ty5j62dOEpGFv_"
+                />
+              </div>
+              <div class="flex-1 flex flex-col justify-between py-1">
+                <div>
+                  <div class="flex justify-between items-start">
+                    <div class="flex items-center gap-2">
+                      <h3
+                        class="font-headline-sm text-headline-sm text-on-surface"
+                      >
+                        Serenity Beauty Studio
+                      </h3>
+                      <span
+                        class="material-symbols-outlined text-blue-500 text-lg fill-icon"
+                        >verified</span
+                      >
+                    </div>
+                    <button
+                      class="material-symbols-outlined text-primary hover:scale-110 transition-transform"
+                    >
+                      favorite
+                    </button>
+                  </div>
+                  <div
+                    class="flex items-center gap-4 mt-1 text-caption text-on-surface-variant"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-secondary text-sm fill-icon"
+                        >star</span
+                      >
+                      <span class="font-bold text-on-surface">4.9</span> (1.2k
+                      reviews)
+                    </div>
+                    <span>• 0.8 km away</span>
+                    <span class="text-green-600 font-medium">Open Now</span>
+                  </div>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                    <span
+                      class="px-2 py-0.5 bg-surface-container-high rounded-full text-[12px] text-on-surface-variant font-medium"
+                      >Balayage Specialist</span
+                    >
+                    <span
+                      class="px-2 py-0.5 bg-surface-container-high rounded-full text-[12px] text-on-surface-variant font-medium"
+                      >Organic Colors</span
+                    >
+                  </div>
+                  <div
+                    class="mt-4 p-3 bg-white/60 rounded-xl border border-primary/5 italic text-caption text-on-primary-fixed-variant"
+                  >
+                    <span class="font-bold text-primary">Why this match:</span>
+                    Oval face type &amp; warm skin tone analysis suggests their
+                    'Autumn Glow' balayage technique.
+                  </div>
+                </div>
+                <div class="flex justify-between items-end mt-4">
+                  <div class="text-on-surface">
+                    <span class="text-caption text-on-surface-variant"
+                      >Starting from</span
+                    >
+                    <div class="text-headline-sm font-bold text-primary">
+                      ₹1,850
+                    </div>
+                  </div>
+                  <button
+                    class="px-6 py-2 bg-gradient-to-br from-primary-container to-primary text-white rounded-full font-label-md hover:opacity-90 transition-opacity"
+                  >
+                    Book Appointment
+                  </button>
+                </div>
+              </div>
+            </article>
+            <!-- Regular Card 1 -->
+            <article
+              class="bg-white border border-outline-variant/10 rounded-2xl p-4 flex flex-col md:flex-row gap-6 transition-all ambient-shadow-hover"
+            >
+              <div
+                class="w-full md:w-48 h-48 rounded-xl overflow-hidden flex-shrink-0"
+              >
+                <img
+                  alt="The Mane Event"
+                  class="w-full h-full object-cover"
+                  data-alt="A modern beauty salon space featuring a minimalist design with white and gold accents. The shot captures a serene environment where high-end hair services are performed. The lighting is soft and airy, creating a professional and welcoming mood that aligns with the GlowMarket luxury brand aesthetic."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDHSf0v1y_2God5Dr273xu2kYfhjm3-S7h0e3G8URzqCMJuE8A9IEHAYzqPEFji-gtkL-KYQt_MSY_PFcDyO91jo-cNeXDmEByTIORxTfPxRowGpDIBQXPzz0kYXxURJnglEcodqtF90sT3PNCLIJlqM7xQT3zYaP5IqRcn4QUEsey9kB_7mvhHx2gzmST84tAX3b6wkr_Yd-nWlzilA4QmrM4sCV1Ama0O1dIZI4NLlzUhpxt8As8uRFnVMPobwZVeF9oe2X111XE0"
+                />
+              </div>
+              <div class="flex-1 flex flex-col justify-between py-1">
+                <div>
+                  <div class="flex justify-between items-start">
+                    <h3
+                      class="font-headline-sm text-headline-sm text-on-surface"
+                    >
+                      The Mane Event
+                    </h3>
+                    <button
+                      class="material-symbols-outlined text-outline hover:text-primary transition-transform"
+                    >
+                      favorite
+                    </button>
+                  </div>
+                  <div
+                    class="flex items-center gap-4 mt-1 text-caption text-on-surface-variant"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-secondary text-sm fill-icon"
+                        >star</span
+                      >
+                      <span class="font-bold text-on-surface">4.7</span> (840
+                      reviews)
+                    </div>
+                    <span>• 1.2 km away</span>
+                    <span class="text-on-surface-variant font-medium"
+                      >Closes 8PM</span
+                    >
+                  </div>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                    <span
+                      class="px-2 py-0.5 bg-surface-container rounded-full text-[12px] text-on-surface-variant font-medium"
+                      >Hair Coloring</span
+                    >
+                    <span
+                      class="px-2 py-0.5 bg-surface-container rounded-full text-[12px] text-on-surface-variant font-medium"
+                      >Styling</span
+                    >
+                  </div>
+                </div>
+                <div class="flex justify-between items-end mt-4">
+                  <div class="text-on-surface">
+                    <span class="text-caption text-on-surface-variant"
+                      >Starting from</span
+                    >
+                    <div class="text-headline-sm font-bold text-on-surface">
+                      ₹1,400
+                    </div>
+                  </div>
+                  <button
+                    class="px-6 py-2 border border-primary text-primary rounded-full font-label-md hover:bg-primary/5 transition-colors"
+                  >
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </article>
+            <!-- Regular Card 2 -->
+            <article
+              class="bg-white border border-outline-variant/10 rounded-2xl p-4 flex flex-col md:flex-row gap-6 transition-all ambient-shadow-hover"
+            >
+              <div
+                class="w-full md:w-48 h-48 rounded-xl overflow-hidden flex-shrink-0"
+              >
+                <img
+                  alt="Glow Up Studio"
+                  class="w-full h-full object-cover"
+                  data-alt="Close-up detail of luxury hair care products and professional tools arranged on a pristine marble surface within a high-end salon. The aesthetic is clean, minimalist, and expensive, utilizing a soft-focus background and a sophisticated palette of rose gold and white to evoke tranquility and quality."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuADy3BjWld_jKUqZBwSehH9O-YFWkeaji1qLg5vhn9is9h5UrelztqArhCo54R6gEqbYp106o7hLnTB2lMC_Q4Yq--B4sOey9LPGpiTkGHj56YtuiBLsCg0zTMzxhDl6Ul05dHq1nVFO_UeXl1RwJPHRFHxEW1NYA6zPZLnkuDh7BZPfd115KMtTd5Qs7Kr5SWk4PJ5gepsF-3hTjvNVy1EaNrwYv9VUtUBJ1Do4z6_fuPSEeATGEIZtM_1D0i-O813E7UDfl3WrCgi"
+                />
+              </div>
+              <div class="flex-1 flex flex-col justify-between py-1">
+                <div>
+                  <div class="flex justify-between items-start">
+                    <h3
+                      class="font-headline-sm text-headline-sm text-on-surface"
+                    >
+                      Glow Up Studio
+                    </h3>
+                    <button
+                      class="material-symbols-outlined text-outline hover:text-primary transition-transform"
+                    >
+                      favorite
+                    </button>
+                  </div>
+                  <div
+                    class="flex items-center gap-4 mt-1 text-caption text-on-surface-variant"
+                  >
+                    <div class="flex items-center gap-1">
+                      <span
+                        class="material-symbols-outlined text-secondary text-sm fill-icon"
+                        >star</span
+                      >
+                      <span class="font-bold text-on-surface">4.8</span> (520
+                      reviews)
+                    </div>
+                    <span>• 2.5 km away</span>
+                    <span class="text-green-600 font-medium">Open Now</span>
+                  </div>
+                  <div class="mt-3 flex flex-wrap gap-2">
+                    <span
+                      class="px-2 py-0.5 bg-surface-container rounded-full text-[12px] text-on-surface-variant font-medium"
+                      >Premium Coloring</span
+                    >
+                  </div>
+                </div>
+                <div class="flex justify-between items-end mt-4">
+                  <div class="text-on-surface">
+                    <span class="text-caption text-on-surface-variant"
+                      >Starting from</span
+                    >
+                    <div class="text-headline-sm font-bold text-on-surface">
+                      ₹1,999
+                    </div>
+                  </div>
+                  <button
+                    class="px-6 py-2 border border-primary text-primary rounded-full font-label-md hover:bg-primary/5 transition-colors"
+                  >
+                    View Details
+                  </button>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Pagination -->
+          <div class="flex justify-center items-center gap-2 pt-stack-lg">
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-colors"
+            >
+              <span class="material-symbols-outlined">chevron_left</span>
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full bg-primary text-white font-bold"
+            >
+              1
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors"
+            >
+              2
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors"
+            >
+              3
+            </button>
+            <span class="px-2">...</span>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full hover:bg-surface-container transition-colors"
+            >
+              12
+            </button>
+            <button
+              class="w-10 h-10 flex items-center justify-center rounded-full border border-outline-variant text-on-surface-variant hover:bg-surface-container transition-colors"
+            >
+              <span class="material-symbols-outlined">chevron_right</span>
+            </button>
+          </div>
+        </div>
+        <!-- Right: Sticky Map Panel (40%) -->
+        <aside class="hidden lg:block lg:w-[40%] relative">
+          <div
+            class="sticky top-20 h-[calc(100vh-80px)] bg-surface-container-low overflow-hidden"
+          >
+            <!-- Map Mockup -->
+            <div class="w-full h-full map-grid relative">
+              <!-- Top Pick Pin -->
+              <div class="absolute top-1/4 left-1/3 group cursor-pointer">
+                <div class="relative">
+                  <div
+                    class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full shadow-lg border-2 border-white flex items-center gap-1 animate-bounce"
+                  >
+                    <span class="material-symbols-outlined text-xs fill-icon"
+                      >auto_awesome</span
+                    >
+                    <span class="text-[10px] font-bold">₹1,850</span>
+                  </div>
+                  <div
+                    class="w-4 h-4 bg-secondary-container rotate-45 absolute -bottom-1 left-1/2 -translate-x-1/2 -z-10 shadow-lg"
+                  ></div>
+                </div>
+              </div>
+              <!-- Regular Pin Active -->
+              <div class="absolute top-1/2 right-1/4 group cursor-pointer">
+                <div class="relative">
+                  <div
+                    class="bg-primary text-white px-3 py-1 rounded-full shadow-lg border-2 border-white flex items-center gap-1 scale-110"
+                  >
+                    <span class="text-[10px] font-bold">₹1,400</span>
+                  </div>
+                  <div
+                    class="w-3 h-3 bg-primary rotate-45 absolute -bottom-1 left-1/2 -translate-x-1/2 -z-10 shadow-lg"
+                  ></div>
+                </div>
+              </div>
+              <!-- Default Pin -->
+              <div
+                class="absolute bottom-1/3 left-1/2 group cursor-pointer opacity-70 hover:opacity-100 transition-opacity"
+              >
+                <div
+                  class="w-8 h-8 bg-white border-2 border-primary-container rounded-full flex items-center justify-center shadow-md"
+                >
+                  <span class="material-symbols-outlined text-primary text-sm"
+                    >spa</span
+                  >
+                </div>
+              </div>
+              <!-- Map Overlay Controls -->
+              <div class="absolute bottom-6 left-6 flex flex-col gap-2">
+                <button
+                  class="w-10 h-10 bg-white rounded-lg shadow-lg flex items-center justify-center text-on-surface-variant hover:text-primary"
+                >
+                  <span class="material-symbols-outlined">add</span>
+                </button>
+                <button
+                  class="w-10 h-10 bg-white rounded-lg shadow-lg flex items-center justify-center text-on-surface-variant hover:text-primary"
+                >
+                  <span class="material-symbols-outlined">remove</span>
+                </button>
+              </div>
+              <div class="absolute bottom-6 right-6">
+                <button
+                  class="flex items-center gap-2 px-4 py-2 bg-white rounded-full shadow-lg text-label-md font-label-md text-on-surface"
+                >
+                  <span class="material-symbols-outlined text-[18px]"
+                    >layers</span
+                  >
+                  Satellite
+                </button>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </div>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="w-full bg-surface-container-low border-t border-outline-variant/10 py-stack-lg mt-stack-xl"
+    >
+      <div
+        class="flex flex-col md:flex-row justify-between items-center px-margin-desktop w-full max-w-container-max mx-auto gap-stack-md"
+      >
+        <div>
+          <span class="font-display-lg text-headline-sm text-primary"
+            >GlowMarket</span
+          >
+          <p class="text-caption font-body-md text-on-surface-variant mt-2">
+            © 2024 GlowMarket. Premium Beauty Concierge.
+          </p>
+        </div>
+        <div class="flex gap-gutter">
+          <a
+            class="text-on-surface-variant hover:text-secondary transition-colors text-caption font-body-md"
+            href="#"
+            >Privacy</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-secondary transition-colors text-caption font-body-md"
+            href="#"
+            >Terms</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-secondary transition-colors text-caption font-body-md"
+            href="#"
+            >Partner with Us</a
+          >
+          <a
+            class="text-on-surface-variant hover:text-secondary transition-colors text-caption font-body-md"
+            href="#"
+            >Contact</a
+          >
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Simple Interaction logic
+      document
+        .querySelectorAll(".material-symbols-outlined")
+        .forEach((icon) => {
+          icon.addEventListener("mousedown", () => {
+            icon.style.transform = "scale(0.9)";
+          });
+          icon.addEventListener("mouseup", () => {
+            icon.style.transform = "scale(1)";
+          });
+        });
+    </script>
+  </body>
+</html>

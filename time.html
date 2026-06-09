@@ -1,0 +1,578 @@
+<!doctype html>
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Schedule &amp; Stylist | GlowMarket</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-surface": "#1c1b1b",
+              "tertiary-fixed-dim": "#cac6c5",
+              "tertiary-container": "#bab6b5",
+              "surface-tint": "#80534c",
+              "secondary-fixed-dim": "#e9c349",
+              "primary-fixed": "#ffdad5",
+              "on-primary-fixed": "#32120e",
+              "tertiary-fixed": "#e6e1e0",
+              "on-primary-fixed-variant": "#653c36",
+              primary: "#80534c",
+              "surface-bright": "#fcf9f8",
+              "surface-container-low": "#f6f3f2",
+              outline: "#837371",
+              "on-error": "#ffffff",
+              "on-primary-container": "#663d37",
+              "error-container": "#ffdad6",
+              "secondary-fixed": "#ffe088",
+              "on-primary": "#ffffff",
+              "primary-fixed-dim": "#f3b8b0",
+              "on-secondary-fixed-variant": "#574500",
+              "surface-container-highest": "#e5e2e1",
+              "surface-container-lowest": "#ffffff",
+              error: "#ba1a1a",
+              tertiary: "#605e5d",
+              "on-secondary-fixed": "#241a00",
+              "surface-container-high": "#eae7e7",
+              "inverse-on-surface": "#f3f0ef",
+              "surface-variant": "#e5e2e1",
+              "on-tertiary-container": "#494747",
+              "on-surface-variant": "#514442",
+              secondary: "#735c00",
+              "on-tertiary-fixed-variant": "#484646",
+              "outline-variant": "#d5c2bf",
+              "surface-dim": "#dcd9d9",
+              "inverse-surface": "#313030",
+              "on-tertiary": "#ffffff",
+              "inverse-primary": "#f3b8b0",
+              "on-secondary-container": "#745c00",
+              "on-secondary": "#ffffff",
+              "on-background": "#1c1b1b",
+              "on-tertiary-fixed": "#1c1b1b",
+              background: "#fcf9f8",
+              surface: "#fcf9f8",
+              "surface-container": "#f0eded",
+              "primary-container": "#e2a9a1",
+              "secondary-container": "#fed65b",
+              "on-error-container": "#93000a",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-xl": "64px",
+              gutter: "24px",
+              "margin-mobile": "20px",
+              "stack-md": "16px",
+              "stack-lg": "32px",
+              "margin-desktop": "64px",
+              "stack-sm": "8px",
+              "container-max": "1280px",
+            },
+            fontFamily: {
+              "label-md": ["Inter"],
+              "display-lg-mobile": ["Playfair Display"],
+              "headline-md": ["Playfair Display"],
+              "body-md": ["Inter"],
+              "body-lg": ["Inter"],
+              "headline-sm": ["Playfair Display"],
+              caption: ["Inter"],
+              "display-lg": ["Playfair Display"],
+            },
+            fontSize: {
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "700" },
+              ],
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        background-color: #fdf8f7;
+        -webkit-font-smoothing: antialiased;
+      }
+      .glass {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 169, 161, 0.1);
+      }
+      .custom-shadow {
+        box-shadow: 0 40px 40px 0 rgba(226, 169, 161, 0.04);
+      }
+      .hide-scrollbar::-webkit-scrollbar {
+        display: none;
+      }
+      .hide-scrollbar {
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+      .stylist-card-active {
+        border: 1px solid #d4af37;
+        background-color: #fdf9f0;
+      }
+    </style>
+  </head>
+  <body class="font-body-md text-on-surface">
+    <!-- Top Navigation (Shell Implementation) -->
+    <nav
+      class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-xl shadow-[0_40px_40px_0_rgba(226,169,161,0.04)]"
+    >
+      <div
+        class="flex justify-between items-center px-margin-desktop py-4 max-w-container-max mx-auto"
+      >
+        <span
+          class="font-display-lg text-display-lg text-primary tracking-tight"
+          >GlowMarket</span
+        >
+        <div class="hidden md:flex gap-8 items-center">
+          <a
+            class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >AI Advisor</a
+          >
+          <a
+            class="font-label-md text-label-md text-on-surface-variant hover:text-primary transition-colors"
+            href="#"
+            >Discover</a
+          >
+          <a
+            class="font-label-md text-label-md text-primary border-b-2 border-primary pb-1"
+            href="#"
+            >Salons</a
+          >
+        </div>
+        <div class="flex items-center gap-4">
+          <span
+            class="material-symbols-outlined text-on-surface-variant cursor-pointer"
+            >shopping_bag</span
+          >
+          <img
+            alt="Profile"
+            class="w-10 h-10 rounded-full border-2 border-primary-container object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4jgoSQgxKJZBE1IgE6cFllq2z1bi-9UK7A5DKMQj1YixtiojaURXvQlnGSnFFvimM3mCbBie-zpggyxjV50Gq_5PF3mtPLaa_3KXyScHloqqpNbjdp2CCVH2NNIPFMeOcYkqaw-P1I0Hh-ONZ7HqJEJ5P1tqGhKQsfbUJWILiAetK-y75-sx-ciXM-rnlJyMpHjkkH-XIe1suW0tU_fFJisW4NEecxYZ2RmtRkETAclu7GS8B64pxqYpKAN_oMKetb7_VeCVyBWMR"
+          />
+        </div>
+      </div>
+    </nav>
+    <main class="pt-24 pb-32 px-4 md:px-0">
+      <div class="max-w-[720px] mx-auto">
+        <!-- Step Progress Bar -->
+        <div class="flex items-center justify-between mb-stack-xl px-4">
+          <div class="flex flex-col items-center gap-2">
+            <div
+              class="w-8 h-8 rounded-full bg-primary-container text-on-primary flex items-center justify-center"
+            >
+              <span class="material-symbols-outlined text-sm">check</span>
+            </div>
+            <span class="font-label-md text-caption text-primary">Service</span>
+          </div>
+          <div class="h-[2px] flex-1 bg-primary-container mx-4 -mt-6"></div>
+          <div class="flex flex-col items-center gap-2">
+            <div
+              class="w-8 h-8 rounded-full bg-[#8B3A35] text-white flex items-center justify-center font-bold"
+            >
+              2
+            </div>
+            <span class="font-label-md text-caption text-on-surface"
+              >Schedule</span
+            >
+          </div>
+          <div
+            class="h-[2px] flex-1 bg-surface-container-highest mx-4 -mt-6"
+          ></div>
+          <div class="flex flex-col items-center gap-2 opacity-40">
+            <div
+              class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center"
+            >
+              3
+            </div>
+            <span class="font-label-md text-caption">Payment</span>
+          </div>
+          <div
+            class="h-[2px] flex-1 bg-surface-container-highest mx-4 -mt-6"
+          ></div>
+          <div class="flex flex-col items-center gap-2 opacity-40">
+            <div
+              class="w-8 h-8 rounded-full bg-surface-container-highest text-on-surface-variant flex items-center justify-center"
+            >
+              4
+            </div>
+            <span class="font-label-md text-caption">Review</span>
+          </div>
+        </div>
+        <!-- Salon Summary Card -->
+        <div
+          class="bg-surface-container-lowest rounded-xl p-6 custom-shadow mb-stack-lg border border-primary-container/10 flex items-center gap-4"
+        >
+          <img
+            alt="Salon"
+            class="w-16 h-16 rounded-lg object-cover"
+            data-alt="A luxury boutique hair salon interior with soft rose gold accents, plush velvet chairs, and minimalist floral arrangements. The atmosphere is serene and high-end with warm ambient lighting reflecting off glass surfaces."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCoqs0Ydn1sQ6LhbuCz2MyRqPkz6wLjj_UU9OZx8cOq8FdV5tppsfXRohbMWY_GLu8dQxO1_r9YCALhLIV_pHb2eptHcNCU-al-C77swTsM30DNiluHhV21hEuui1DEGjluu8L1yIFtUThFe8JnWHGww6hpGdqFsHhLrkJ5XsUfg6vQxPqGZz9kwFmEs1Mxd42mvoB8HqkJLIUqL7aqop47OLE9Iwf5paZWW87bZetLIy8BPenKoTqSDtoevDjJyClUIsTxJCk0Algo"
+          />
+          <div>
+            <h2 class="font-headline-sm text-headline-sm text-on-surface">
+              Serenity Beauty Studio
+            </h2>
+            <p
+              class="font-body-md text-caption text-on-surface-variant flex items-center gap-1"
+            >
+              <span class="material-symbols-outlined text-sm text-secondary"
+                >location_on</span
+              >
+              Mayfair, London • 4.9 ★
+            </p>
+          </div>
+          <button
+            class="ml-auto text-primary font-label-md text-label-md hover:underline transition-all"
+          >
+            Change
+          </button>
+        </div>
+        <!-- Pick Your Date Section -->
+        <section class="mb-stack-xl">
+          <div class="flex items-center justify-between mb-stack-md">
+            <h3 class="font-headline-sm text-[22px] text-on-surface">
+              Pick Your Date &amp; Time
+            </h3>
+            <span class="font-label-md text-label-md text-on-surface-variant"
+              >January 2024</span
+            >
+          </div>
+          <!-- Date Selector Row -->
+          <div
+            class="flex gap-3 overflow-x-auto hide-scrollbar pb-4 -mx-4 px-4"
+          >
+            <!-- Today -->
+            <button
+              class="flex-shrink-0 w-20 h-24 rounded-2xl bg-surface-container-lowest border border-primary-container/20 flex flex-col items-center justify-center gap-1 transition-all hover:scale-105 active:scale-95"
+            >
+              <span class="font-label-md text-caption text-on-surface-variant"
+                >Mon</span
+              >
+              <span class="font-headline-sm text-headline-sm">24</span>
+              <div
+                class="w-1.5 h-1.5 rounded-full bg-secondary-container"
+              ></div>
+            </button>
+            <!-- Selected -->
+            <button
+              class="flex-shrink-0 w-20 h-24 rounded-2xl bg-primary-container text-on-primary-container border border-primary flex flex-col items-center justify-center gap-1 transition-all shadow-md scale-105"
+            >
+              <span class="font-label-md text-caption opacity-80">Tue</span>
+              <span class="font-headline-sm text-headline-sm">25</span>
+            </button>
+            <!-- Other Days -->
+            <button
+              class="flex-shrink-0 w-20 h-24 rounded-2xl bg-surface-container-lowest border border-primary-container/20 flex flex-col items-center justify-center gap-1 transition-all hover:scale-105 active:scale-95"
+            >
+              <span class="font-label-md text-caption text-on-surface-variant"
+                >Wed</span
+              >
+              <span class="font-headline-sm text-headline-sm text-on-surface"
+                >26</span
+              >
+            </button>
+            <button
+              class="flex-shrink-0 w-20 h-24 rounded-2xl bg-surface-container-lowest border border-primary-container/20 flex flex-col items-center justify-center gap-1 transition-all hover:scale-105 active:scale-95"
+            >
+              <span class="font-label-md text-caption text-on-surface-variant"
+                >Thu</span
+              >
+              <span class="font-headline-sm text-headline-sm text-on-surface"
+                >27</span
+              >
+            </button>
+            <button
+              class="flex-shrink-0 w-20 h-24 rounded-2xl bg-surface-container-lowest border border-primary-container/20 flex flex-col items-center justify-center gap-1 transition-all hover:scale-105 active:scale-95"
+            >
+              <span class="font-label-md text-caption text-on-surface-variant"
+                >Fri</span
+              >
+              <span class="font-headline-sm text-headline-sm text-on-surface"
+                >28</span
+              >
+            </button>
+            <button
+              class="flex-shrink-0 w-20 h-24 rounded-2xl bg-surface-container-lowest border border-primary-container/20 flex flex-col items-center justify-center gap-1 transition-all hover:scale-105 active:scale-95"
+            >
+              <span class="font-label-md text-caption text-on-surface-variant"
+                >Sat</span
+              >
+              <span class="font-headline-sm text-headline-sm text-on-surface"
+                >29</span
+              >
+            </button>
+            <button
+              class="flex-shrink-0 w-20 h-24 rounded-2xl bg-surface-container-lowest border border-primary-container/20 flex flex-col items-center justify-center gap-1 transition-all hover:scale-105 active:scale-95"
+            >
+              <span class="font-label-md text-caption text-on-surface-variant"
+                >Sun</span
+              >
+              <span class="font-headline-sm text-headline-sm text-on-surface"
+                >30</span
+              >
+            </button>
+          </div>
+          <!-- Time Slots Grid -->
+          <div class="mt-stack-lg space-y-stack-lg">
+            <!-- Morning -->
+            <div>
+              <div
+                class="flex items-center gap-2 mb-stack-sm text-on-surface-variant font-label-md text-label-md"
+              >
+                <span>🌤 Morning</span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <button
+                  class="px-6 py-2.5 rounded-full border border-primary-container/20 bg-surface-container-lowest text-on-surface-variant opacity-50 cursor-not-allowed"
+                >
+                  09:00 AM
+                </button>
+                <button
+                  class="px-6 py-2.5 rounded-full border border-primary-container/30 bg-surface-container-lowest hover:border-primary hover:bg-primary-fixed-dim transition-all"
+                >
+                  10:30 AM
+                </button>
+                <button
+                  class="px-6 py-2.5 rounded-full border border-primary-container/30 bg-surface-container-lowest hover:border-primary hover:bg-primary-fixed-dim transition-all"
+                >
+                  11:00 AM
+                </button>
+              </div>
+            </div>
+            <!-- Afternoon -->
+            <div>
+              <div
+                class="flex items-center gap-2 mb-stack-sm text-on-surface-variant font-label-md text-label-md"
+              >
+                <span>☀️ Afternoon</span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <button
+                  class="px-6 py-2.5 rounded-full border border-primary-container/30 bg-surface-container-lowest hover:border-primary hover:bg-primary-fixed-dim transition-all"
+                >
+                  1:30 PM
+                </button>
+                <button
+                  class="px-6 py-2.5 rounded-full border border-primary bg-primary-container text-on-primary-container shadow-sm scale-105"
+                >
+                  3:00 PM
+                </button>
+                <button
+                  class="px-6 py-2.5 rounded-full border border-primary-container/30 bg-surface-container-lowest hover:border-primary hover:bg-primary-fixed-dim transition-all"
+                >
+                  4:30 PM
+                </button>
+              </div>
+            </div>
+            <!-- Evening -->
+            <div>
+              <div
+                class="flex items-center gap-2 mb-stack-sm text-on-surface-variant font-label-md text-label-md"
+              >
+                <span>🌙 Evening</span>
+              </div>
+              <div class="flex flex-wrap gap-3">
+                <button
+                  class="px-6 py-2.5 rounded-full border border-primary-container/30 bg-surface-container-lowest hover:border-primary hover:bg-primary-fixed-dim transition-all"
+                >
+                  6:00 PM
+                </button>
+                <button
+                  class="px-6 py-2.5 rounded-full border border-primary-container/20 bg-surface-container-lowest text-on-surface-variant opacity-50 cursor-not-allowed"
+                >
+                  7:30 PM
+                </button>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- Stylist Selector -->
+        <section class="mb-stack-xl">
+          <div class="flex items-center justify-between mb-stack-md">
+            <h3 class="font-headline-sm text-[22px] text-on-surface">
+              Select Stylist
+            </h3>
+          </div>
+          <div
+            class="flex gap-4 overflow-x-auto hide-scrollbar pb-4 -mx-4 px-4"
+          >
+            <!-- Any Stylist -->
+            <button
+              class="flex-shrink-0 w-40 p-4 rounded-xl glass custom-shadow flex flex-col items-center text-center gap-3 stylist-card-active border-2 border-secondary-container"
+            >
+              <div
+                class="w-16 h-16 rounded-full bg-secondary-container/20 flex items-center justify-center text-secondary"
+              >
+                <span
+                  class="material-symbols-outlined text-3xl"
+                  style="font-variation-settings: &quot;FILL&quot; 1"
+                  >star</span
+                >
+              </div>
+              <div>
+                <p class="font-label-md text-label-md text-on-surface">
+                  Any Available
+                </p>
+                <p class="font-body-md text-caption text-on-surface-variant">
+                  Recommended
+                </p>
+              </div>
+            </button>
+            <!-- Priya -->
+            <button
+              class="flex-shrink-0 w-40 p-4 rounded-xl glass custom-shadow flex flex-col items-center text-center gap-3 transition-all hover:scale-105"
+            >
+              <img
+                alt="Priya"
+                class="w-16 h-16 rounded-full object-cover grayscale hover:grayscale-0 transition-all"
+                data-alt="A professional Indian female beauty stylist with an elegant aesthetic, smiling warmly in a bright, modern studio setting. Her hair is perfectly styled, and she wears a chic, minimalist uniform. The background features high-end salon products on glass shelves."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBuVcWP7rgFijQA32y-yMjVyHVdf7NxY4DrUYogneFUmajSQOTQoHV04E_woM1OiKNhFRPHq8sBUziq_xReMBq-FDF6ZbIQCgOe6ZbyOwKyZ42PlUzUE35qqjDsnc1szgKISewXpYKqewNAdmdVbAGuyma3GW7aW_Oio4E4_yLca5RqDylu8vxQgFmmO6OX8e4WA2HYxZjHkFb7cqUMR1PiT3uII30pZiLlzaR8KozOzDb9tnMG1I2K0QnYbTSY-8AUeTkg2yJgd4aW"
+              />
+              <div>
+                <p class="font-label-md text-label-md text-on-surface">
+                  Priya Sharma
+                </p>
+                <p class="font-body-md text-caption text-on-surface-variant">
+                  Senior Colorist
+                </p>
+              </div>
+            </button>
+            <!-- Elena -->
+            <button
+              class="flex-shrink-0 w-40 p-4 rounded-xl glass custom-shadow flex flex-col items-center text-center gap-3 transition-all hover:scale-105"
+            >
+              <img
+                alt="Elena"
+                class="w-16 h-16 rounded-full object-cover grayscale hover:grayscale-0 transition-all"
+                data-alt="A portrait of a professional Caucasian female stylist with an edgy but sophisticated look. She is in a high-fashion salon environment with soft-focus luxury interior details. The lighting is editorial and flattering, emphasizing a clean, beauty-focused aesthetic."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDozFidYrnVeLNUvO32vBgX-xw1YPMBfvLeFZ6Ronu5jRF-RkcQAGAj3-mFEbVk-aVjlYf9KPQgjtjSsLAbdJVpVaNw7sBw4T6y5OqIUCoUh9uwTljXEX8j49oFjbV9uvzfaL-iz3wxorByGtaVeTpO-NODX709bOucOj4MWE1ElKvGWuqAkRbngrWTOOe2rtnJ8OMeXOCTxS-6diNCGT-EOhwEhlre9XCA2h5mZ7OJI1YyURZNiyraG9y4vLteATBrhk7ZW_YrouYq"
+              />
+              <div>
+                <p class="font-label-md text-label-md text-on-surface">
+                  Elena G.
+                </p>
+                <p class="font-body-md text-caption text-on-surface-variant">
+                  Master Stylist
+                </p>
+              </div>
+            </button>
+            <!-- Marcus -->
+            <button
+              class="flex-shrink-0 w-40 p-4 rounded-xl glass custom-shadow flex flex-col items-center text-center gap-3 transition-all hover:scale-105"
+            >
+              <img
+                alt="Marcus"
+                class="w-16 h-16 rounded-full object-cover grayscale hover:grayscale-0 transition-all"
+                data-alt="A stylish male beauty consultant and hair artist in a premium salon space. He has a modern, well-groomed appearance. The background is a minimalist, airy spa environment with warm gold accents and lush greenery in soft focus."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBttfKH6pyFM_aPsjv--bDhzwihK7bXykrqfz1bbT6ngKNOEgaZvtlzuzV9GbqjX24pAbXoLGjGUwkQztNjv4S5mJDi-2xWfY_qvEEJ2wBuzjMpki3wYLVI64WvfVyT6Omh_S4EEYDPVWj_B8znLtwMtbuOnnveURulZo3gvpib75k7EHklWTIIqK4mzoP8wyxFSTAABNV9PHAU1SxYJ9zj-Z1-j_KexxkvMG4k6WTx0JIqaiY5PPIBrdZQksxC5GjvrcyYpzrYMSmi"
+              />
+              <div>
+                <p class="font-label-md text-label-md text-on-surface">
+                  Marcus L.
+                </p>
+                <p class="font-body-md text-caption text-on-surface-variant">
+                  Cut &amp; Style
+                </p>
+              </div>
+            </button>
+          </div>
+        </section>
+      </div>
+    </main>
+    <!-- Sticky Bottom Summary -->
+    <footer
+      class="fixed bottom-0 w-full z-50 bg-surface/80 backdrop-blur-xl border-t border-primary-container/20"
+    >
+      <div
+        class="max-w-container-max mx-auto px-margin-desktop py-6 flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <div class="text-center md:text-left">
+          <p class="font-label-md text-label-md text-on-surface">
+            2 services selected
+          </p>
+          <p class="font-body-md text-caption text-primary font-medium">
+            Tue, 25 Jan at 3:00 PM
+          </p>
+        </div>
+        <div class="flex items-center gap-8 w-full md:w-auto">
+          <div class="hidden md:block">
+            <p class="font-caption text-on-surface-variant text-right">
+              Estimated Total
+            </p>
+            <p class="font-headline-sm text-headline-sm text-on-surface">
+              £145.00
+            </p>
+          </div>
+          <button
+            class="flex-1 md:flex-none px-8 py-4 bg-gradient-to-br from-primary-container to-primary text-white rounded-full font-label-md text-label-md shadow-lg hover:scale-102 transition-all active:scale-95 flex items-center justify-center gap-2"
+          >
+            Confirm Schedule
+            <span class="material-symbols-outlined">arrow_forward</span>
+          </button>
+        </div>
+      </div>
+    </footer>
+    <script>
+      // Simple micro-interactions for time slot selection
+      const timeSlots = document.querySelectorAll("button:not([disabled])");
+      timeSlots.forEach((slot) => {
+        if (slot.innerText.includes("AM") || slot.innerText.includes("PM")) {
+          slot.addEventListener("click", () => {
+            // This is just for demonstration feel
+            console.log("Time selected: " + slot.innerText);
+          });
+        }
+      });
+    </script>
+  </body>
+</html>

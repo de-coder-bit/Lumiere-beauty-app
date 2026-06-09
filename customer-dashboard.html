@@ -1,0 +1,783 @@
+<!doctype html>
+
+<html class="light" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>LUMIÈRE | Gold Member Dashboard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Playfair+Display:wght@600;700&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "wght" 300,
+          "opsz" 24;
+      }
+      .glass-card {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(12px);
+        border: 1px solid rgba(226, 169, 161, 0.1);
+      }
+      @keyframes subtle-float {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-4px);
+        }
+      }
+      .animate-float {
+        animation: subtle-float 4s ease-in-out infinite;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "on-secondary-fixed-variant": "#574500",
+              secondary: "#735c00",
+              "on-error-container": "#93000a",
+              "on-secondary-container": "#745c00",
+              "on-primary-fixed-variant": "#653c36",
+              "on-background": "#1c1b1b",
+              "surface-tint": "#80534c",
+              "on-primary-container": "#663d37",
+              "surface-variant": "#e5e2e1",
+              "on-error": "#ffffff",
+              "surface-container-highest": "#e5e2e1",
+              "tertiary-fixed-dim": "#cac6c5",
+              "inverse-primary": "#f3b8b0",
+              "on-tertiary-fixed": "#1c1b1b",
+              error: "#ba1a1a",
+              "surface-container-lowest": "#ffffff",
+              outline: "#837371",
+              "outline-variant": "#d5c2bf",
+              "on-surface-variant": "#514442",
+              background: "#fcf9f8",
+              "secondary-container": "#fed65b",
+              "tertiary-container": "#bab6b5",
+              "on-surface": "#1c1b1b",
+              "surface-dim": "#dcd9d9",
+              "primary-container": "#e2a9a1",
+              "on-tertiary-container": "#494747",
+              "on-primary-fixed": "#32120e",
+              "on-tertiary-fixed-variant": "#484646",
+              "secondary-fixed": "#ffe088",
+              "inverse-on-surface": "#f3f0ef",
+              "error-container": "#ffdad6",
+              "on-tertiary": "#ffffff",
+              "on-secondary-fixed": "#241a00",
+              "on-primary": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "surface-container-low": "#f6f3f2",
+              "inverse-surface": "#313030",
+              "tertiary-fixed": "#e6e1e0",
+              tertiary: "#605e5d",
+              "primary-fixed-dim": "#f3b8b0",
+              "secondary-fixed-dim": "#e9c349",
+              "on-secondary": "#ffffff",
+              surface: "#fcf9f8",
+              primary: "#80534c",
+              "surface-container": "#f0eded",
+              "surface-bright": "#fcf9f8",
+              "primary-fixed": "#ffdad5",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-sm": "8px",
+              "stack-xl": "64px",
+              "margin-mobile": "20px",
+              "container-max": "1280px",
+              "stack-lg": "32px",
+              "margin-desktop": "64px",
+              gutter: "24px",
+              "stack-md": "16px",
+            },
+            fontFamily: {
+              "headline-md": ["Playfair Display"],
+              "headline-sm": ["Playfair Display"],
+              "body-lg": ["Inter"],
+              "display-lg": ["Playfair Display"],
+              "label-md": ["Inter"],
+              "display-lg-mobile": ["Playfair Display"],
+              "body-md": ["Inter"],
+              caption: ["Inter"],
+            },
+            fontSize: {
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+              "body-lg": ["18px", { lineHeight: "28px", fontWeight: "400" }],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              "display-lg-mobile": [
+                "36px",
+                { lineHeight: "44px", fontWeight: "700" },
+              ],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-background text-on-background font-body-md min-h-screen">
+    <!-- Sidebar Navigation -->
+    <aside
+      class="fixed left-0 top-0 h-full w-64 bg-surface border-r border-outline-variant/10 flex flex-col p-stack-md z-40 hidden md:flex"
+    >
+      <div class="mb-stack-xl px-2">
+        <a
+          href="index.html"
+          class="font-display-lg text-[28px] tracking-tighter text-primary"
+          >LUMIÈRE</a
+        >
+      </div>
+      <div class="mb-stack-lg px-2 flex items-center gap-3">
+        <div
+          class="w-10 h-10 rounded-full bg-primary-container overflow-hidden"
+        >
+          <img
+            alt="User Profile Avatar"
+            class="w-full h-full object-cover"
+            data-alt="Close-up portrait of a sophisticated woman with glowing skin and a warm smile, captured in a brightly lit high-end spa environment. The lighting is soft and ethereal, emphasizing the premium beauty context with a subtle rose gold color palette in the background."
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCLedCaxlB50kGWocL8dsj2v4jbAAm5QrUlbJ85kYZA2gIa2TyO6D3ZG0u7LkwNZqQOSSg4kyvab3Gpyqu8ha7iwNzA79TgncUPkF_qOJlTLtZJtTgLSYMmDEF1aHdHA4eE9pqoiAGDSEQosrUYevVEqiCyIPH4JgRX0Rara3K-CRTScyTEFtoTyWtcAxg5rvKkPBSyqNMKIr5sgf9qXeRkNUxRQMZWLiOz6GtXw-PRGUgDe1KXK-AXnE1lO33ILog96IekJrxwk-cz"
+          />
+        </div>
+        <div>
+          <p class="font-label-md text-on-surface">Welcome back</p>
+          <p class="text-caption text-on-surface-variant">Premium Member</p>
+        </div>
+      </div>
+      <nav class="flex-1 space-y-2">
+        <!-- Active State: Dashboard -->
+        <a
+          class="flex items-center gap-3 px-4 py-3 bg-secondary-container text-on-secondary-container rounded-xl font-semibold transition-all"
+          href="customer-dashboard.html"
+        >
+          <span class="material-symbols-outlined" data-weight="fill"
+            >dashboard</span
+          >
+          <span>Dashboard</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all"
+          href="my-bookings.html"
+        >
+          <span class="material-symbols-outlined">calendar_month</span>
+          <span>My Bookings</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all"
+          href="favorites.html"
+        >
+          <span class="material-symbols-outlined">favorite</span>
+          <span>Favorites</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all"
+          href="ai-history.html"
+        >
+          <span class="material-symbols-outlined">auto_awesome</span>
+          <span>AI History</span>
+        </a>
+        <a
+          class="flex items-center gap-3 px-4 py-3 text-on-surface-variant hover:bg-surface-variant rounded-xl transition-all"
+          href="settings.html"
+        >
+          <span class="material-symbols-outlined">settings</span>
+          <span>Settings</span>
+        </a>
+      </nav>
+      <div class="mt-auto p-4 bg-primary-fixed rounded-2xl flex flex-col gap-3">
+        <div class="flex items-center gap-2 text-primary font-semibold">
+          <span class="material-symbols-outlined">military_tech</span>
+          <span class="text-label-md uppercase tracking-widest"
+            >Gold Member</span
+          >
+        </div>
+        <p class="text-caption text-on-primary-fixed-variant">
+          Unlock exclusive luxury spa treatments and early access.
+        </p>
+        <button
+          class="w-full py-2 bg-primary text-white rounded-lg text-label-md hover:opacity-90 transition-opacity"
+          onclick="window.location.href = 'upgrade.html'"
+        >
+          Upgrade to Gold
+        </button>
+      </div>
+    </aside>
+    <!-- Main Content Area -->
+    <main
+      class="md:ml-64 p-margin-mobile md:p-margin-desktop max-w-container-max mx-auto space-y-stack-xl"
+    >
+      <!-- Header Section -->
+      <header
+        class="flex flex-col md:flex-row md:items-end justify-between gap-4"
+      >
+        <div>
+          <h2 class="font-headline-md text-headline-md text-primary">
+            Your Beauty Concierge
+          </h2>
+          <p class="text-body-lg text-on-surface-variant">
+            Your personalized curation for Oct 24, 2024
+          </p>
+        </div>
+        <div class="flex gap-4">
+          <div
+            class="glass-card px-6 py-4 rounded-2xl shadow-[0_40px_40px_0_rgba(226,169,161,0.04)] text-center"
+          >
+            <p
+              class="text-caption text-on-surface-variant uppercase tracking-tighter"
+            >
+              Loyalty Points
+            </p>
+            <p class="text-headline-sm text-primary font-bold">12,450</p>
+          </div>
+        </div>
+      </header>
+      <!-- Bento Grid: Upcoming & AI Recommendation -->
+      <section class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+        <!-- Upcoming Appointment -->
+        <div
+          class="lg:col-span-2 glass-card rounded-3xl p-stack-lg relative overflow-hidden flex flex-col justify-between min-h-[320px] shadow-[0_40px_40px_0_rgba(226,169,161,0.04)]"
+        >
+          <div class="relative z-10">
+            <div class="flex justify-between items-start">
+              <span
+                class="bg-secondary-container text-on-secondary-container px-3 py-1 rounded-full text-caption font-bold"
+                >NEXT SESSION</span
+              >
+              <div class="text-right">
+                <p class="text-headline-sm font-headline-sm text-on-surface">
+                  HydraFacial Glow
+                </p>
+                <p class="text-body-md text-on-surface-variant">
+                  Lumière Signature Spa, Paris
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="relative z-10 flex flex-col md:flex-row gap-8 items-center md:items-end"
+          >
+            <div class="flex gap-4 items-baseline">
+              <div class="text-center">
+                <span class="text-display-lg text-primary block" id="days"
+                  >02</span
+                >
+                <span class="text-caption text-on-surface-variant uppercase"
+                  >Days</span
+                >
+              </div>
+              <span class="text-headline-md text-outline-variant">:</span>
+              <div class="text-center">
+                <span class="text-display-lg text-primary block" id="hours"
+                  >14</span
+                >
+                <span class="text-caption text-on-surface-variant uppercase"
+                  >Hours</span
+                >
+              </div>
+              <span class="text-headline-md text-outline-variant">:</span>
+              <div class="text-center">
+                <span class="text-display-lg text-primary block" id="mins"
+                  >38</span
+                >
+                <span class="text-caption text-on-surface-variant uppercase"
+                  >Mins</span
+                >
+              </div>
+            </div>
+            <button
+              class="ml-auto flex items-center gap-2 bg-primary px-6 py-3 text-white rounded-full font-label-md hover:scale-105 transition-transform shadow-lg"
+              onclick="window.location.href = 'booking-details.html'"
+            >
+              View Details
+              <span class="material-symbols-outlined text-[20px]"
+                >arrow_forward</span
+              >
+            </button>
+          </div>
+          <!-- Artistic background element -->
+          <div
+            class="absolute -right-20 -bottom-20 w-64 h-64 bg-primary-container/20 rounded-full blur-3xl animate-pulse"
+          ></div>
+        </div>
+        <!-- AI Recommendation -->
+        <div
+          class="bg-primary text-white rounded-3xl p-stack-lg flex flex-col shadow-xl relative overflow-hidden group"
+        >
+          <div class="mb-4">
+            <div class="flex items-center gap-2 mb-2">
+              <span class="material-symbols-outlined text-secondary-fixed"
+                >spark</span
+              >
+              <span class="text-caption uppercase tracking-widest font-bold"
+                >AI Stylist Pick</span
+              >
+            </div>
+            <h3 class="font-headline-sm text-headline-sm leading-tight">
+              Sculptural Hair Artistry
+            </h3>
+            <p class="text-body-md opacity-80 mt-2">
+              Based on your recent interest in avant-garde styling and volume.
+            </p>
+          </div>
+          <div class="mt-auto relative rounded-xl overflow-hidden h-40">
+            <img
+              alt="Sculptural Hair Model"
+              class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+              data-alt="A high-fashion beauty portrait showcasing a model with an intricate, sculptural hairstyle that emphasizes volume and artistic flair. The setting is a minimalist studio with soft gold backlighting, creating a luxurious and avant-garde aesthetic consistent with a premium hair salon experience."
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCA9SB5ygNsvkQnyjtKe1NE8A4WFtkfXcwB2SsgSjmcldVMw7FcK125KKp_Ga-cPxihqfUXcyu7gZPIxfVDynR3jsG8LJp1Yju88Gr_d1GpzG3VoyjmuMq2NFUVHzOXUvno4-lCKe3asTcR-gREzOTAujpaZiP4EuK8ezYs5e8o4E7yNfXoUKasv0HQWjWh3FgeKn9LBpJYGDiaYhqBu1XrDQk3wuVTRfqMdjwH_IgQob8UVxxLUmRtVJpzZMGRPTIfQl2X3ZCCLPjM"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"
+            ></div>
+            <button
+              class="absolute bottom-3 left-3 bg-white/20 backdrop-blur-md px-4 py-1.5 rounded-full text-caption border border-white/30"
+              onclick="window.location.href = 'book-appointment.html'"
+            >
+              Book Recommendation
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Recommended For You (Horizontal Scroll/Grid) -->
+      <section class="space-y-stack-md">
+        <div class="flex justify-between items-center px-2">
+          <h3 class="font-headline-sm text-headline-sm text-on-surface">
+            Curated Experiences
+          </h3>
+          <a
+            class="text-primary font-label-md hover:underline decoration-primary-container underline-offset-4"
+            href="salons.html"
+            >View All</a
+          >
+        </div>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter">
+          <!-- Card 1 -->
+          <div
+            class="glass-card p-2 rounded-[24px] hover:translate-y-[-8px] transition-all duration-500 group cursor-pointer"
+            onclick="window.location.href = 'salon-profile.html?id=1'"
+          >
+            <div
+              class="aspect-[4/5] rounded-[20px] overflow-hidden mb-4 relative"
+            >
+              <img
+                alt="Luxury Spa Session"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="A serene spa environment featuring a minimalist treatment room with warm wood accents and soft, ambient lighting. A row of neatly folded white towels and a single rose gold vessel create a sense of tranquility and exclusivity, reflecting a high-end beauty sanctuary."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwceE5TI9STvaPijxY9zAH7PdmkyWq8THuoxqSdxz5ln12UsonA731qrvqpPpmUGQrrcDpODz1Kc5Meyi3L7RLijjXKeyh92Z3lCTQPAPRrSTO1bsL8KRQmS9jY1G-07yS0yZJvm0a_LCuOkceCBIhGWZxzh78SRCLSj5jpXmuPQtyfQJ71nNqPEGSdLxWkpRJwfIsbxahKpiLVTqsld_SCO0R-HUhJHyj1KPoDbUkzzm8YOi0Btkaynra89a7MNH9T5lsrRTd5zAL"
+              />
+              <div
+                class="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-sm"
+                onclick="event.stopPropagation()"
+              >
+                <span class="material-symbols-outlined text-primary text-[20px]"
+                  >favorite</span
+                >
+              </div>
+            </div>
+            <div class="px-3 pb-3">
+              <p
+                class="text-caption text-primary font-bold uppercase tracking-wider"
+              >
+                SKINCARE
+              </p>
+              <h4 class="font-headline-sm text-[20px] text-on-surface mt-1">
+                24K Gold Facial
+              </h4>
+              <div class="flex items-center gap-2 mt-2">
+                <span
+                  class="material-symbols-outlined text-secondary text-[16px]"
+                  data-weight="fill"
+                  >star</span
+                >
+                <span class="text-caption text-on-surface-variant font-bold"
+                  >4.9 (124 reviews)</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 2 -->
+          <div
+            class="glass-card p-2 rounded-[24px] hover:translate-y-[-8px] transition-all duration-500 group cursor-pointer"
+            onclick="window.location.href = 'salon-profile.html?id=2'"
+          >
+            <div
+              class="aspect-[4/5] rounded-[20px] overflow-hidden mb-4 relative"
+            >
+              <img
+                alt="Makeup Consultation"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="A collection of high-end cosmetic products arranged artistically on a marble surface. The lighting is bright and clean, with soft shadows and rose gold accents from the packaging, evoking a premium and curated beauty experience."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ-uUSL_rcfvSusXn4sGgtEe2EK3U0-WxKfkUHorvNbGoYJ-v2qNaufiA1t-zUucUPbjsUvCl0ktoSsobeKNl4rfle_X1jiWa6ga2BPPvC1f2Za6mHsEXY0tirIJSVF0b64tKCjF78Sh95qqcjKCSOWoNmArZY7x3HU0ANWCUTpwftc0BkmO04K9KBYtmmn8Y9KsNy9CqYx8EmZKjiI3y-GELrAYfXnbi_s1ak-u8oIWfM8ZXPKPSeZK8O2v-87FE9RsE5tP2_RaM-"
+              />
+              <div
+                class="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-sm"
+                onclick="event.stopPropagation()"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-[20px]"
+                  >favorite</span
+                >
+              </div>
+            </div>
+            <div class="px-3 pb-3">
+              <p
+                class="text-caption text-primary font-bold uppercase tracking-wider"
+              >
+                COSMETIC
+              </p>
+              <h4 class="font-headline-sm text-[20px] text-on-surface mt-1">
+                AI Glow Analysis
+              </h4>
+              <div class="flex items-center gap-2 mt-2">
+                <span
+                  class="material-symbols-outlined text-secondary text-[16px]"
+                  data-weight="fill"
+                  >star</span
+                >
+                <span class="text-caption text-on-surface-variant font-bold"
+                  >5.0 (88 reviews)</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 3 -->
+          <div
+            class="glass-card p-2 rounded-[24px] hover:translate-y-[-8px] transition-all duration-500 group cursor-pointer"
+            onclick="window.location.href = 'salon-profile.html?id=3'"
+          >
+            <div
+              class="aspect-[4/5] rounded-[20px] overflow-hidden mb-4 relative"
+            >
+              <img
+                alt="Luxury Haircare"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="A close-up shot of a stylist applying a premium treatment to a client's glossy hair in a modern, sunlit salon. The environment is airy and sophisticated, featuring clean lines and a palette of warm neutrals and rose gold details."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuA4jmIacV4-hUDmefh83xAAnW38dQP1OLWoCVHot4vSp0Z-_c8UqWklBtKTzxuLh_uO0-_c3H0Y7aDajgXhJBCYLzUgMgLxaSQg1XhybS2n6t9rptsox25NCdkdm79If942cv0wvZDotm0FXCx70dJzT3UBHIuUxVCY5Dcsa5LljPPUlhNs9ElloKmkzjt-Ds_9uRC6Pgb4aZR1eoxEOZ_kBI8rMNH4mQcLEYrSY2G8jkqIpzgqBE65AUzWIAMsVxHaoggShsRefjqf"
+              />
+              <div
+                class="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-sm"
+                onclick="event.stopPropagation()"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-[20px]"
+                  >favorite</span
+                >
+              </div>
+            </div>
+            <div class="px-3 pb-3">
+              <p
+                class="text-caption text-primary font-bold uppercase tracking-wider"
+              >
+                HAIR
+              </p>
+              <h4 class="font-headline-sm text-[20px] text-on-surface mt-1">
+                Silk Infusion
+              </h4>
+              <div class="flex items-center gap-2 mt-2">
+                <span
+                  class="material-symbols-outlined text-secondary text-[16px]"
+                  data-weight="fill"
+                  >star</span
+                >
+                <span class="text-caption text-on-surface-variant font-bold"
+                  >4.8 (210 reviews)</span
+                >
+              </div>
+            </div>
+          </div>
+          <!-- Card 4 -->
+          <div
+            class="glass-card p-2 rounded-[24px] hover:translate-y-[-8px] transition-all duration-500 group cursor-pointer"
+            onclick="window.location.href = 'salon-profile.html?id=4'"
+          >
+            <div
+              class="aspect-[4/5] rounded-[20px] overflow-hidden mb-4 relative"
+            >
+              <img
+                alt="Nail Art Studio"
+                class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                data-alt="A macro shot of elegant, minimalist nail art being perfected in a high-end beauty studio. The focus is sharp on the artistic details, with a soft-focus background of marble and warm metallic tones, reflecting a clean and luxurious aesthetic."
+                src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVgLz1x0FLqfpYsfJz8sbd4z_d8UA5JBE6AxyIATKV69Fsm69PeYbp6cnvzi0gXMXQkPXlG9y94kW0RnMrvL4nDH5pvSwjwqiwIfai3uLEAPQv-WpPKRB8XuqY-9BbqPNprJ_K32e81xvCsJEp4omgZfRoe2sRh5ToLhcrGHLsq6iONhthMHa5CCVyaV9wAbQg9Y0qfb-Vn9NDUVn-HELl-ZPgIOuMKU2DqDuYlgyDCI-Bwdtb8I5xBJhtvhxjMveyjAHqmR9SEeKf"
+              />
+              <div
+                class="absolute top-4 right-4 bg-white/90 backdrop-blur-md p-2 rounded-full shadow-sm"
+                onclick="event.stopPropagation()"
+              >
+                <span
+                  class="material-symbols-outlined text-on-surface-variant text-[20px]"
+                  >favorite</span
+                >
+              </div>
+            </div>
+            <div class="px-3 pb-3">
+              <p
+                class="text-caption text-primary font-bold uppercase tracking-wider"
+              >
+                NAILS
+              </p>
+              <h4 class="font-headline-sm text-[20px] text-on-surface mt-1">
+                Lumière Sculpt
+              </h4>
+              <div class="flex items-center gap-2 mt-2">
+                <span
+                  class="material-symbols-outlined text-secondary text-[16px]"
+                  data-weight="fill"
+                  >star</span
+                >
+                <span class="text-caption text-on-surface-variant font-bold"
+                  >4.9 (45 reviews)</span
+                >
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!-- Recent Activity Section -->
+      <section class="space-y-stack-md">
+        <h3 class="font-headline-sm text-headline-sm text-on-surface px-2">
+          Recent Salon Visits
+        </h3>
+        <div class="flex flex-col gap-4">
+          <!-- Activity 1 -->
+          <div
+            class="glass-card p-4 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 group"
+          >
+            <div
+              class="flex items-center gap-4"
+              onclick="window.location.href = 'salon-profile.html?id=5'"
+              style="cursor: pointer"
+            >
+              <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                <img
+                  alt="Salon History"
+                  class="w-full h-full object-cover"
+                  data-alt="The interior of a luxurious, minimalist hair salon with high ceilings, large windows, and designer furniture. The space is flooded with natural light, creating a bright and airy atmosphere that emphasizes the premium nature of the beauty establishment."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDUZtS7-hdfN9i_MlkUebZIswGgH83H2mMG-jJgWJdi4m2vO0yjWoizLNvgGSdCMkWjcDL-_-JFjWwX4OT7oJsQNmELYElEfFtGKvb3JoEJVUONRVTx3Ty6Le15C8UvFrpHb_H85VnoMiX8KpWh0cQRBm4TlOk-XHoFON80XeDq-BjSlsVWfVNimFeAoVSxW81IcpfC2rRN7dZK6GsutChzNwcZkwsJ994PlPDyC8aiXgkkZfy8yBo9KDYoPwaPp2VJ53yGa6Z1ygtk"
+                />
+              </div>
+              <div>
+                <h5 class="font-body-lg font-bold text-on-surface">
+                  The Ritz-Carlton Spa
+                </h5>
+                <p class="text-body-md text-on-surface-variant">
+                  Signature Aromatherapy Massage
+                </p>
+                <p class="text-caption text-outline">Visited on Oct 12, 2024</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <button
+                class="px-4 py-2 text-primary font-label-md border border-primary/20 rounded-full hover:bg-primary-container/20 transition-all"
+                onclick="window.location.href = 'write-review.html'"
+              >
+                Review Experience
+              </button>
+              <button
+                class="px-4 py-2 bg-primary/5 text-primary font-label-md rounded-full flex items-center gap-2 hover:bg-primary-container transition-all"
+                onclick="window.location.href = 'book-appointment.html'"
+              >
+                <span class="material-symbols-outlined text-[18px]"
+                  >replay</span
+                >
+                Rebook
+              </button>
+            </div>
+          </div>
+          <!-- Activity 2 -->
+          <div
+            class="glass-card p-4 rounded-2xl flex flex-col md:flex-row md:items-center justify-between gap-4 group"
+          >
+            <div
+              class="flex items-center gap-4"
+              onclick="window.location.href = 'salon-profile.html?id=6'"
+              style="cursor: pointer"
+            >
+              <div class="w-16 h-16 rounded-xl overflow-hidden flex-shrink-0">
+                <img
+                  alt="Salon History"
+                  class="w-full h-full object-cover"
+                  data-alt="A clean and modern beauty laboratory or salon setting, where professional skincare products are displayed on glass shelves. The lighting is soft and clinical yet warm, reflecting a sophisticated and scientifically-backed beauty brand identity."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDhZzO7_cCLmaw4BqXGDxcffmbTPr6sdQn7PbsNFROTyw0qQJ0asbCIdUOz_UqUjcywAqk4fjoLl0FluA1zoSAeYSrqCARe7FHYJZJ2knZYQ2LXtpIJM5XKGFy9Rwx5zRhg6KuQy7B3BL9dOggdr014OgwZchynQHzz3F_IvoFdGmVwJSjplfQOOAqosJ5oleEPKL1xOqSvVnOtLQD6raUrBbxvdQV_HhCDXT9pCQiiERW-vsBBiqvkCmd_sjvtXbO-rN-ccVqHZM8g"
+                />
+              </div>
+              <div>
+                <h5 class="font-body-lg font-bold text-on-surface">
+                  Maison de Beauté
+                </h5>
+                <p class="text-body-md text-on-surface-variant">
+                  Precision Cut &amp; Style
+                </p>
+                <p class="text-caption text-outline">Visited on Sep 28, 2024</p>
+              </div>
+            </div>
+            <div class="flex items-center gap-3">
+              <div class="flex gap-1 text-secondary">
+                <span
+                  class="material-symbols-outlined text-[20px]"
+                  data-weight="fill"
+                  >star</span
+                >
+                <span
+                  class="material-symbols-outlined text-[20px]"
+                  data-weight="fill"
+                  >star</span
+                >
+                <span
+                  class="material-symbols-outlined text-[20px]"
+                  data-weight="fill"
+                  >star</span
+                >
+                <span
+                  class="material-symbols-outlined text-[20px]"
+                  data-weight="fill"
+                  >star</span
+                >
+                <span
+                  class="material-symbols-outlined text-[20px]"
+                  data-weight="fill"
+                  >star</span
+                >
+              </div>
+              <span class="text-caption text-on-surface-variant font-medium"
+                >Reviewed</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer Component -->
+    <footer
+      class="w-full py-stack-xl px-margin-desktop flex flex-col items-center gap-stack-lg bg-surface mt-stack-xl"
+    >
+      <a href="index.html" class="font-display-lg text-display-lg text-primary"
+        >LUMIÈRE</a
+      >
+      <div class="flex flex-wrap justify-center gap-6">
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="privacy.html"
+          >Privacy Policy</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="terms.html"
+          >Terms of Service</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="partner.html"
+          >Partner with Us</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="careers.html"
+          >Careers</a
+        >
+        <a
+          class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
+          href="support.html"
+          >Support</a
+        >
+      </div>
+      <p class="font-body-md text-on-surface-variant opacity-70 text-center">
+        © 2024 LUMIÈRE Beauty. All rights reserved.
+      </p>
+    </footer>
+    <!-- Mobile Navigation -->
+    <nav
+      class="md:hidden fixed bottom-0 left-0 w-full bg-surface/80 backdrop-blur-xl border-t border-outline-variant/10 flex justify-around items-center py-3 z-50"
+    >
+      <a
+        class="flex flex-col items-center text-primary"
+        href="customer-dashboard.html"
+      >
+        <span class="material-symbols-outlined" data-weight="fill"
+          >dashboard</span
+        >
+        <span class="text-[10px] mt-1 font-bold">Home</span>
+      </a>
+      <a
+        class="flex flex-col items-center text-on-surface-variant"
+        href="my-bookings.html"
+      >
+        <span class="material-symbols-outlined">calendar_month</span>
+        <span class="text-[10px] mt-1">Bookings</span>
+      </a>
+      <a
+        class="flex flex-col items-center text-on-surface-variant"
+        href="ai-stylist.html"
+      >
+        <span class="material-symbols-outlined">auto_awesome</span>
+        <span class="text-[10px] mt-1">AI</span>
+      </a>
+      <a
+        class="flex flex-col items-center text-on-surface-variant"
+        href="settings.html"
+      >
+        <span class="material-symbols-outlined">settings</span>
+        <span class="text-[10px] mt-1">Settings</span>
+      </a>
+    </nav>
+    <script>
+      // Micro-interaction for Countdown
+      function updateCountdown() {
+        const daysEl = document.getElementById("days");
+        const hoursEl = document.getElementById("hours");
+        const minsEl = document.getElementById("mins");
+
+        // Just for visual effect - simple decrement
+        let mins = parseInt(minsEl.innerText);
+        if (Math.random() > 0.95) {
+          mins = mins > 0 ? mins - 1 : 59;
+          minsEl.innerText = mins < 10 ? "0" + mins : mins;
+        }
+      }
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>

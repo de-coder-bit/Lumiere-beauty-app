@@ -1,0 +1,1331 @@
+<!doctype html>
+<html class="scroll-smooth" lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>GlowMarket | Premium Salon Listings Mumbai</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@100..900&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      .material-symbols-outlined {
+        font-variation-settings:
+          "FILL" 0,
+          "wght" 300,
+          "GRAD" 0,
+          "opsz" 24;
+      }
+      .glass-nav {
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+      }
+      .rose-gradient {
+        background: linear-gradient(135deg, #e2a9a1 0%, #d8958c 100%);
+      }
+      .text-gradient {
+        background: linear-gradient(135deg, #8b3a35 0%, #e2a9a1 100%);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar {
+        height: 4px;
+      }
+      .custom-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .custom-scrollbar::-webkit-scrollbar-thumb {
+        background: #e2a9a1;
+        border-radius: 10px;
+      }
+    </style>
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              primary: "#80534c",
+              "primary-container": "#e2a9a1",
+              "on-primary-container": "#663d37",
+              secondary: "#735c00",
+              "secondary-container": "#fed65b",
+              surface: "#fcf9f8",
+              "surface-dim": "#dcd9d9",
+              "surface-container-low": "#f6f3f2",
+              "surface-container-lowest": "#ffffff",
+              "surface-container-high": "#eae7e7",
+              "on-surface": "#1c1b1b",
+              "on-surface-variant": "#514442",
+              outline: "#837371",
+              "outline-variant": "#d5c2bf",
+            },
+            borderRadius: {
+              DEFAULT: "0.25rem",
+              lg: "0.5rem",
+              xl: "0.75rem",
+              full: "9999px",
+            },
+            spacing: {
+              "stack-lg": "32px",
+              gutter: "24px",
+              "stack-sm": "8px",
+              "margin-mobile": "20px",
+              "stack-xl": "64px",
+              "margin-desktop": "64px",
+              "container-max": "1280px",
+              "stack-md": "16px",
+            },
+            fontFamily: {
+              "headline-md": ["Playfair Display"],
+              "display-lg": ["Playfair Display"],
+              "label-md": ["Inter"],
+              caption: ["Inter"],
+              "body-md": ["Inter"],
+              "headline-sm": ["Playfair Display"],
+            },
+            fontSize: {
+              "headline-md": [
+                "32px",
+                { lineHeight: "40px", fontWeight: "600" },
+              ],
+              "display-lg": [
+                "48px",
+                {
+                  lineHeight: "56px",
+                  letterSpacing: "-0.02em",
+                  fontWeight: "700",
+                },
+              ],
+              "label-md": [
+                "14px",
+                {
+                  lineHeight: "20px",
+                  letterSpacing: "0.05em",
+                  fontWeight: "600",
+                },
+              ],
+              caption: ["12px", { lineHeight: "16px", fontWeight: "400" }],
+              "body-md": ["16px", { lineHeight: "24px", fontWeight: "400" }],
+              "headline-sm": [
+                "24px",
+                { lineHeight: "32px", fontWeight: "600" },
+              ],
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body
+    class="bg-surface font-body-md text-on-surface selection:bg-primary-container/30"
+  >
+    <!-- TopNavBar -->
+    <header
+      class="fixed top-0 w-full z-50 bg-surface/60 backdrop-blur-md shadow-[0px_40px_40px_0px_rgba(226,169,161,0.04)]"
+    >
+      <nav
+        class="flex justify-between items-center h-20 px-margin-desktop max-w-container-max mx-auto"
+      >
+        <!-- Brand -->
+        <div class="flex items-center gap-3">
+          <div
+            class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center"
+          >
+            <span
+              class="material-symbols-outlined text-on-primary-container text-xl"
+              data-icon="content_cut"
+              >content_cut</span
+            >
+          </div>
+          <span
+            class="font-display-lg text-display-lg text-primary italic !text-2xl tracking-tight"
+            >GlowMarket</span
+          >
+        </div>
+        <!-- Search Bar -->
+        <div class="hidden md:flex flex-1 max-w-md mx-8">
+          <div class="relative w-full group">
+            <span
+              class="material-symbols-outlined absolute left-4 top-1/2 -translate-y-1/2 text-outline"
+              data-icon="search"
+              >search</span
+            >
+            <input
+              class="w-full bg-surface-container-low border-none rounded-full py-2.5 pl-12 pr-4 focus:ring-1 focus:ring-primary-container transition-all"
+              placeholder="Search salons, services..."
+              type="text"
+            />
+          </div>
+        </div>
+        <!-- Actions -->
+        <div class="flex items-center gap-4">
+          <button
+            class="hidden lg:flex items-center text-label-md font-label-md px-6 py-2 border border-primary-container text-primary rounded-full hover:bg-primary-container/10 transition-all"
+          >
+            Sign In
+          </button>
+          <button
+            class="rose-gradient text-white text-label-md font-label-md px-8 py-2.5 rounded-full shadow-lg hover:scale-105 active:scale-95 transition-all"
+          >
+            Book Now
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main class="pt-20">
+      <!-- Page Header -->
+      <section
+        class="bg-gradient-to-b from-[#FDF8F7] to-[#F5E6E4] px-margin-desktop py-12"
+      >
+        <div
+          class="max-w-container-max mx-auto flex flex-col md:flex-row justify-between items-end gap-6"
+        >
+          <div>
+            <h1 class="font-display-lg text-display-lg text-on-surface mb-2">
+              Salons in Mumbai
+            </h1>
+            <p class="text-on-surface-variant font-body-md">
+              247 verified salons found near you
+            </p>
+          </div>
+          <div
+            class="flex bg-surface-container-lowest p-1 rounded-xl shadow-sm border border-outline-variant/30"
+          >
+            <button
+              class="flex items-center gap-2 px-4 py-2 bg-primary-container text-on-primary-container rounded-lg font-label-md text-label-md transition-all"
+            >
+              <span
+                class="material-symbols-outlined text-sm"
+                data-icon="grid_view"
+                >grid_view</span
+              >
+              Grid
+            </button>
+            <button
+              class="flex items-center gap-2 px-4 py-2 text-on-surface-variant hover:bg-surface-container-low rounded-lg font-label-md text-label-md transition-all"
+            >
+              <span class="material-symbols-outlined text-sm" data-icon="list"
+                >list</span
+              >
+              List
+            </button>
+          </div>
+        </div>
+      </section>
+      <!-- Filter Pill Row -->
+      <section
+        class="sticky top-20 z-40 bg-surface/80 backdrop-blur-md border-y border-outline-variant/20 py-4 px-margin-desktop"
+      >
+        <div
+          class="max-w-container-max mx-auto flex items-center justify-between gap-4"
+        >
+          <div
+            class="flex items-center gap-3 overflow-x-auto custom-scrollbar no-scrollbar pb-1"
+          >
+            <button
+              class="whitespace-nowrap px-6 py-2 rounded-full bg-primary text-white font-label-md text-label-md"
+            >
+              All
+            </button>
+            <button
+              class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:bg-primary-container/5 font-label-md text-label-md transition-all"
+            >
+              Hair
+            </button>
+            <button
+              class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:bg-primary-container/5 font-label-md text-label-md transition-all"
+            >
+              Nails
+            </button>
+            <button
+              class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:bg-primary-container/5 font-label-md text-label-md transition-all"
+            >
+              Skincare
+            </button>
+            <button
+              class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:bg-primary-container/5 font-label-md text-label-md transition-all"
+            >
+              Bridal
+            </button>
+            <button
+              class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:bg-primary-container/5 font-label-md text-label-md transition-all"
+            >
+              Massage
+            </button>
+            <button
+              class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:bg-primary-container/5 font-label-md text-label-md transition-all"
+            >
+              Makeup
+            </button>
+            <button
+              class="whitespace-nowrap px-6 py-2 rounded-full border border-outline-variant text-on-surface-variant hover:border-primary-container hover:bg-primary-container/5 font-label-md text-label-md transition-all"
+            >
+              Spa
+            </button>
+          </div>
+          <button
+            class="flex items-center gap-2 px-5 py-2 border border-outline text-on-surface rounded-full font-label-md text-label-md hover:bg-surface-container-high transition-all shrink-0"
+          >
+            Filters
+            <span class="material-symbols-outlined text-lg" data-icon="settings"
+              >settings</span
+            >
+          </button>
+        </div>
+      </section>
+      <!-- Content Layout -->
+      <section
+        class="max-w-container-max mx-auto px-margin-desktop py-stack-lg flex flex-col lg:flex-row gap-gutter"
+      >
+        <!-- Left Sidebar (Filters) -->
+        <aside class="hidden lg:flex flex-col gap-8 w-72 shrink-0">
+          <!-- Location -->
+          <div>
+            <h3
+              class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider"
+            >
+              Location
+            </h3>
+            <div class="relative">
+              <span
+                class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-primary"
+                data-icon="location_on"
+                >location_on</span
+              >
+              <input
+                class="w-full bg-surface-container-lowest border border-outline-variant rounded-xl py-2 pl-10 pr-4 text-body-md focus:ring-primary focus:border-primary"
+                type="text"
+                value="Mumbai"
+              />
+            </div>
+          </div>
+          <!-- Distance -->
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3
+                class="font-label-md text-label-md text-on-surface uppercase tracking-wider"
+              >
+                Distance
+              </h3>
+              <span class="text-caption font-caption text-primary">10km</span>
+            </div>
+            <input
+              class="w-full accent-primary h-1.5 bg-surface-container-high rounded-lg appearance-none cursor-pointer"
+              max="50"
+              min="1"
+              type="range"
+              value="10"
+            />
+          </div>
+          <!-- Ratings -->
+          <div>
+            <h3
+              class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider"
+            >
+              Ratings
+            </h3>
+            <div class="space-y-3">
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input
+                  checked=""
+                  class="rounded text-primary focus:ring-primary border-outline-variant w-5 h-5"
+                  type="checkbox"
+                />
+                <span
+                  class="text-body-md text-on-surface-variant group-hover:text-primary transition-colors"
+                  >4+ Stars</span
+                >
+              </label>
+              <label class="flex items-center gap-3 cursor-pointer group">
+                <input
+                  class="rounded text-primary focus:ring-primary border-outline-variant w-5 h-5"
+                  type="checkbox"
+                />
+                <span
+                  class="text-body-md text-on-surface-variant group-hover:text-primary transition-colors"
+                  >3+ Stars</span
+                >
+              </label>
+            </div>
+          </div>
+          <!-- Price Range -->
+          <div>
+            <div class="flex justify-between items-center mb-4">
+              <h3
+                class="font-label-md text-label-md text-on-surface uppercase tracking-wider"
+              >
+                Price Range
+              </h3>
+              <span class="text-caption font-caption text-primary"
+                >₹200 - ₹3,000</span
+              >
+            </div>
+            <div class="relative h-1.5 bg-surface-container-high rounded-lg">
+              <div
+                class="absolute inset-x-4 h-full bg-primary-container rounded-lg"
+              ></div>
+              <div
+                class="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-md cursor-pointer"
+              ></div>
+              <div
+                class="absolute right-4 top-1/2 -translate-y-1/2 w-4 h-4 bg-white border-2 border-primary rounded-full shadow-md cursor-pointer"
+              ></div>
+            </div>
+          </div>
+          <!-- Availability -->
+          <div>
+            <h3
+              class="font-label-md text-label-md text-on-surface mb-4 uppercase tracking-wider"
+            >
+              Availability
+            </h3>
+            <div class="flex flex-wrap gap-2">
+              <button
+                class="px-4 py-1.5 rounded-full bg-primary-container text-on-primary-container text-caption font-label-md"
+              >
+                Today
+              </button>
+              <button
+                class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface-variant text-caption font-label-md hover:bg-surface-container-low transition-colors"
+              >
+                Tomorrow
+              </button>
+              <button
+                class="px-4 py-1.5 rounded-full border border-outline-variant text-on-surface-variant text-caption font-label-md hover:bg-surface-container-low transition-colors"
+              >
+                Weekend
+              </button>
+            </div>
+          </div>
+          <!-- Toggles -->
+          <div class="space-y-4 pt-4 border-t border-outline-variant/30">
+            <label class="flex items-center justify-between cursor-pointer">
+              <span class="text-body-md text-on-surface">Open Now</span>
+              <div class="relative inline-flex items-center cursor-pointer">
+                <input class="sr-only peer" type="checkbox" />
+                <div
+                  class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
+                ></div>
+              </div>
+            </label>
+            <label class="flex items-center justify-between cursor-pointer">
+              <span class="text-body-md text-on-surface">Verified Only</span>
+              <div class="relative inline-flex items-center cursor-pointer">
+                <input checked="" class="sr-only peer" type="checkbox" />
+                <div
+                  class="w-11 h-6 bg-surface-container-high peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-primary"
+                ></div>
+              </div>
+            </label>
+          </div>
+        </aside>
+        <!-- Right Content Area -->
+        <div class="flex-1">
+          <!-- Sort Dropdown -->
+          <div class="flex justify-end mb-8">
+            <div class="flex items-center gap-2 group cursor-pointer">
+              <span class="text-caption font-label-md text-on-surface-variant"
+                >Sort by:</span
+              >
+              <span
+                class="text-label-md font-label-md text-on-surface flex items-center gap-1 group-hover:text-primary transition-colors"
+              >
+                Top Rated
+                <span
+                  class="material-symbols-outlined text-sm"
+                  data-icon="keyboard_arrow_down"
+                  >keyboard_arrow_down</span
+                >
+              </span>
+            </div>
+          </div>
+          <!-- Salon Grid -->
+          <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
+            <!-- Card 1 -->
+            <article
+              class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0px_40px_40px_0px_rgba(226,169,161,0.04)] hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col border border-outline-variant/10"
+            >
+              <div class="relative h-56 w-full overflow-hidden">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  data-alt="A luxurious minimalist hair salon interior in Mumbai with soft rose gold accents, sleek white leather chairs, and large round mirrors reflecting warm ambient lighting. The atmosphere is serene and high-end, featuring polished marble floors and delicate floral arrangements. High-key lighting creates an airy, boutique aesthetic consistent with a premium beauty marketplace."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCG8oLyZ4QlPESiquh-pwXYrBvnhddX7uLS4-8Bb37Dt68d3eMP8tS8yUS2wZPgBFnkm-f1xeT64RUO_PG6KjDcQPjIJWVoiDqoAXsw_Ft4zdk9SEHgK0_zwvKZq_2H5tgpcoPNfL9ZIX-J3X3q2kT9lYMR68vWbUApstIUgcf-iE8vg1mcf9YdeOg9SJO1pcc16Uz3lTOS4VDT__eiJ4v-YiXWxrRCwxpb5hM-y3JrSNn5opr5cHZw7CLwcN__aMu5ti2DjG_T_UBN"
+                />
+                <div
+                  class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1"
+                >
+                  VERIFIED
+                  <span
+                    class="material-symbols-outlined text-xs"
+                    data-icon="check_circle"
+                    >check_circle</span
+                  >
+                </div>
+                <div class="absolute top-4 right-4 flex flex-col gap-2">
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-primary hover:bg-white transition-all"
+                  >
+                    <span
+                      class="material-symbols-outlined text-xl"
+                      data-icon="favorite"
+                      >favorite</span
+                    >
+                  </button>
+                  <div
+                    class="bg-primary/90 backdrop-blur-md text-white px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1"
+                  >
+                    ✨ 96% match
+                  </div>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <div class="flex justify-between items-start mb-2">
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface">
+                    Serenity Beauty Studio
+                  </h2>
+                  <div class="flex items-center gap-1 text-primary">
+                    <span
+                      class="material-symbols-outlined text-sm fill-current"
+                      data-icon="star"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >star</span
+                    >
+                    <span class="text-label-md font-bold">4.9</span>
+                  </div>
+                </div>
+                <p
+                  class="text-caption text-on-surface-variant flex items-center gap-1 mb-4"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="location_on"
+                    >location_on</span
+                  >
+                  Bandra West · 2.3km
+                </p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Hair</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Skin</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Color</span
+                  >
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-outline-variant/10 flex items-center justify-between"
+                >
+                  <div>
+                    <p class="text-caption text-on-surface-variant mb-1">
+                      Starts from
+                    </p>
+                    <p class="font-bold text-lg text-on-surface">₹599</p>
+                  </div>
+                  <div class="text-right">
+                    <p
+                      class="text-[10px] text-green-600 font-bold mb-1 flex items-center justify-end gap-1"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-green-600"
+                      ></span>
+                      Open till 8PM
+                    </p>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 border border-outline-variant rounded-full hover:bg-surface-container-low transition-all"
+                      >
+                        <span
+                          class="material-symbols-outlined text-sm"
+                          data-icon="visibility"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="rose-gradient text-white px-4 py-2 rounded-full text-caption font-bold flex items-center gap-1 hover:shadow-md transition-all"
+                      >
+                        Book Now
+                        <span
+                          class="material-symbols-outlined text-xs"
+                          data-icon="arrow_forward"
+                          >arrow_forward</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- Card 2 -->
+            <article
+              class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0px_40px_40px_0px_rgba(226,169,161,0.04)] hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col border border-outline-variant/10"
+            >
+              <div class="relative h-56 w-full overflow-hidden">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  data-alt="A sophisticated bridal makeup studio setup in Juhu, Mumbai. The space is filled with warm golden lighting, elegant vanity mirrors with circular bulbs, and premium cosmetics arranged neatly. A plush velvet chair in dusty rose sits before the mirror. The design aesthetic is opulent yet refined, using a palette of warm creams and gold highlights."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsPTE0LROxhXvlsKEGLIly9Sh68Uohq-cYSYpyhj6vsQFklzTG_7Hqo8HeO8e_48AtRPrK1soI8IpPR5mxdqajPkslyse4i7A6LT8APOhUaIm_Df2GKo77Lu0BHK1UobPrMPATqNOlR-MZBx_zzB_XBE10DAepcdn_EPq2QX2sMPOLZ38LKLHSAmbquU_0MbXcAXHu-o9YiTD1GCMJB4jSzpEnoU-m_xlSbn9LW7ddTEOXzHwo4rBpzhfYhe4_mWvorpW1_3PMil33"
+                />
+                <div
+                  class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1"
+                >
+                  VERIFIED
+                  <span
+                    class="material-symbols-outlined text-xs"
+                    data-icon="check_circle"
+                    >check_circle</span
+                  >
+                </div>
+                <div class="absolute top-4 right-4 flex flex-col gap-2">
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-primary hover:bg-white transition-all"
+                  >
+                    <span
+                      class="material-symbols-outlined text-xl"
+                      data-icon="favorite"
+                      >favorite</span
+                    >
+                  </button>
+                  <div
+                    class="bg-primary/90 backdrop-blur-md text-white px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1"
+                  >
+                    ✨ 92% match
+                  </div>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <div class="flex justify-between items-start mb-2">
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface">
+                    Bloom Bridal Lounge
+                  </h2>
+                  <div class="flex items-center gap-1 text-primary">
+                    <span
+                      class="material-symbols-outlined text-sm fill-current"
+                      data-icon="star"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >star</span
+                    >
+                    <span class="text-label-md font-bold">4.8</span>
+                  </div>
+                </div>
+                <p
+                  class="text-caption text-on-surface-variant flex items-center gap-1 mb-4"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="location_on"
+                    >location_on</span
+                  >
+                  Juhu · 3.4km
+                </p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Bridal</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Makeup</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Styling</span
+                  >
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-outline-variant/10 flex items-center justify-between"
+                >
+                  <div>
+                    <p class="text-caption text-on-surface-variant mb-1">
+                      Starts from
+                    </p>
+                    <p class="font-bold text-lg text-on-surface">₹1,299</p>
+                  </div>
+                  <div class="text-right">
+                    <p
+                      class="text-[10px] text-green-600 font-bold mb-1 flex items-center justify-end gap-1"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-green-600"
+                      ></span>
+                      Open till 9PM
+                    </p>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 border border-outline-variant rounded-full hover:bg-surface-container-low transition-all"
+                      >
+                        <span
+                          class="material-symbols-outlined text-sm"
+                          data-icon="visibility"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="rose-gradient text-white px-4 py-2 rounded-full text-caption font-bold flex items-center gap-1 hover:shadow-md transition-all"
+                      >
+                        Book Now
+                        <span
+                          class="material-symbols-outlined text-xs"
+                          data-icon="arrow_forward"
+                          >arrow_forward</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- Card 3 -->
+            <article
+              class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0px_40px_40px_0px_rgba(226,169,161,0.04)] hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col border border-outline-variant/10"
+            >
+              <div class="relative h-56 w-full overflow-hidden">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  data-alt="A modern skincare clinic and facial bar in Andheri East, Mumbai. The clinic features clean white surfaces, glowing back-lit shelves displaying high-end dermatological products, and ultra-modern treatment chairs. The lighting is bright and clinical yet inviting, with a soft pink hue reflecting the GlowMarket brand colors."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCHSDWGfLxe1tHb4Aamq3rxkRXtOxhhleZlmromcgqe2-GQUa-gbWDbfJOqplL9LAJp2Uz_l2ZXGJSNFHw7eWd0nclf40Kl1Wza8AokJmrbwlwu2HmPfGmqjjAKPea0Yavcxg-rdHQSKNIQcThCcgOYqpmzRirpbm0m_bmigrCEKZCdhYfj95W1JNeRqQJzQwzlg_r79YRnJ80QOtvwSBDQ0rCidV-z0VxDDHMUMzOGPelKGB5I2uiWLWxXzWLDIMgMOLT3vMLpj3nn"
+                />
+                <div
+                  class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1"
+                >
+                  VERIFIED
+                  <span
+                    class="material-symbols-outlined text-xs"
+                    data-icon="check_circle"
+                    >check_circle</span
+                  >
+                </div>
+                <div class="absolute top-4 right-4 flex flex-col gap-2">
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-primary hover:bg-white transition-all"
+                  >
+                    <span
+                      class="material-symbols-outlined text-xl"
+                      data-icon="favorite"
+                      >favorite</span
+                    >
+                  </button>
+                  <div
+                    class="bg-primary/90 backdrop-blur-md text-white px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1"
+                  >
+                    ✨ 89% match
+                  </div>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <div class="flex justify-between items-start mb-2">
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface">
+                    The Glow Bar
+                  </h2>
+                  <div class="flex items-center gap-1 text-primary">
+                    <span
+                      class="material-symbols-outlined text-sm fill-current"
+                      data-icon="star"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >star</span
+                    >
+                    <span class="text-label-md font-bold">4.7</span>
+                  </div>
+                </div>
+                <p
+                  class="text-caption text-on-surface-variant flex items-center gap-1 mb-4"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="location_on"
+                    >location_on</span
+                  >
+                  Andheri East · 5.0km
+                </p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Skin</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Facials</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Peels</span
+                  >
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-outline-variant/10 flex items-center justify-between"
+                >
+                  <div>
+                    <p class="text-caption text-on-surface-variant mb-1">
+                      Starts from
+                    </p>
+                    <p class="font-bold text-lg text-on-surface">₹449</p>
+                  </div>
+                  <div class="text-right">
+                    <p
+                      class="text-[10px] text-green-600 font-bold mb-1 flex items-center justify-end gap-1"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-green-600"
+                      ></span>
+                      Open till 7PM
+                    </p>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 border border-outline-variant rounded-full hover:bg-surface-container-low transition-all"
+                      >
+                        <span
+                          class="material-symbols-outlined text-sm"
+                          data-icon="visibility"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="rose-gradient text-white px-4 py-2 rounded-full text-caption font-bold flex items-center gap-1 hover:shadow-md transition-all"
+                      >
+                        Book Now
+                        <span
+                          class="material-symbols-outlined text-xs"
+                          data-icon="arrow_forward"
+                          >arrow_forward</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- Card 4 -->
+            <article
+              class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0px_40px_40px_0px_rgba(226,169,161,0.04)] hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col border border-outline-variant/10"
+            >
+              <div class="relative h-56 w-full overflow-hidden">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  data-alt="An elegant nail atelier in Powai, Mumbai. The studio features sleek manicure stations with white marble tops and comfortable rose-colored velvet armchairs. Walls are decorated with designer polish bottles on floating gold shelves. The mood is chic and exclusive, illuminated by soft pendant lights that cast a warm glow across the pristine salon floor."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEYmoOPF4G_aT9MEstmzJrXPTRbN9I9dzFyDEnPQvLf07EB2rZ9qnGvzf3qTgpebewzvFTNRbWgv_wuYkPB0NzH4hbLSRvpJiFaxtzPHtTccsWdKjGyN-WAhF3dDMmpb14wGvcdZ9JwkpjOBDzNURrpTWDpJA40QD9l-ntHZl3_B_oh186_Ufyt938LdM0z5DkdPNIueRh1TfSj0dWmKA31-mQMAijqFsASio-bFgoK0uQ1E6pxad3GqPMD8CmMXn5ufj4dV96Yblf"
+                />
+                <div
+                  class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1"
+                >
+                  VERIFIED
+                  <span
+                    class="material-symbols-outlined text-xs"
+                    data-icon="check_circle"
+                    >check_circle</span
+                  >
+                </div>
+                <div class="absolute top-4 right-4 flex flex-col gap-2">
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-primary hover:bg-white transition-all"
+                  >
+                    <span
+                      class="material-symbols-outlined text-xl"
+                      data-icon="favorite"
+                      >favorite</span
+                    >
+                  </button>
+                  <div
+                    class="bg-primary/90 backdrop-blur-md text-white px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1"
+                  >
+                    ✨ 98% match
+                  </div>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <div class="flex justify-between items-start mb-2">
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface">
+                    Luxe Nail Atelier
+                  </h2>
+                  <div class="flex items-center gap-1 text-primary">
+                    <span
+                      class="material-symbols-outlined text-sm fill-current"
+                      data-icon="star"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >star</span
+                    >
+                    <span class="text-label-md font-bold">4.9</span>
+                  </div>
+                </div>
+                <p
+                  class="text-caption text-on-surface-variant flex items-center gap-1 mb-4"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="location_on"
+                    >location_on</span
+                  >
+                  Powai · 6.8km
+                </p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Nails</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Art</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Pedicure</span
+                  >
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-outline-variant/10 flex items-center justify-between"
+                >
+                  <div>
+                    <p class="text-caption text-on-surface-variant mb-1">
+                      Starts from
+                    </p>
+                    <p class="font-bold text-lg text-on-surface">₹349</p>
+                  </div>
+                  <div class="text-right">
+                    <p
+                      class="text-[10px] text-green-600 font-bold mb-1 flex items-center justify-end gap-1"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-green-600"
+                      ></span>
+                      Open till 8:30PM
+                    </p>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 border border-outline-variant rounded-full hover:bg-surface-container-low transition-all"
+                      >
+                        <span
+                          class="material-symbols-outlined text-sm"
+                          data-icon="visibility"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="rose-gradient text-white px-4 py-2 rounded-full text-caption font-bold flex items-center gap-1 hover:shadow-md transition-all"
+                      >
+                        Book Now
+                        <span
+                          class="material-symbols-outlined text-xs"
+                          data-icon="arrow_forward"
+                          >arrow_forward</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- Card 5 -->
+            <article
+              class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0px_40px_40px_0px_rgba(226,169,161,0.04)] hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col border border-outline-variant/10"
+            >
+              <div
+                class="relative h-56 w-full overflow-hidden opacity-90 grayscale-[0.3]"
+              >
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  data-alt="A tranquil spa sanctuary in Worli, Mumbai. The entrance features dark wood accents, bamboo elements, and a small indoor water feature with stones. Soft flickering candlelight and low-intensity warm amber lighting create a deeply relaxing atmosphere. The visual style is rooted in natural minimalism, providing a contrast to the brighter beauty studios."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAwZHA4bhwh6QyiBu3vfgeUT0hOy0koXIHgG-EHxzMoQ2Hw5AZzlM6ZPqcNdooh_gm0oQVVF_nZ4JRqjq7lWry1QeOUxhOs73366qgvCiLe8yV4riKX5PM08HW6YaLJzCIPQ9gp6ZcTTnhaNGKex9TbWig2RqNkH2p3pKLjkq--GJ5dmgH1sXv4wtLQCV__LRqClpADbvWUJWtC-eAXsXZt5DgeY-XVckESOV56Ecxt5w3jvGuCmxh4p-JymMeNL4zPSM6_xIsEVIn9"
+                />
+                <div
+                  class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"
+                ></div>
+                <div
+                  class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1"
+                >
+                  VERIFIED
+                  <span
+                    class="material-symbols-outlined text-xs"
+                    data-icon="check_circle"
+                    >check_circle</span
+                  >
+                </div>
+                <div class="absolute top-4 right-4 flex flex-col gap-2">
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-primary hover:bg-white transition-all"
+                  >
+                    <span
+                      class="material-symbols-outlined text-xl"
+                      data-icon="favorite"
+                      >favorite</span
+                    >
+                  </button>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col bg-surface-container-low/30">
+                <div class="flex justify-between items-start mb-2">
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface">
+                    Aura Spa &amp; Salon
+                  </h2>
+                  <div class="flex items-center gap-1 text-primary">
+                    <span
+                      class="material-symbols-outlined text-sm fill-current"
+                      data-icon="star"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >star</span
+                    >
+                    <span class="text-label-md font-bold">4.6</span>
+                  </div>
+                </div>
+                <p
+                  class="text-caption text-on-surface-variant flex items-center gap-1 mb-4"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="location_on"
+                    >location_on</span
+                  >
+                  Worli · 4.2km
+                </p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="bg-surface-container-lowest text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Spa</span
+                  >
+                  <span
+                    class="bg-surface-container-lowest text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Massage</span
+                  >
+                  <span
+                    class="bg-surface-container-lowest text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Detox</span
+                  >
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-outline-variant/10 flex items-center justify-between"
+                >
+                  <div>
+                    <p class="text-caption text-on-surface-variant mb-1">
+                      Starts from
+                    </p>
+                    <p class="font-bold text-lg text-on-surface">₹799</p>
+                  </div>
+                  <div class="text-right">
+                    <p
+                      class="text-[10px] text-error font-bold mb-1 flex items-center justify-end gap-1"
+                    >
+                      <span class="w-1.5 h-1.5 rounded-full bg-error"></span>
+                      Closed
+                    </p>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 border border-outline-variant rounded-full hover:bg-surface-container-low transition-all"
+                      >
+                        <span
+                          class="material-symbols-outlined text-sm"
+                          data-icon="visibility"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="bg-outline-variant text-white px-4 py-2 rounded-full text-caption font-bold cursor-not-allowed opacity-50"
+                      >
+                        Closed
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+            <!-- Card 6 -->
+            <article
+              class="group bg-surface-container-lowest rounded-2xl overflow-hidden shadow-[0px_40px_40px_0px_rgba(226,169,161,0.04)] hover:shadow-xl hover:scale-[1.02] transition-all duration-300 flex flex-col border border-outline-variant/10"
+            >
+              <div class="relative h-56 w-full overflow-hidden">
+                <img
+                  class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  data-alt="A playful and vibrant pink-themed beauty studio in Colaba, Mumbai. The interior features pop-art style wall decor, neon 'Glow' signs, and comfortable bubble chairs. The lighting is bright and cheerful, highlighting a fun and youthful atmosphere. A dedicated nail station with glittery displays adds to the studio's energetic vibe."
+                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuA7Yb9bxfdXk3Iy4HmvIpOemyjP_m6JB3Q9nzy8PLqCqbM3wnxF9x-XA85nO2BJ5DZmr9CDb9t526XsxYgUM3t0nkAmE4lY6G_LpM9fFT0NNNBBud-IXeaf7D9EDqZORYGMAdAJprN8J5eNZBsMurg8awUxEj0Hn3CORAzo7fBnfKQDVWxqDVWPhxF0ns08eaxegdLQvKEjZxR78DqbrE3QyY23rp2pgPlXmd9pqmlmFQ9acnwmxf9Tx5QFdAP0kl52mO4Y6bpFs0mE"
+                />
+                <div
+                  class="absolute top-4 left-4 bg-secondary-container/90 backdrop-blur-md text-on-secondary-container px-3 py-1 rounded-full text-[10px] font-bold flex items-center gap-1"
+                >
+                  VERIFIED
+                  <span
+                    class="material-symbols-outlined text-xs"
+                    data-icon="check_circle"
+                    >check_circle</span
+                  >
+                </div>
+                <div class="absolute top-4 right-4 flex flex-col gap-2">
+                  <button
+                    class="w-8 h-8 rounded-full bg-surface/80 backdrop-blur-md flex items-center justify-center text-primary hover:bg-white transition-all"
+                  >
+                    <span
+                      class="material-symbols-outlined text-xl"
+                      data-icon="favorite"
+                      >favorite</span
+                    >
+                  </button>
+                  <div
+                    class="bg-primary/90 backdrop-blur-md text-white px-2 py-1 rounded-lg text-[10px] font-bold flex items-center gap-1"
+                  >
+                    ✨ 85% match
+                  </div>
+                </div>
+              </div>
+              <div class="p-5 flex-1 flex flex-col">
+                <div class="flex justify-between items-start mb-2">
+                  <h2 class="font-headline-sm text-headline-sm text-on-surface">
+                    Pink Petal Studio
+                  </h2>
+                  <div class="flex items-center gap-1 text-primary">
+                    <span
+                      class="material-symbols-outlined text-sm fill-current"
+                      data-icon="star"
+                      style="font-variation-settings: &quot;FILL&quot; 1"
+                      >star</span
+                    >
+                    <span class="text-label-md font-bold">4.8</span>
+                  </div>
+                </div>
+                <p
+                  class="text-caption text-on-surface-variant flex items-center gap-1 mb-4"
+                >
+                  <span
+                    class="material-symbols-outlined text-sm"
+                    data-icon="location_on"
+                    >location_on</span
+                  >
+                  Colaba · 7.1km
+                </p>
+                <div class="flex flex-wrap gap-2 mb-6">
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Hair</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Nails</span
+                  >
+                  <span
+                    class="bg-surface-container-low text-on-surface-variant text-[11px] px-3 py-1 rounded-full"
+                    >Pedicure</span
+                  >
+                </div>
+                <div
+                  class="mt-auto pt-4 border-t border-outline-variant/10 flex items-center justify-between"
+                >
+                  <div>
+                    <p class="text-caption text-on-surface-variant mb-1">
+                      Starts from
+                    </p>
+                    <p class="font-bold text-lg text-on-surface">₹499</p>
+                  </div>
+                  <div class="text-right">
+                    <p
+                      class="text-[10px] text-green-600 font-bold mb-1 flex items-center justify-end gap-1"
+                    >
+                      <span
+                        class="w-1.5 h-1.5 rounded-full bg-green-600"
+                      ></span>
+                      Open till 9PM
+                    </p>
+                    <div class="flex gap-2">
+                      <button
+                        class="p-2 border border-outline-variant rounded-full hover:bg-surface-container-low transition-all"
+                      >
+                        <span
+                          class="material-symbols-outlined text-sm"
+                          data-icon="visibility"
+                          >visibility</span
+                        >
+                      </button>
+                      <button
+                        class="rose-gradient text-white px-4 py-2 rounded-full text-caption font-bold flex items-center gap-1 hover:shadow-md transition-all"
+                      >
+                        Book Now
+                        <span
+                          class="material-symbols-outlined text-xs"
+                          data-icon="arrow_forward"
+                          >arrow_forward</span
+                        >
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </article>
+          </div>
+          <!-- Load More -->
+          <div class="mt-stack-xl flex justify-center">
+            <button
+              class="group flex items-center gap-3 px-10 py-4 border border-primary text-primary rounded-full font-label-md text-label-md hover:bg-primary hover:text-white transition-all duration-300"
+            >
+              Load More Salons
+              <span
+                class="material-symbols-outlined group-hover:rotate-180 transition-transform duration-500"
+                data-icon="refresh"
+                >refresh</span
+              >
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+    <!-- Footer -->
+    <footer
+      class="bg-surface-container-lowest border-t border-outline-variant/20 pt-stack-xl pb-10"
+    >
+      <div
+        class="max-w-container-max mx-auto px-margin-desktop flex flex-col gap-10"
+      >
+        <div
+          class="flex flex-col md:flex-row justify-between items-start gap-10"
+        >
+          <div class="max-w-sm">
+            <div class="flex items-center gap-3 mb-4">
+              <div
+                class="w-8 h-8 rounded-full bg-primary-container flex items-center justify-center"
+              >
+                <span
+                  class="material-symbols-outlined text-on-primary-container text-sm"
+                  data-icon="content_cut"
+                  >content_cut</span
+                >
+              </div>
+              <span
+                class="font-display-lg text-display-lg text-primary !text-xl italic"
+                >GlowMarket</span
+              >
+            </div>
+            <p class="text-body-md text-on-surface-variant leading-relaxed">
+              The ultimate destination for luxury beauty experiences in Mumbai.
+              Discover, compare, and book verified salons near you.
+            </p>
+          </div>
+          <div class="grid grid-cols-2 lg:grid-cols-3 gap-12">
+            <div class="flex flex-col gap-4">
+              <h4
+                class="font-label-md text-label-md text-on-surface uppercase tracking-widest"
+              >
+                Company
+              </h4>
+              <a
+                class="text-caption font-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#"
+                >Privacy Policy</a
+              >
+              <a
+                class="text-caption font-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#"
+                >Terms of Service</a
+              >
+            </div>
+            <div class="flex flex-col gap-4">
+              <h4
+                class="font-label-md text-label-md text-on-surface uppercase tracking-widest"
+              >
+                Business
+              </h4>
+              <a
+                class="text-caption font-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#"
+                >Partner With Us</a
+              >
+              <a
+                class="text-caption font-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#"
+                >Salon Dashboard</a
+              >
+            </div>
+            <div class="flex flex-col gap-4">
+              <h4
+                class="font-label-md text-label-md text-on-surface uppercase tracking-widest"
+              >
+                Support
+              </h4>
+              <a
+                class="text-caption font-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#"
+                >Contact Support</a
+              >
+              <a
+                class="text-caption font-body-md text-on-surface-variant hover:text-primary transition-colors"
+                href="#"
+                >FAQs</a
+              >
+            </div>
+          </div>
+        </div>
+        <div
+          class="pt-10 border-t border-outline-variant/20 flex flex-col md:flex-row justify-between items-center gap-6"
+        >
+          <p class="text-caption font-caption text-on-surface-variant">
+            © 2024 GlowMarket Luxury Concierge. All rights reserved.
+          </p>
+          <div class="flex items-center gap-6">
+            <a
+              class="text-on-surface-variant hover:text-primary transition-colors"
+              href="#"
+              ><span
+                class="material-symbols-outlined"
+                data-icon="brand_awareness"
+                >brand_awareness</span
+              ></a
+            >
+            <a
+              class="text-on-surface-variant hover:text-primary transition-colors"
+              href="#"
+              ><span class="material-symbols-outlined" data-icon="share"
+                >share</span
+              ></a
+            >
+            <a
+              class="text-on-surface-variant hover:text-primary transition-colors"
+              href="#"
+              ><span
+                class="material-symbols-outlined"
+                data-icon="alternate_email"
+                >alternate_email</span
+              ></a
+            >
+          </div>
+        </div>
+      </div>
+    </footer>
+    <!-- Mobile Filter Float -->
+    <div class="fixed bottom-6 left-1/2 -translate-x-1/2 lg:hidden z-50">
+      <button
+        class="flex items-center gap-2 bg-on-surface text-surface px-8 py-3 rounded-full shadow-2xl font-label-md text-label-md"
+      >
+        <span class="material-symbols-outlined text-sm" data-icon="tune"
+          >tune</span
+        >
+        Filters &amp; Sort
+      </button>
+    </div>
+    <script>
+      // Micro-interactions and effects
+      document.querySelectorAll("article").forEach((card) => {
+        card.addEventListener("mouseenter", () => {
+          card.style.transform = "translateY(-8px) scale(1.02)";
+        });
+        card.addEventListener("mouseleave", () => {
+          card.style.transform = "translateY(0) scale(1)";
+        });
+      });
+
+      // Search bar focus effect
+      const searchInput = document.querySelector('input[type="text"]');
+      searchInput?.addEventListener("focus", () => {
+        searchInput.parentElement.classList.add("scale-105");
+      });
+      searchInput?.addEventListener("blur", () => {
+        searchInput.parentElement.classList.remove("scale-105");
+      });
+    </script>
+  </body>
+</html>

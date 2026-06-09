@@ -1,5 +1,4 @@
 <!doctype html>
-
 <html class="scroll-smooth" lang="en">
   <head>
     <meta charset="utf-8" />
@@ -183,37 +182,47 @@
         <div class="hidden md:flex gap-8 items-center">
           <a
             class="font-body-md text-body-md text-primary border-b-2 border-primary pb-1 transition-all duration-300"
-            href="#"
+            href="index.html"
             >Discover</a
           >
           <a
             class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
-            href="#"
+            href="ai-stylist.html"
             >AI Stylist</a
           >
           <a
             class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
-            href="#"
+            href="salons.html"
             >Salons</a
           >
           <a
             class="font-body-md text-body-md text-on-surface-variant hover:scale-105 hover:text-primary transition-all duration-300"
-            href="#"
+            href="offers.html"
             >Offers</a
           >
         </div>
       </div>
-      <div class="flex items-center gap-4">
-        <button
-          class="hidden md:block font-label-md text-label-md text-on-surface-variant px-4 py-2 hover:text-primary transition-colors"
-        >
-          Sign In
-        </button>
-        <button
-          class="rose-gold-gradient text-white px-6 py-2 rounded-full font-label-md text-label-md shadow-sm hover:scale-105 active:scale-95 transition-all duration-300"
-        >
-          Book Now
-        </button>
+     <div class="flex items-center gap-4">
+  <button
+    onclick="location.href='login.html'"
+    class="hidden md:block font-label-md text-label-md text-on-surface-variant px-4 py-2 hover:text-primary transition-colors"
+    style="transition: 0.3s cubic-bezier(0.4, 0, 0.2, 1)"
+  >
+    Sign In
+  </button>
+  <button
+    onclick="location.href='signup.html'"
+    class="hidden md:block font-label-md text-label-md text-primary border-[1.5px] border-primary px-4 py-2 rounded-full hover:bg-primary/5 transition-colors"
+  >
+    Create Account
+  </button>
+  <button
+    onclick="location.href='book-service.html'"
+    class="rose-gold-gradient text-white px-6 py-2 rounded-full font-label-md text-label-md shadow-sm hover:scale-105 active:scale-95 transition-all duration-300"
+  >
+    Book Now
+  </button>
+</div>
       </div>
     </nav>
     <!-- Hero Section -->
@@ -221,7 +230,6 @@
       class="relative min-h-screen flex flex-col items-center justify-center pt-24 px-margin-mobile md:px-margin-desktop overflow-hidden"
     >
       <!-- Background Animation Overlay -->
-
       <div
         class="max-w-container-max w-full grid grid-cols-1 md:grid-cols-12 gap-gutter items-center"
       >
@@ -277,6 +285,10 @@
               Explore
             </button>
           </div>
+         <a
+  onclick="location.href='signup.html'"
+  class="text-primary font-body-md text-[13px] mt-2 hover:underline transition-all cursor-pointer"
+  >New here? Create your free account →</a>
         </div>
         <div class="md:col-span-6 relative flex justify-end">
           <div
@@ -339,6 +351,12 @@
           Experience the Aura
         </h2>
         <div class="w-16 h-1 rose-gold-gradient rounded-full"></div>
+        <button
+  onclick="location.href='salons.html'"
+  class="mt-4 h-[44px] px-8 border border-primary text-primary rounded-full font-label-md hover:bg-primary/5 transition-all cursor-pointer"
+>
+  View All Salons →
+</button>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
         <!-- AI Recommendation Card -->
@@ -362,7 +380,7 @@
             </p>
             <a
               class="font-label-md text-primary flex items-center gap-2 group-hover:gap-3 transition-all"
-              href="ai-stylist.html"
+              href="#"
             >
               Discover your profile
               <span class="material-symbols-outlined text-[18px]"
@@ -603,21 +621,21 @@
               Explore
             </h5>
             <ul class="flex flex-col gap-2">
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
                   >Salons</a
                 >
               </li>
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
                   >Stylists</a
                 >
               </li>
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
@@ -633,21 +651,21 @@
               Company
             </h5>
             <ul class="flex flex-col gap-2">
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
                   >About Us</a
                 >
               </li>
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
                   >Partner with Us</a
                 >
               </li>
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
@@ -663,21 +681,21 @@
               Support
             </h5>
             <ul class="flex flex-col gap-2">
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
                   >Privacy Policy</a
                 >
               </li>
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
                   >Terms of Service</a
                 >
               </li>
-              <li>
+              <li class="">
                 <a
                   class="font-body-md text-on-surface-variant hover:text-secondary transition-colors"
                   href="#"
