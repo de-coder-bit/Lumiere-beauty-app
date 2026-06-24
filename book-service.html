@@ -553,32 +553,28 @@
       // Initialize display
       updateSummary();
       function createBooking() {
-        alert("Booking created! Total: ₹" + totalPrice);
-        // window.location.href = "my-bookings.html";
-      }
-      function createBooking() {
-        fetch("https://lumiere-backend.onrender.com/api/bookings", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user_id: 1,
-            salon_id: 1,
-            service_name: "Selected Services",
-            date: new Date().toISOString().split("T")[0],
-            time: "10:00",
-            price: totalPrice,
-          }),
-        })
-          .then((res) => res.json())
-          .then((data) => {
-            if (data.success) {
-              alert("✅ Booking created!");
-              window.location.href = "my-bookings.html";
-            } else {
-              alert("❌ Failed: " + data.message);
-            }
-          });
-      }
+
+    const bookingData = {
+        user_id: 1,
+        salon_id: 1,
+        service_name: "Selected Services",
+        date: new Date().toISOString().split("T")[0],
+        time: "10:00",
+        price: totalPrice
+    };
+
+    localStorage.setItem(
+        "pendingBooking",
+        JSON.stringify(bookingData)
+    );
+
+    localStorage.setItem(
+        "bookingAmount",
+        totalPrice
+    );
+
+    window.location.href = "payment.html";
+}  
     </script>
     <footer
       class="bg-surface-container-low border-t border-outline-variant/10 pt-16 pb-32 px-margin-desktop"
