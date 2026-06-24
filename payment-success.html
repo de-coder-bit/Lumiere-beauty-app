@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Payment Success</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="min-h-screen flex justify-center items-center bg-green-50">
+
+<div class="bg-white p-10 rounded-xl shadow-lg text-center">
+
+    <h1 class="text-5xl mb-4">✅</h1>
+
+    <h2 class="text-3xl font-bold mb-4">
+        Payment Successful
+    </h2>
+
+    <p id="paymentId" class="mb-6 text-gray-600"></p>
+
+    <button
+        onclick="window.location.href='my-bookings.html'"
+        class="bg-black text-white px-6 py-3 rounded-lg">
+
+        View My Bookings
+
+    </button>
+
+</div>
+
+<script>
+
+document.getElementById("paymentId").innerText =
+    "Payment ID: " + localStorage.getItem("paymentId");
+
+const bookingData =
+    JSON.parse(localStorage.getItem("pendingBooking"));
+
+if (bookingData) {
+
+    fetch("http://lumiere-backend.onrender.com/api/bookings", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(bookingData)
+    })
+    .then(res => res.json())
+    .then(data => {
+
+        console.log("Booking Created", data);
+
+        localStorage.removeItem("pendingBooking");
+
+    })
+    .catch(err => {
+
+        console.error(err);
+
+    });
+}
+</script>
+
+</body>
+</html>
